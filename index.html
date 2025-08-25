@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parmelan</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Beth+Ellen&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">   
+  <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet">
+</head> 
+<body>
+    <div class="landing-container">
+        <!-- Background Image -->
+        <div class="background-image">
+            <img src="assets/images/dummy_front_map_bg.png" alt="Map Background">
+        </div>
+        
+        <!-- Animated Route Overlay -->
+        <div class="route-container">
+            <svg class="route-svg" viewBox="0 0 100 100" >
+                <!-- Route paths will be added here by JavaScript -->
+                <defs>
+                    <linearGradient id="routeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#4CAF50;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#2196F3;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+        
+        <!-- Content Overlay -->
+        <div class="content-overlay">
+            <div class="hero-content">
+                <h1 class="hero-title">Annecy - Parmelan</h1>
+                <p class="hero-subtitle">Aug 8 - 9, 2025</p>
+                <!-- <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="total-distance">0</span>
+                        <span class="stat-label">km total</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">days</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="total-elevation">0</span>
+                        <span class="stat-label">m elevation</span>
+                    </div>
+                </div> -->
+                <!-- <div class="hero-buttons">
+                    <a href="day1.html" class="btn btn-primary">Day 1</a>
+                    <a href="day2.html" class="btn btn-secondary">Day 2</a>
+                </div> -->
+            </div>
+        </div>
+        
+        <!-- Loading Indicator -->
+        <div class="loading-indicator" id="loading">
+            <div class="spinner"></div>
+            <p>Loading route data...</p>
+        </div>
+    </div>
+
+    <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/d3@5"></script>
+    <script src="js/landing.js"></script>
+</body>
+</html>

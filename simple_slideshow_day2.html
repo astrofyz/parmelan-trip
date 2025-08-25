@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Simple Slideshow</title>
+<meta charset="utf-8"> 
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+<style>
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: #0c0c0c;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 100;
+  line-height: 1.5;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.g-header {
+  text-align: center;
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  top: 0;
+  font-size: 11px;
+  background: #0c0c0c;
+  border-bottom: 1px solid #333;
+}
+
+.g-header a,
+.g-header a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+
+.g-header-inner {
+  padding: 10px 0 10px 0;
+}
+
+.g-slide {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.g-slide .g-slide-background {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  top: 0;
+  left: 0;
+  background-color: #0c0c0c;
+  z-index: -1;
+}
+
+.g-text-cont {
+  position: relative;
+  width: calc(100% - 65px);
+  max-width: 500px;
+  text-shadow: 0 0 3px #000, 0 0 6px #000;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.g-text-cont .g-text {
+  margin: 0 auto 10px auto;
+}
+
+.g-text-cont .g-text:last-child {
+  margin-bottom: 0;
+}
+
+.g-text-cont .g-text .g-text-inner {
+  background: #0c0c0c;
+  display: inline;
+  padding: 2px 6px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.g-minimap {
+  position: fixed;
+  top: 35px;
+  left: 10px;
+  width: 200px;
+  height: 150px;
+  z-index: 999;
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 10px;
+  text-shadow: 0 0 3px #000, 0 0 3px #000;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.g-minimap .g-minimap-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.g-minimap .g-inner {
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.g-minimap .g-inner .g-total-dist {
+  opacity: 0.7;
+}
+
+.g-minimap .g-inner td:first-child {
+  padding-right: 10px;
+}
+
+.g-minimap .g-map-svg {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.g-minimap .g-map-svg svg {
+  overflow: visible;
+  width: 100%;
+  height: 100%;
+}
+
+.g-minimap .g-map-svg svg path {
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.8));
+}
+
+.g-minimap .g-map-svg svg .g-mini-dot {
+  fill: #FCEE21;
+  stroke: rgba(0, 0, 0, 0.2);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.8));
+}
+
+.g-minimap .g-map-svg svg .g-mini-dot-bg {
+  animation: pulse 1s infinite;
+  fill: none;
+  stroke: #FCEE21;
+  stroke-width: 1;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+.g-minimap .g-map-svg svg text {
+  fill: #fff;
+  text-shadow: 0 0 3px #000, 0 0 3px #000, 0 0 3px #000;
+  font-size: 7px;
+  transform-origin: top left;
+  text-anchor: middle;
+}
+
+.g-path-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.4);
+  stroke-width: 1;
+}
+
+.g-minimap .g-path-bg {
+  stroke: rgba(255, 255, 255, 0.7);
+}
+
+.g-path {
+  fill: none;
+  stroke: #FCEE21;
+  stroke-width: 2;
+}
+
+.g-chart {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  width: 300px;
+  height: 150px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 999;
+}
+
+.g-chart svg {
+  overflow: visible;
+  width: 100%;
+  height: 100%;
+}
+
+.g-chart path.domain {
+  display: none;
+}
+
+.g-chart .axis line {
+  stroke: rgba(255, 255, 0, 0.1);
+}
+
+.g-chart .axis text,
+.g-chart .axis-lab {
+  fill: rgba(255, 255, 255, 0.7);
+  font-size: 7px;
+  font-family: Arial, sans-serif;
+}
+
+.g-chart .x.axis line {
+  stroke: rgba(255, 255, 255, 0.3);
+}
+
+.g-chart .g-chart-point {
+  stroke: #000;
+  stroke-width: 2;
+  fill: #FCEE21;
+}
+
+.g-timeline {
+  position: fixed;
+  top: 35px;
+  right: 10px;
+  width: 60px;
+  height: calc(100vh - 45px);
+  z-index: 999;
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 10px;
+  text-shadow: 0 0 3px #000, 0 0 3px #000;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+  padding: 10px 5px;
+}
+
+.g-timeline .g-timeline-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.g-timeline .g-timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateX(-50%);
+}
+
+.g-timeline .g-timeline-progress {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  background: #FCEE21;
+  transform: translateX(-50%);
+  transition: height 0.5s ease;
+}
+
+.g-timeline .g-timeline-points {
+  position: relative;
+  height: 100%;
+}
+
+.g-timeline .g-timeline-point {
+  position: absolute;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: #FCEE21;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.g-timeline .g-timeline-point:hover {
+  transform: translateX(-50%) scale(1.2);
+}
+
+.g-timeline .g-timeline-point.active {
+  background: #fff;
+  box-shadow: 0 0 10px rgba(252, 238, 33, 0.8);
+}
+
+.g-timeline .g-timeline-time {
+  position: absolute;
+  left: 15px;
+  font-size: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
+  transform: translateY(-50%);
+}
+
+.g-timeline .g-timeline-label {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  font-size: 8px;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+</style>
+</head>
+<body>
+<div class="g-header">
+    <div class="g-header-inner">SIMPLE SLIDESHOW</div>
+</div>
+
+<div class="g-minimap">
+    <div class="g-minimap-inner">
+        <div class="g-inner">
+            <table>
+                <tr>
+                    <td class="g-day">DAY <span>1</span></td>
+                    <td class="g-dist"><span>0.0 km</span></td>
+                </tr>
+            </table>
+        </div>
+        <div class="g-map-svg"></div>
+    </div>
+</div>
+
+<div class="g-chart"></div>
+
+<div class="g-timeline">
+    <div class="g-timeline-inner">
+        <div class="g-timeline-line"></div>
+        <div class="g-timeline-progress"></div>
+        <div class="g-timeline-points"></div>
+        <div class="g-timeline-label">TIME</div>
+    </div>
+</div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+let curslide = 0;
+let maxslide = 2;
+let routeData, elevationData;
+
+// Load data
+Promise.all([
+    fetch('data/route-day2.json').then(response => response.json()),
+    fetch('data/elevation-day2.json').then(response => response.json()),
+    fetch('data/timeline-day2.json').then(response => response.json())
+]).then(([route, elevation, timeline]) => {
+    routeData = route;
+    elevationData = elevation;
+    window.originalTimelineData = timeline; // Store original timeline data globally
+    
+    // Generate slides from timeline data
+    generateSlides(timeline);
+    
+    // Calculate total route distance from timeline data
+    const totalRouteDistance = timeline.storyPoints[timeline.storyPoints.length - 1]['distance-acc'] * 1000; // Convert km to meters
+    console.log("Total route distance from timeline (km):", timeline.storyPoints[timeline.storyPoints.length - 1]['distance-acc']);
+    console.log("Total route distance from timeline (meters):", totalRouteDistance);
+    
+    drawMinimap(totalRouteDistance);
+    drawChart();
+    drawTimeline(timeline);
+    
+    console.log("=== INITIAL UPDATE DEBUG ===");
+    console.log("About to call updateSlide()");
+    console.log("curslide at this point:", curslide);
+    console.log("Number of slides:", document.querySelectorAll('.g-slide').length);
+    
+    updateSlide();
+});
+
+function generateSlides(timeline) {
+    const slideContainer = document.querySelector('body');
+    
+    // Remove existing slides (keep header, minimap, chart)
+    const existingSlides = document.querySelectorAll('.g-slide');
+    existingSlides.forEach(slide => slide.remove());
+    
+    console.log("=== SLIDE GENERATION DEBUG ===");
+    console.log("Timeline story points:", timeline.storyPoints);
+    
+    // Generate new slides from timeline data
+    timeline.storyPoints.forEach((storyPoint, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'g-slide';
+        slide.id = `slide-${index + 1}`;
+        slide.setAttribute('data-slide', index);
+        slide.setAttribute('data-kmacc', storyPoint['distance-acc']); // Use original timeline data
+        
+        console.log(`Slide ${index}: distance-acc = ${storyPoint['distance-acc']} ${slide.getAttribute('data-kmacc')}`);
+        
+        // Create slide background
+        const background = document.createElement('div');
+        background.className = 'g-slide-background';
+        background.style.backgroundColor = `hsl(${index * 30 % 360}, 20%, 15%)`; // Different color for each slide
+        
+        // Create text container
+        const textCont = document.createElement('div');
+        textCont.className = 'g-text-cont';
+        
+        const textContInner = document.createElement('div');
+        textContInner.className = 'g-text-cont-inner';
+        
+        // Add story point label
+        const text = document.createElement('p');
+        text.className = 'g-text';
+        
+        const textInner = document.createElement('span');
+        textInner.className = 'g-text-inner';
+        textInner.textContent = storyPoint.label;
+        
+        text.appendChild(textInner);
+        textContInner.appendChild(text);
+        
+        // Add time if available
+        if (storyPoint.time) {
+            const timeText = document.createElement('p');
+            timeText.className = 'g-text';
+            
+            const timeInner = document.createElement('span');
+            timeInner.className = 'g-text-inner';
+            timeInner.style.fontSize = '0.8em';
+            timeInner.style.opacity = '0.7';
+            timeInner.textContent = storyPoint.time;
+            
+            timeText.appendChild(timeInner);
+            textContInner.appendChild(timeText);
+        }
+        
+        textCont.appendChild(textContInner);
+        slide.appendChild(background);
+        slide.appendChild(textCont);
+        
+        // Insert slide before the script tag
+        const scriptTag = document.querySelector('script');
+        slideContainer.insertBefore(slide, scriptTag);
+    });
+    
+    // Update maxslide
+    maxslide = timeline.storyPoints.length - 1;
+    console.log(`Generated ${timeline.storyPoints.length} slides from timeline data`);
+}
+
+function drawMinimap(totalRouteDistance) {
+    const sel = d3.select(".g-map-svg");
+    const containerWidth = 180;
+    const containerHeight = 80;
+
+    const svg = sel.append("svg")
+        .attr("width", containerWidth)
+        .attr("height", containerHeight);
+    
+    // Convert route points to GeoJSON format for D3
+    const coordinates = routeData.points.map(point => [point.lon, point.lat]);
+    
+    const geoJsonFeature = {
+        type: "Feature",
+        geometry: {
+            type: "LineString",
+            coordinates: coordinates
+        },
+        properties: {}
+    };
+    
+    // Calculate bounding box for the route
+    const lats = coordinates.map(coord => coord[1]);
+    const lons = coordinates.map(coord => coord[0]);
+    const boundingBox = {
+        type: "Feature",
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [Math.min(...lons), Math.min(...lats)],
+                [Math.max(...lons), Math.min(...lats)],
+                [Math.max(...lons), Math.max(...lats)],
+                [Math.min(...lons), Math.max(...lats)],
+                [Math.min(...lons), Math.min(...lats)]
+            ]]
+        }
+    };
+    
+    // Use a larger container size to make the route more visible
+    const projection = d3.geoIdentity().reflectY(true)
+        .fitSize([containerWidth, containerHeight], boundingBox);
+    
+    // Create D3 path generator
+    const pathGenerator = d3.geoPath().projection(projection);
+    
+    // Generate the SVG path data
+    const pathData = pathGenerator(geoJsonFeature);
+    
+    // Draw route background
+    svg.append("path")
+        .attr("class", "g-path-bg")
+        .attr("d", pathData)
+        .attr("transform", "translate(2, 2)"); // Add smaller margin
+    
+    // Draw route with animation capability
+    const routePath = svg.append("path")
+        .attr("class", "g-path")
+        .attr("d", pathData)
+        .attr("transform", "translate(2, 2)"); // Add smaller margin
+    
+    // Set up stroke-dasharray for animation
+    const pathLength = routePath.node().getTotalLength();
+    console.log("Path length:", pathLength);
+    routePath
+        .attr("stroke-dasharray", pathLength)
+        .attr("stroke-dashoffset", pathLength); // Start with route hidden
+    
+    // Calculate total route distance from route data
+    const totalRouteDistanceFromData = routeData.points.reduce((sum, point) => sum + (point.distance || 0), 0);
+    
+    console.log("=== ROUTE DISTANCE DEBUG ===");
+    console.log("Total route distance from route data (meters):", totalRouteDistanceFromData);
+    console.log("Total route distance from timeline (meters):", totalRouteDistance);
+    
+    // Store the route path and distances for animation
+    window.routeAnimationData = {
+        routePath: routePath,
+        pathLength: pathLength,
+        totalRouteDistance: totalRouteDistance // Use timeline-based distance for animation
+    };
+    
+    // Add start and end points
+    const startPoint = projection(coordinates[0]);
+    const endPoint = projection(coordinates[coordinates.length - 1]);
+    
+    svg.append("circle")
+        .attr("class", "g-mini-dot")
+        .attr("cx", startPoint[0] + 2)
+        .attr("cy", startPoint[1] + 2)
+        .attr("r", 3);
+    
+    svg.append("circle")
+        .attr("class", "g-mini-dot")
+        .attr("cx", endPoint[0] + 2)
+        .attr("cy", endPoint[1] + 2)
+        .attr("r", 3);
+    
+    // Add labels
+    svg.append("text")
+        .attr("x", startPoint[0] + 2)
+        .attr("y", startPoint[1] - 2)
+        .attr("text-anchor", "start")
+        .attr("font-size", "6px")
+        .text("START");
+    
+    svg.append("text")
+        .attr("x", endPoint[0] + 2)
+        .attr("y", endPoint[1] - 2)
+        .attr("text-anchor", "end")
+        .attr("font-size", "6px")
+        .text("END");
+}
+
+function animateRoute(progress) {
+    if (!window.routeAnimationData) return;
+    
+    const { routePath, pathLength, totalRouteDistance } = window.routeAnimationData;
+    
+    // Calculate how much of the route to show
+    const offset = pathLength * (1 - progress);
+    
+    console.log("=== ROUTE ANIMATION EXECUTION ===");
+    console.log("Input progress:", progress);
+    console.log("Path length (pixels):", pathLength);
+    console.log("Calculated offset:", offset);
+    console.log("Current stroke-dashoffset before animation:", routePath.attr("stroke-dashoffset"));
+    
+    routePath.transition()
+        .duration(1000)
+        .ease(d3.easeLinear)
+        .attr("stroke-dashoffset", offset)
+        .on("end", function() {
+            console.log("Route animation completed. Final stroke-dashoffset:", routePath.attr("stroke-dashoffset"));
+        });
+}
+
+function drawChart() {
+    const cont = d3.select(".g-chart").html("");
+    const containerWidth = 280;
+    const containerHeight = 130;
+    const margin = {top: 15, right: 15, bottom: 25, left: 35};
+    const chartw_adj = containerWidth - margin.left - margin.right;
+    const charth_adj = containerHeight - margin.top - margin.bottom;
+
+    const svg = cont.append("svg")
+        .attr("width", containerWidth)
+        .attr("height", containerHeight)
+        .append("g")
+        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+    // Prepare elevation data
+    const chartData = elevationData.points.map(d => [d.elevation, d.distance]);
+    
+    // Calculate proper domain based on actual data
+    const elevationExtent = d3.extent(chartData, d => d[0]);
+    const distanceExtent = d3.extent(chartData, d => d[1]);
+    
+    const x = d3.scaleLinear()
+        .range([0, chartw_adj])
+        .domain([0, distanceExtent[1]]);
+    
+    const y = d3.scaleLinear()
+        .range([charth_adj, 0])
+        .domain([elevationExtent[0] - 10, elevationExtent[1] + 10]); // Add padding
+    
+    const line = d3.line()
+        .curve(d3.curveBasis)
+        .x(d => x(d[1]))
+        .y(d => y(d[0]));
+
+    // Create axis with fewer ticks to fit better
+    const yAxis = d3.axisLeft(y)
+        .tickSize(chartw_adj)
+        .ticks(3)
+        .tickFormat(d => Math.round(d) + "M");
+
+    const xAxis = d3.axisBottom(x)
+        .tickSize(3)
+        .ticks(4)
+        .tickFormat(d => Math.round(d) + " KM");
+
+    svg.append("g")
+        .attr("class", "y axis")
+        .attr("transform", `translate(${chartw_adj},0)`)
+        .call(yAxis);
+    
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", `translate(0,${charth_adj})`)
+        .call(xAxis);
+
+    svg.append("text")
+        .attr("class", "axis-lab")
+        .attr("transform", "translate(0,-5)")
+        .attr("text-anchor", "end")
+        .attr("font-size", "8px")
+        .text("ELEV.");
+
+    // Draw elevation line with animation capability
+    const elevationPath = svg.append("path")
+        .datum(chartData)
+        .attr("class", "g-path")
+        .attr("d", line);
+    
+    // Set up stroke-dasharray for animation
+    const pathLength = elevationPath.node().getTotalLength();
+    elevationPath
+        .attr("stroke-dasharray", pathLength)
+        .attr("stroke-dashoffset", pathLength); // Start with elevation hidden
+    
+    // Store the elevation path for animation
+    window.elevationAnimationData = {
+        elevationPath: elevationPath,
+        pathLength: pathLength,
+        totalDistance: distanceExtent[1] // Use elevation data's total distance
+    };
+    
+    console.log("=== ELEVATION DISTANCE DEBUG ===");
+    console.log("Total elevation distance (meters):", distanceExtent[1]);
+}
+
+function animateElevation(progress) {
+    if (!window.elevationAnimationData) return;
+    
+    const { elevationPath, pathLength } = window.elevationAnimationData;
+    
+    // Calculate how much of the elevation to show
+    const offset = pathLength * (1 - progress);
+    
+    console.log("=== ELEVATION ANIMATION EXECUTION ===");
+    console.log("Input progress:", progress);
+    console.log("Path length (pixels):", pathLength);
+    console.log("Calculated offset:", offset);
+    console.log("Current stroke-dashoffset before animation:", elevationPath.attr("stroke-dashoffset"));
+    
+    elevationPath.transition()
+        .duration(1000)
+        .ease(d3.easeLinear)
+        .attr("stroke-dashoffset", offset)
+        .on("end", function() {
+            console.log("Elevation animation completed. Final stroke-dashoffset:", elevationPath.attr("stroke-dashoffset"));
+        });
+}
+
+function drawTimeline(timeline) {
+    const timelineContainer = d3.select(".g-timeline-points");
+    const progressBar = d3.select(".g-timeline-progress");
+    
+    // Clear existing timeline
+    timelineContainer.html("");
+    
+    // Get time range
+    const times = timeline.storyPoints.map(point => {
+        const [hours, minutes] = point.time.split(':').map(Number);
+        return hours * 60 + minutes; // Convert to minutes since midnight
+    });
+    
+    const minTime = Math.min(...times);
+    const maxTime = Math.max(...times);
+    const timeRange = maxTime - minTime;
+    
+    console.log("Timeline time range:", {
+        minTime: minTime,
+        maxTime: maxTime,
+        timeRange: timeRange
+    });
+    
+    // Create timeline points
+    timeline.storyPoints.forEach((storyPoint, index) => {
+        const timeMinutes = times[index];
+        const progress = (timeMinutes - minTime) / timeRange;
+        const yPosition = progress * 100; // Percentage from top
+        
+        const point = timelineContainer.append("div")
+            .attr("class", "g-timeline-point")
+            .style("top", `${yPosition}%`)
+            .attr("data-slide", index)
+            .style("cursor", "pointer") // Add pointer cursor
+            .on("click", function() {
+                // Jump to the clicked slide
+                const targetSlide = document.querySelector(`.g-slide[data-slide="${index}"]`);
+                if (targetSlide) {
+                    console.log(`Timeline clicked: jumping to slide ${index}`);
+                    targetSlide.scrollIntoView({ behavior: 'smooth' });
+                    curslide = index;
+                    updateSlide();
+                }
+            });
+        
+        // Add time label
+        point.append("div")
+            .attr("class", "g-timeline-time")
+            .style("top", "50%")
+            .text(storyPoint.time);
+    });
+    
+    // Store timeline data for animation
+    window.timelineData = {
+        minTime: minTime,
+        maxTime: maxTime,
+        timeRange: timeRange,
+        progressBar: progressBar
+    };
+}
+
+function animateTimeline(progress) {
+    if (!window.timelineData) return;
+    
+    const { progressBar } = window.timelineData;
+    const height = progress * 100; // Convert to percentage
+    
+    console.log("=== TIMELINE ANIMATION DEBUG ===");
+    console.log("Timeline progress:", (progress * 100).toFixed(2) + "%");
+    console.log("Timeline height:", height + "%");
+    
+    progressBar.style("height", `${height}%`);
+}
+
+function updateTimelinePoint(slideIndex) {
+    // Remove active class from all points
+    d3.selectAll(".g-timeline-point").classed("active", false);
+    
+    // Add active class to current point
+    d3.select(`.g-timeline-point[data-slide="${slideIndex}"]`).classed("active", true);
+}
+
+function updateSlide() {
+    // Update minimap info based on current slide
+    const currentSlide = d3.select(`.g-slide[data-slide="${curslide}"]`);
+    
+    console.log("=== SLIDE UPDATE DEBUG ===");
+    console.log("Current slide:", curslide);
+    console.log("Current slide element:", currentSlide.node());
+    console.log("All slides:", document.querySelectorAll('.g-slide'));
+    
+    // Check if slide exists
+    if (!currentSlide.node()) {
+        console.log("ERROR: Current slide element not found!");
+        return;
+    }
+    
+    console.log("Slide data-kmacc attribute:", currentSlide.attr("data-kmacc"));
+    console.log("Slide data-kmacc attribute type:", typeof currentSlide.attr("data-kmacc"));
+    console.log("Slide data-kmacc attribute length:", currentSlide.attr("data-kmacc")?.length);
+    
+    const kmacc = parseFloat(currentSlide.attr("data-kmacc"));
+    console.log("Parsed kmacc:", kmacc);
+    
+    d3.select(".g-day span").text(1);
+    d3.select(".g-dist span").text(kmacc.toFixed(1) + " km");
+    
+    // Animate the route based on current progress
+    if (window.routeAnimationData) {
+        // Convert slide distance from km to meters for comparison with route data
+        const slideDistanceMeters = kmacc * 1000;
+        const progress = slideDistanceMeters / window.routeAnimationData.totalRouteDistance;
+        
+        console.log("=== ROUTE ANIMATION DEBUG ===");
+        console.log("Slide distance (km):", kmacc);
+        console.log("Slide distance (meters):", slideDistanceMeters);
+        console.log("Total route distance (meters):", window.routeAnimationData.totalRouteDistance);
+        console.log("Progress percentage:", (progress * 100).toFixed(2) + "%");
+        console.log("Capped progress:", Math.min(progress, 1));
+        
+        const finalProgress = Math.min(progress, 1); // Cap at 100%
+        animateRoute(finalProgress);
+        
+        // Use the same progress for elevation animation
+        if (window.elevationAnimationData) {
+            console.log("=== ELEVATION ANIMATION DEBUG ===");
+            console.log("Using route progress for elevation:", (finalProgress * 100).toFixed(2) + "%");
+            animateElevation(finalProgress);
+        }
+        
+        // Animate timeline based on slide progress (not distance progress)
+        if (window.timelineData && window.originalTimelineData) {
+            // Get the current slide's time and calculate progress based on time position
+            const currentSlideTime = window.originalTimelineData.storyPoints[curslide].time;
+            const [hours, minutes] = currentSlideTime.split(':').map(Number);
+            const currentTimeMinutes = hours * 60 + minutes;
+            
+            const timelineProgress = (currentTimeMinutes - window.timelineData.minTime) / window.timelineData.timeRange;
+            
+            console.log("=== TIMELINE ANIMATION DEBUG ===");
+            console.log("Current slide time:", currentSlideTime);
+            console.log("Current time minutes:", currentTimeMinutes);
+            console.log("Timeline progress:", (timelineProgress * 100).toFixed(2) + "%");
+            
+            animateTimeline(timelineProgress);
+            updateTimelinePoint(curslide);
+        }
+    } else {
+        console.log("Route animation data not available");
+    }
+}
+
+// Scroll event listener to detect which slide is currently visible
+window.addEventListener('scroll', () => {
+    const slides = document.querySelectorAll('.g-slide');
+    const scrollPosition = window.scrollY + window.innerHeight / 2;
+    
+    console.log("=== SCROLL DEBUG ===");
+    console.log("Number of slides found:", slides.length);
+    console.log("Current curslide before scroll:", curslide);
+    
+    slides.forEach((slide, index) => {
+        const slideTop = slide.offsetTop;
+        const slideBottom = slideTop + slide.offsetHeight;
+        
+        if (scrollPosition >= slideTop && scrollPosition < slideBottom) {
+            if (curslide !== index) {
+                console.log("Changing curslide from", curslide, "to", index);
+                curslide = index;
+                updateSlide();
+            }
+        }
+    });
+});
+
+// Add scroll snapping behavior
+window.addEventListener('scrollend', () => {
+    const slides = document.querySelectorAll('.g-slide');
+    const scrollPosition = window.scrollY;
+    const windowHeight = window.innerHeight;
+    
+    // Find the closest slide
+    let closestSlide = 0;
+    let minDistance = Infinity;
+    
+    slides.forEach((slide, index) => {
+        const slideTop = slide.offsetTop;
+        const distance = Math.abs(scrollPosition - slideTop);
+        
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestSlide = index;
+        }
+    });
+    
+    // Snap to the closest slide if not already there
+    if (curslide !== closestSlide) {
+        curslide = closestSlide;
+        const targetSlide = slides[closestSlide];
+        targetSlide.scrollIntoView({ behavior: 'smooth' });
+        updateSlide();
+    }
+});
+
+</script>
+</body>
+</html>
