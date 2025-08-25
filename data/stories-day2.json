@@ -1,0 +1,59 @@
+{
+  "day": 2,
+  "totalDistance": 18.5,
+  "totalTime": "9h 15m",
+  "startTime": "07:30",
+  "endTime": "16:45",
+  "stories": [
+    {
+      "id": "morning-start",
+      "time": "07:30",
+      "distance": 0,
+      "title": "Morning Start",
+      "content": "Early morning departure from camp. The sunrise is spectacular, painting the mountains in golden light. Ready for another day of adventure.",
+      "image": "morning-day2.jpg",
+      "coordinates": [45.5356, -122.6654],
+      "elevation": 320
+    },
+    {
+      "id": "river-crossing",
+      "time": "09:45",
+      "distance": 4.8,
+      "title": "River Crossing",
+      "content": "Came across a beautiful mountain stream. The water is crystal clear and ice cold. Had to carefully pick our way across the rocks.",
+      "image": "river-day2.jpg",
+      "coordinates": [45.5412, -122.6589],
+      "elevation": 280
+    },
+    {
+      "id": "summit",
+      "time": "13:20",
+      "distance": 11.3,
+      "title": "Mountain Summit",
+      "content": "Reached the highest point of our journey! 360-degree views of the surrounding peaks. The wind is strong up here but the vista is incredible.",
+      "image": "summit-day2.jpg",
+      "coordinates": [45.5489, -122.6523],
+      "elevation": 1250
+    },
+    {
+      "id": "descent",
+      "time": "15:30",
+      "distance": 15.7,
+      "title": "Steep Descent",
+      "content": "The trail down is steep and challenging. Our legs are feeling the strain but we're making good progress toward our next camp.",
+      "image": "descent-day2.jpg",
+      "coordinates": [45.5456, -122.6489],
+      "elevation": 890
+    },
+    {
+      "id": "evening-camp",
+      "time": "16:45",
+      "distance": 18.5,
+      "title": "Evening Camp",
+      "content": "Set up camp near a peaceful lake. The water reflects the sunset perfectly. Another amazing day on the trail comes to an end.",
+      "image": "evening-camp-day2.jpg",
+      "coordinates": [45.5423, -122.6456],
+      "elevation": 650
+    }
+  ]
+}

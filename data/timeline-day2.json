@@ -1,0 +1,18 @@
+{"storyPoints": 
+	[
+		{"time": "06:27", "label": "Morning", "distance": 0.0, "storyId": "morning", "distance-acc": 0.0, "elevation": 1818.8}, 
+		{"time": "06:33", "label": "sunrise", "distance": 5.2, "storyId": "sunrise", "distance-acc": 0.0, "elevation": 1818.8}, 
+		{"time": "08:15", "label": "breakfast", "distance": 8.7, "storyId": "breakfast", "distance-acc": 0.0, "elevation": 1818.8}, 
+		{"time": "09:34", "label": "Cliffs", "distance": 15.2, "storyId": "cliffs", "distance-acc": 2.532421210775912, "elevation": 1494.3}, 
+		{"time": "10:03", "label": "Balmont (sud)", "distance": 15.2, "storyId": "Balmont", "distance-acc": 4.20146316568491, "elevation": 1352.5}, 
+		{"time": "10:18", "label": "Goose and chalet", "distance": 15.2, "storyId": "geese", "distance-acc": 4.87770243195349, "elevation": 1248.5}, 
+		{"time": "11:09", "label": "mont Lachat", "distance": 0.0, "storyId": "mont-lachat", "distance-acc": 7.26918228044293, "elevation": 1270.2}, 
+		{"time": "12:01", "label": "signs in the forest", "distance": 0.0, "storyId": "signs-in-forest", "distance-acc": 9.492784213441613, "elevation": 986.7}, 
+		{"time": "12:41", "label": "First Blackberries", "distance": 0.0, "storyId": "first-blackberries", "distance-acc": 10.958003463363537, "elevation": 732.7}, 
+		{"time": "13:30", "label": "River fier", "distance": 0.0, "storyId": "rechka", "distance-acc": 12.395415957337795, "elevation": 598.7}, 
+		{"time": "14:26", "label": "mountain", "distance": 0.0, "storyId": "mountain", "distance-acc": 14.177665290430678, "elevation": 680.2}, 
+		{"time": "15:07", "label": "more Blackberries", "distance": 0.0, "storyId": "decision-to-leave", "distance-acc": 15.91141206888395, "elevation": 710.0}, 
+		{"time": "15:26", "label": "signs of civilization", "distance": 0.0, "storyId": "water-is-near", "distance-acc": 16.761908893638985, "elevation": 647.7}, 
+		{"time": "15:39", "label": "Apples", "distance": 0.0, "storyId": "apples", "distance-acc": 17.328454993356097, "elevation": 615.2}, 
+		{"time": "20:42", "label": "drink", "distance": 0.0, "storyId": "drink", "distance-acc": 17.328454993356097, "elevation": 615.2}]
+}

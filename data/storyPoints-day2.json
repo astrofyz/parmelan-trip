@@ -1,0 +1,94 @@
+{
+  "storyPoints": [
+    {
+      "time": "06:27",
+      "label": "Morning",
+      "distance": 0,
+      "storyId": "morning"
+    },
+    {
+      "time": "06:33",
+      "label": "sunrise",
+      "distance": 5.2,
+      "storyId": "sunrise"
+    },
+    {
+      "time": "08:15",
+      "label": "breakfast",
+      "distance": 8.7,
+      "storyId": "breakfast"
+    },
+    {
+      "time": "09:34",
+      "label": "Cliffs",
+      "distance": 15.2,
+      "storyId": "cliffs"
+    },
+    {
+      "time": "10:03",
+      "label": "Balmont (sud)",
+      "distance": 15.2,
+      "storyId": "Balmont"
+    },
+    {
+      "time": "10:18",
+      "label": "Goose and chalet",
+      "distance": 15.2,
+      "storyId": "geese"
+    },
+    {
+      "time": "11:09",
+      "label": "mont Lachat",
+      "distance": 0,
+      "storyId": "mont-lachat"
+    },
+    {
+      "time": "12:01",
+      "label": "signs in the forest",
+      "distance": 0,
+      "storyId": "signs-in-forest"
+    },
+    {
+      "time": "12:41",
+      "label": "First Blackberries",
+      "distance": 0,
+      "storyId": "first-blackberries"
+    },
+    {
+      "time": "13:30",
+      "label": "River fier",
+      "distance": 0,
+      "storyId": "rechka"
+    },
+    {
+      "time": "14:26",
+      "label": "mountain",
+      "distance": 0,
+      "storyId": "mountain"
+    },
+    {
+      "time": "15:07",
+      "label": "more Blackberries",
+      "distance": 0,
+      "storyId": "decision-to-leave"
+    },
+    {
+      "time": "15:26",
+      "label": "signs of civilization",
+      "distance": 0,
+      "storyId": "water-is-near"
+    },
+    {
+      "time": "15:39",
+      "label": "Apples",
+      "distance": 0,
+      "storyId": "apples"
+    },
+    {
+      "time": "20:42",
+      "label": "drink",
+      "distance": 0,
+      "storyId": "drink"
+    }
+  ]
+}

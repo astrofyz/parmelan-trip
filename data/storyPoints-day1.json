@@ -1,0 +1,124 @@
+{
+  "storyPoints": [
+    {
+      "time": "06:00",
+      "label": "Start",
+      "distance": 0,
+      "storyId": "start"
+    },
+    {
+      "time": "10:15",
+      "label": "Lac du Bourget",
+      "distance": 5.2,
+      "storyId": "lac-du-bourget"
+    },
+    {
+      "time": "11:26",
+      "label": "Gare D'Annecy",
+      "distance": 8.7,
+      "storyId": "gare-annecy"
+    },
+    {
+      "time": "11:58",
+      "label": "Views from train",
+      "distance": 15.2,
+      "storyId": "elektrichka"
+    },
+    {
+      "time": "12:46",
+      "label": "Real start",
+      "distance": 0,
+      "storyId": "hike-start"
+    },
+    {
+      "time": "13:03",
+      "label": "Fields and gardens",
+      "distance": 0,
+      "storyId": "ogorody"
+    },
+    {
+      "time": "14:04",
+      "label": "Sandwich",
+      "distance": 0,
+      "storyId": "sandwich-views"
+    },
+    {
+      "time": "14:32",
+      "label": "Cow band",
+      "distance": 0,
+      "storyId": "cow-band"
+    },
+    {
+      "time": "14:46",
+      "label": "Glacier Aviernoz",
+      "distance": 0,
+      "storyId": "glacier"
+    },
+    {
+      "time": "15:08",
+      "label": "Calcites and martian views",
+      "distance": 0,
+      "storyId": "calcites"
+    },
+    {
+      "time": "15:22",
+      "label": "First Mont Blanc!",
+      "distance": 0,
+      "storyId": "first-montblanc"
+    },
+    {
+      "time": "15:51",
+      "label": "Reached the Refuge",
+      "distance": 0,
+      "storyId": "refuge"
+    },
+    {
+      "time": "16:27",
+      "label": "Apple with a view",
+      "distance": 0,
+      "storyId": "apple-montblanc"
+    },
+    {
+      "time": "16:53",
+      "label": "Piece of snow",
+      "distance": 0,
+      "storyId": "sugrob"
+    },
+    {
+      "time": "17:27",
+      "label": "Aggressive chicken",
+      "distance": 0,
+      "storyId": "aggressive-chicken-sign"
+    },
+    {
+      "time": "19:03",
+      "label": "Dinner time",
+      "distance": 0,
+      "storyId": "dinner"
+    },
+    {
+      "time": "20:44",
+      "label": "Golden hour",
+      "distance": 0,
+      "storyId": "golden-hour"
+    },
+    {
+      "time": "20:57",
+      "label": "Sunset",
+      "distance": 0,
+      "storyId": "sunset"
+    },
+    {
+      "time": "21:08",
+      "label": "Moonrise",
+      "distance": 0,
+      "storyId": "moonrise"
+    },
+    {
+      "time": "22:00",
+      "label": "Night",
+      "distance": 0,
+      "storyId": "night"
+    }
+  ]
+}

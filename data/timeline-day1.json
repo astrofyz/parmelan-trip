@@ -1,0 +1,87 @@
+{"storyPoints": 
+	[
+	{
+		"time": "06:00", 
+		"label": "Start", 
+		"distance": 0.0, 
+		"storyId": "start", 
+		"distance-acc": 0.0, 
+		"elevation": 0.0,
+		"image": "assets/images/clamart-1.jpg",
+		"story" : "Leaving Clamart before sunrise to take a train, metro, fast train, slower train, short train, and a bus. But let's take it step by step."
+	}, 
+	{
+		"time": "10:15", 
+		"label": "Lac du Bourget", 
+		"distance": 5.2, 	
+		"storyId": "lac-du-bourget", 
+		"distance-acc": 0.0, 
+		"elevation": 0.0,
+		"image": "assets/images/lac_du_bourget-2.jpg",
+		"story": "TGV to Lyon was fast, comfortable, and uneventful. Slower train to Annecy offered some breathtaking views of the Lake Bourget."
+	}, 
+	{
+		"time": "11:58", 
+		"label": "Views from train", 
+		"distance": 15.2, 
+		"storyId": "elektrichka", 
+		"distance-acc": 0.0, 
+		"elevation": 0.0,
+		"image": "assets/images/elektrichka-4.jpg",
+		"story": "Honestly, I just need more of those train rides in Savoie. The train went to Switzerland, while I got off at the small station of Groisy-Thorens-la-Caille. Just one more bus and I can finally start!"
+	}, 
+	{
+		"time": "12:46", 
+		"label": "Real start", 
+		"distance": 0.0, 
+		"storyId": "hike-start", 
+		"distance-acc": 0.0, 
+		"elevation": 0.0,
+		"image": "assets/images/aviernoz-5.jpg",
+		"story": "Aviernoz! Start strava recording, open mapy.com, all is set, let the hike begin!"
+	}, 
+	{
+		"time": "13:03", 
+		"label": "Fields and gardens", 
+		"distance": 0.0, 
+		"storyId": "ogorody", 
+		"distance-acc": 0.7840768512807939, 
+		"elevation": 883.4,
+		"image": "assets/images/ogorody-1.jpg",
+		"story": "Пробираюсь огородами, стараюсь сильно не разгоняться, сразу же влезла в крапиву. Людей не видно, коров слышно."
+	}, 
+	{
+		"time": "14:04", 
+		"label": "Sandwich", 
+		"distance": 0.0, 
+		"storyId": "sandwich-views", 
+		"distance-acc": 3.9473297747957248, 
+		"elevation": 1309.6,
+		"image": "assets/images/sandwich-1.jpg",
+		"story": "Nice place to eat a sandwich (I brought them from Paris), drink some water, and enjoy a view of the lake where I came from and the mountain where I'm heading to. From now on the trail gets more populated and better marked. The route to Parmelan is popular, but I came on Friday, so I guess that's why it wasn't too crowded."
+	}, 
+	{
+		"time": "14:32", 
+		"label": "Cow band", 
+		"distance": 0.0, 
+		"storyId": "cow-band", 
+		"distance-acc": 5.076909799245685, 
+		"elevation": 1455.9,
+		"image": "assets/images/cool_cow.jpg",
+		"story": "Cool cows. They have bells sounding angelically, but when you get close, you can also hear the endless buzz of many flies that swirl around. Poor cows!:("
+	}, 
+	{"time": "14:46", "label": "Glacier Aviernoz", "distance": 0.0, "storyId": "glacier", "distance-acc": 5.582951791206464, "elevation": 1506.0}, 
+	{"time": "15:08", "label": "Calcites and martian views", "distance": 0.0, "storyId": "calcites", "distance-acc": 6.535175354039371, "elevation": 1635.1}, 
+	{"time": "15:22", "label": "First Mont Blanc!", "distance": 0.0, "storyId": "first-montblanc", "distance-acc": 7.157042788051134, "elevation": 1683.9}, 
+	{"time": "15:51", "label": "Reached the Refuge", "distance": 0.0, "storyId": "refuge", "distance-acc": 7.960748614355441, "elevation": 1819.0}, 
+	{"time": "16:27", "label": "Apple with a view", "distance": 0.0, "storyId": "apple-montblanc", "distance-acc": 7.960749, "elevation": 1819.0}, 
+	{"time": "16:53", "label": "Piece of snow", "distance": 0.0, "storyId": "sugrob", "distance-acc": 7.960749, "elevation": 1819.0}, 
+	{"time": "17:27", "label": "Aggressive chicken", "distance": 0.0, "storyId": "aggressive-chicken-sign", "distance-acc": 7.960749, "elevation": 1819.0}, 
+	{"time": "19:03", "label": "Dinner time", "distance": 0.0, "storyId": "dinner", "distance-acc": 7.960749, "elevation": 1819.0}, 
+	{"time": "20:44", "label": "Golden hour", "distance": 0.0, "storyId": "golden-hour", "distance-acc": 7.960749, "elevation": 1819.0}, 
+	{"time": "20:57", "label": "Sunset", "distance": 0.0, "storyId": "sunset", "distance-acc": 7.960749, "elevation": 1819.0}, 
+	{"time": "21:08", "label": "Moonrise", "distance": 0.0, "storyId": "moonrise", "distance-acc": 7.960749, "elevation": 1819.0}, 
+	{"time": "22:00", "label": "Night", "distance": 0.0, "storyId": "night", "distance-acc": 7.960749, "elevation": 1819.0}]
+}
+
+

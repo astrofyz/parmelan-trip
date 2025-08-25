@@ -1,0 +1,49 @@
+{
+  "day": 1,
+  "totalDistance": 15.2,
+  "totalTime": "8h 30m",
+  "startTime": "08:00",
+  "endTime": "16:30",
+  "stories": [
+    {
+      "id": "start",
+      "time": "08:00",
+      "distance": 0,
+      "title": "Starting Point",
+      "content": "Early morning start at the trailhead. The air is crisp and the sky is clear. Perfect conditions for the beginning of our adventure.",
+      "image": "start-day1.jpg",
+      "coordinates": [45.5231, -122.6765],
+      "elevation": 120
+    },
+    {
+      "id": "first-peak",
+      "time": "10:30",
+      "distance": 5.2,
+      "title": "First Peak",
+      "content": "Reached the first major viewpoint. The climb was challenging but the views are absolutely worth it. Can see the entire valley below.",
+      "image": "first-peak-day1.jpg",
+      "coordinates": [45.5289, -122.6712],
+      "elevation": 450
+    },
+    {
+      "id": "lunch-break",
+      "time": "12:15",
+      "distance": 8.7,
+      "title": "Lunch Break",
+      "content": "Stopped for lunch at a beautiful alpine meadow. The wildflowers are in full bloom and we can hear birds singing in the distance.",
+      "image": "lunch-day1.jpg",
+      "coordinates": [45.5321, -122.6689],
+      "elevation": 380
+    },
+    {
+      "id": "camp",
+      "time": "16:30",
+      "distance": 15.2,
+      "title": "Camp Setup",
+      "content": "Arrived at our campsite for the night. The spot is perfect - flat ground, good water source nearby, and amazing sunset views.",
+      "image": "camp-day1.jpg",
+      "coordinates": [45.5356, -122.6654],
+      "elevation": 320
+    }
+  ]
+}
