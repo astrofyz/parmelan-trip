@@ -116,6 +116,26 @@ body {
   border-color: rgba(255, 255, 255, 0.3);
 }
 
+/* Responsive layout adjustments */
+@media (max-width: 768px) {
+  .g-slide {
+    flex-direction: column;
+  }
+  
+  .g-image-container {
+    width: 90% !important;
+    height: 50vh !important;
+    margin: 0 auto 20px auto !important;
+  }
+  
+  .g-text-cont {
+    width: 90% !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+}
+
 .g-minimap {
   position: fixed;
   top: 35px;
@@ -514,9 +534,6 @@ function generateSlides(timeline) {
         if (storyPoint.image) {
             const imageContainer = document.createElement('div');
             imageContainer.className = 'g-image-container';
-            imageContainer.style.width = '75%';
-            imageContainer.style.height = '75vh';
-            imageContainer.style.margin = '0 auto';
             imageContainer.style.display = 'flex';
             imageContainer.style.alignItems = 'center';
             imageContainer.style.justifyContent = 'center';
@@ -524,16 +541,88 @@ function generateSlides(timeline) {
             const image = document.createElement('img');
             image.src = storyPoint.image;
             image.alt = storyPoint.label;
-            image.style.width = '100%';
-            image.style.height = '100%';
             image.style.borderRadius = '8px';
             image.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
-            image.style.objectFit = 'cover';
+            image.style.objectFit = 'contain'; // Changed from 'cover' to 'contain' to prevent cropping
+            image.style.maxWidth = '100%';
+            image.style.maxHeight = '100%';
             
-            // Add error handling for images
+            // Function to handle image orientation and layout
+            image.onload = function() {
+                const isLandscape = image.naturalWidth > image.naturalHeight;
+                const slideElement = slide;
+                
+                // Ensure we have valid dimensions
+                if (image.naturalWidth === 0 || image.naturalHeight === 0) {
+                    console.log('Image dimensions not available, using default layout');
+                    return;
+                }
+                
+                if (isLandscape) {
+                    // Landscape: image on top, text below
+                    imageContainer.style.width = '80%';
+                    imageContainer.style.height = '60vh';
+                    imageContainer.style.margin = '0 auto 20px auto';
+                    
+                    // Adjust text container for landscape layout
+                    textCont.style.position = 'relative';
+                    textCont.style.left = 'auto';
+                    textCont.style.right = 'auto';
+                    textCont.style.bottom = 'auto';
+                    textCont.style.margin = '0 auto';
+                    textCont.style.maxWidth = '80%';
+                    textCont.style.textAlign = 'center';
+                    
+                    // Reorder elements: image first, then text
+                    slideElement.insertBefore(imageContainer, textCont);
+                } else {
+                    // Portrait: image and text side by side
+                    imageContainer.style.width = '50%';
+                    imageContainer.style.height = '80vh';
+                    imageContainer.style.margin = '0';
+                    
+                    // Adjust text container for portrait layout
+                    textCont.style.position = 'relative';
+                    textCont.style.left = 'auto';
+                    textCont.style.right = 'auto';
+                    textCont.style.bottom = 'auto';
+                    textCont.style.width = '45%';
+                    textCont.style.maxWidth = 'none';
+                    textCont.style.textAlign = 'left';
+                    textCont.style.margin = '0 0 0 5%';
+                    
+                    // Create a flex container for side-by-side layout
+                    const flexContainer = document.createElement('div');
+                    flexContainer.style.display = 'flex';
+                    flexContainer.style.alignItems = 'center';
+                    flexContainer.style.justifyContent = 'center';
+                    flexContainer.style.width = '100%';
+                    flexContainer.style.height = '100%';
+                    flexContainer.style.padding = '0 20px';
+                    
+                    // Move image and text into flex container
+                    flexContainer.appendChild(imageContainer);
+                    flexContainer.appendChild(textCont);
+                    
+                    // Replace the current slide content with flex container
+                    slideElement.innerHTML = '';
+                    slideElement.appendChild(background);
+                    slideElement.appendChild(flexContainer);
+                }
+            };
+            
+            // Handle case where image fails to load
             image.onerror = function() {
                 console.log(`Failed to load image: ${storyPoint.image}`);
                 imageContainer.style.display = 'none';
+                
+                // Reset text container to default position when no image
+                textCont.style.position = 'absolute';
+                textCont.style.left = '230px';
+                textCont.style.right = '110px';
+                textCont.style.bottom = '20px';
+                textCont.style.maxWidth = 'none';
+                textCont.style.textAlign = 'left';
             };
             
             imageContainer.appendChild(image);

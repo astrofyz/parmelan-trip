@@ -90,10 +90,62 @@
 			"image": "assets/images/first-blackberries.jpg",
 			"story": "So I'm driving myself to dehydration and the plan is to cross another mountain and only then get to the bus stop and to the city. Cursing myself for not buying water and thinking that I haven't seen any blackberries along the way. And suddenly, on a steep trail where nobody goes, here they are. Black gold, like a blessing. My spiky source of survival. Murs. Legs like fighting a wild blackberry. Thanks to the forest elves!"
 		}, 
-		{"time": "13:30", "label": "River fier", "distance": 0.0, "storyId": "rechka", "distance-acc": 12.395415957337795, "elevation": 598.7}, 
-		{"time": "14:26", "label": "mountain", "distance": 0.0, "storyId": "mountain", "distance-acc": 14.177665290430678, "elevation": 680.2}, 
-		{"time": "15:07", "label": "more Blackberries", "distance": 0.0, "storyId": "decision-to-leave", "distance-acc": 15.91141206888395, "elevation": 710.0}, 
-		{"time": "15:26", "label": "signs of civilization", "distance": 0.0, "storyId": "water-is-near", "distance-acc": 16.761908893638985, "elevation": 647.7}, 
-		{"time": "15:39", "label": "Apples", "distance": 0.0, "storyId": "apples", "distance-acc": 17.328454993356097, "elevation": 615.2}, 
-		{"time": "20:42", "label": "drink", "distance": 0.0, "storyId": "drink", "distance-acc": 17.328454993356097, "elevation": 615.2}]
+		{
+			"time": "13:30", 
+			"label": "River fier", 
+			"distance": 0.0, 
+			"storyId": "rechka", 
+			"distance-acc": 12.395415957337795, 
+			"elevation": 598.7,
+			"image": "assets/images/river.jpg",
+			"story": "Ну хотя бы умыться можно! Но пить из речки ершила не стоит. Вот надо всегда таскать с собой обеззараживающие таблетки!"
+		}, 
+		{
+			"time": "14:26", 
+			"label": "mountain", 
+			"distance": 0.0, 
+			"storyId": "mountain", 
+			"distance-acc": 14.177665290430678, 
+			"elevation": 680.2,
+			"story": "Хз что тут происходило, наверное, я просто уставала и хотела пить"
+		}, 
+		{
+			"time": "15:07", 
+			"label": "more Blackberries", 
+			"distance": 0.0, 
+			"storyId": "decision-to-leave", 
+			"distance-acc": 15.91141206888395, 
+			"elevation": 710.0,
+			"story": "Больше ежевики богу ежевики. Я, кажется, наелась ежевикой..."
+		}, 
+		{
+			"time": "15:26", 
+			"label": "signs of civilization", 
+			"distance": 0.0, 	
+			"storyId": "water-is-near", 
+			"distance-acc": 16.761908893638985, 
+			"elevation": 647.7,
+			"image": "assets/images/water.jpg",
+			"story": "Water is near! Finally some civilization"
+		}, 
+		{
+			"time": "15:39", 
+			"label": "Apples", 
+			"distance": 0.0, 
+			"storyId": "apples", 
+			"distance-acc": 17.328454993356097, 
+			"elevation": 615.2,
+			"image": "assets/images/apples.jpg",
+			"story": "Бабулечка предложила мне воды, со льдом! Я стырила яблоко из-под яблони. А потом встретила Аниту! И сливы. "
+		}, 
+		{
+			"time": "20:42", 
+			"label": "drink", 
+			"distance": 0.0, 
+			"storyId": "drink", 
+			"distance-acc": 17.328454993356097, 
+			"elevation": 615.2,
+			"image": "assets/images/sleeping-duck.jpg",
+			"story": "Уточка, лебеди и дети все в одном прозрачном озере, красивый городок с кучей туристов, каналы. Съела ещё полбутерброда. Выпила вечером с Анитой"
+		}]
 }
