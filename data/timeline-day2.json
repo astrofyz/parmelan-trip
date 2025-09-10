@@ -1,14 +1,95 @@
 {"storyPoints": 
 	[
-		{"time": "06:27", "label": "Morning", "distance": 0.0, "storyId": "morning", "distance-acc": 0.0, "elevation": 1818.8}, 
-		{"time": "06:33", "label": "sunrise", "distance": 5.2, "storyId": "sunrise", "distance-acc": 0.0, "elevation": 1818.8}, 
-		{"time": "08:15", "label": "breakfast", "distance": 8.7, "storyId": "breakfast", "distance-acc": 0.0, "elevation": 1818.8}, 
-		{"time": "09:34", "label": "Cliffs", "distance": 15.2, "storyId": "cliffs", "distance-acc": 2.532421210775912, "elevation": 1494.3}, 
-		{"time": "10:03", "label": "Balmont (sud)", "distance": 15.2, "storyId": "Balmont", "distance-acc": 4.20146316568491, "elevation": 1352.5}, 
-		{"time": "10:18", "label": "Goose and chalet", "distance": 15.2, "storyId": "geese", "distance-acc": 4.87770243195349, "elevation": 1248.5}, 
-		{"time": "11:09", "label": "mont Lachat", "distance": 0.0, "storyId": "mont-lachat", "distance-acc": 7.26918228044293, "elevation": 1270.2}, 
-		{"time": "12:01", "label": "signs in the forest", "distance": 0.0, "storyId": "signs-in-forest", "distance-acc": 9.492784213441613, "elevation": 986.7}, 
-		{"time": "12:41", "label": "First Blackberries", "distance": 0.0, "storyId": "first-blackberries", "distance-acc": 10.958003463363537, "elevation": 732.7}, 
+		{
+			"time": "06:27", 
+			"label": "Morning", 
+			"distance": 0.0, 
+			"storyId": "morning", 
+			"distance-acc": 0.0, 
+			"elevation": 1818.8,
+			"image": "assets/images/pre-sunrise.jpg",
+			"story": "Pre-sunrise. Getting up early to stretch, wash myself if possible and watch sunrise."
+		}, 
+		{
+			"time": "06:33", 
+			"label": "sunrise", 
+			"distance": 5.2, 
+			"storyId": "sunrise", 
+			"distance-acc": 0.0, 
+			"elevation": 1818.8,
+			"image": "assets/images/sunrise.jpg",
+			"story": "Sunrise!"
+		}, 
+		{
+			"time": "08:15", 
+			"label": "breakfast", 
+			"distance": 8.7, 
+			"storyId": "breakfast", 
+			"distance-acc": 0.0, 
+			"elevation": 1818.8,
+			"image": "assets/images/breakfast.jpg",
+			"story": "Breakfast is more simple than dinner, cereals, bread and butter, orange juice, coffee (I took everything because it was expensive lol) and is meant to be enjoyed outside. Turns out that seeing mont blanc in the morning is more difficult. After breakfast it's time to wave goodbye to the refuge."
+		}, 
+		{
+			"time": "09:34", 
+			"label": "Cliffs", 
+			"distance": 15.2, 
+			"storyId": "cliffs", 
+			"distance-acc": 2.532421210775912, 
+			"elevation": 1494.3,
+			"image": "assets/images/cliffs.jpg",
+			"story": "The trail is easy. My initial plan was to go to Naves Parmelan, but then I decided to extend my route and took on a longer path with an idea in mind to go on a smaller mountain just over the lake to get a view of Annecy. Also I was too greedy and decided not to buy water in the refuge. So I started with less than 0.5 L, I guess. The route down is easy, she thought."
+		}, 
+		{
+			"time": "10:03", 
+			"label": "Balmont (sud)", 
+			"distance": 15.2, 
+			"storyId": "Balmont", 
+			"distance-acc": 4.20146316568491, 
+			"elevation": 1352.5,
+			"image": "assets/images/balmont.jpg",
+			"story": "Passing through small peaks, all of them have signs and maps of visible skyline. I'm usually looking back to Parmelan from where I came, it's towering over the nearby landscape."
+		}, 
+		{
+			"time": "10:18", 
+			"label": "Goose and chalet", 
+			"distance": 15.2, 
+			"storyId": "geese", 
+			"distance-acc": 4.87770243195349, 
+			"elevation": 1248.5,
+			"image": "assets/images/geese.jpg",
+			"story": "Chalet with cows, chicken and geese! I'm a city girl so I guess this was the first time when I really saw a farm goose. That's who they are talking about in stories that goose can break a leg with a hit of a wing!"
+		}, 
+		{
+			"time": "11:09", 
+			"label": "mont Lachat", 
+			"distance": 0.0, 
+			"storyId": "mont-lachat", 
+			"distance-acc": 7.26918228044293, 
+			"elevation": 1270.2,
+			"image": "assets/images/lachat.jpg",
+			"story": "Another peak. On this part of the route I was mostly alone (and counting my sips of water in the bottle)"
+		}, 
+		{
+			"time": "12:01", 
+			"label": "signs in the forest", 
+			"distance": 0.0, 
+			"storyId": "signs-in-forest", 
+			"distance-acc": 9.492784213441613, 
+			"elevation": 986.7,
+			"image": "assets/images/signs-in-forest.jpg",
+			"story": "Those parts are lacking steep trails and feel mostly educational-recreational. Although I don't know where people are coming from. Maybe from Dingy-Saint-Clair, or from nearby parking lots, I guess. It seems like there is no direct bus from nearby places to Annecy."
+		}, 
+		{
+			"time": "12:41", 
+			"label": "First Blackberries", 
+			"distance": 0.0, 
+			"storyId": "first-blackberries", 
+			"distance-acc": 10.958003463363537, 
+			"elevation": 732.7,
+			"image": "assets/images/first-blackberries.jpg",
+			"story": "So I'm driving myself to dehydration and the plan is to cross another mountain and only then get to the bus stop and to the city. Cursing myself for not buying water and thinking that I haven't seen any blackberries along the way. And suddenly, on a steep trail where nobody goes, here they are. Black gold, like a blessing. My spiky source of survival. Murs. Legs like fighting a wild blackberry. Thanks to the forest elves!"
+		}, 
 		{"time": "13:30", "label": "River fier", "distance": 0.0, "storyId": "rechka", "distance-acc": 12.395415957337795, "elevation": 598.7}, 
 		{"time": "14:26", "label": "mountain", "distance": 0.0, "storyId": "mountain", "distance-acc": 14.177665290430678, "elevation": 680.2}, 
 		{"time": "15:07", "label": "more Blackberries", "distance": 0.0, "storyId": "decision-to-leave", "distance-acc": 15.91141206888395, "elevation": 710.0}, 

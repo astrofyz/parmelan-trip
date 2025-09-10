@@ -70,18 +70,116 @@
 		"image": "assets/images/cool_cow.jpg",
 		"story": "Cool cows. They have bells sounding angelically, but when you get close, you can also hear the endless buzz of many flies that swirl around. Poor cows!:("
 	}, 
-	{"time": "14:46", "label": "Glacier Aviernoz", "distance": 0.0, "storyId": "glacier", "distance-acc": 5.582951791206464, "elevation": 1506.0}, 
-	{"time": "15:08", "label": "Calcites and martian views", "distance": 0.0, "storyId": "calcites", "distance-acc": 6.535175354039371, "elevation": 1635.1}, 
-	{"time": "15:22", "label": "First Mont Blanc!", "distance": 0.0, "storyId": "first-montblanc", "distance-acc": 7.157042788051134, "elevation": 1683.9}, 
-	{"time": "15:51", "label": "Reached the Refuge", "distance": 0.0, "storyId": "refuge", "distance-acc": 7.960748614355441, "elevation": 1819.0}, 
-	{"time": "16:27", "label": "Apple with a view", "distance": 0.0, "storyId": "apple-montblanc", "distance-acc": 7.960749, "elevation": 1819.0}, 
-	{"time": "16:53", "label": "Piece of snow", "distance": 0.0, "storyId": "sugrob", "distance-acc": 7.960749, "elevation": 1819.0}, 
-	{"time": "17:27", "label": "Aggressive chicken", "distance": 0.0, "storyId": "aggressive-chicken-sign", "distance-acc": 7.960749, "elevation": 1819.0}, 
-	{"time": "19:03", "label": "Dinner time", "distance": 0.0, "storyId": "dinner", "distance-acc": 7.960749, "elevation": 1819.0}, 
-	{"time": "20:44", "label": "Golden hour", "distance": 0.0, "storyId": "golden-hour", "distance-acc": 7.960749, "elevation": 1819.0}, 
-	{"time": "20:57", "label": "Sunset", "distance": 0.0, "storyId": "sunset", "distance-acc": 7.960749, "elevation": 1819.0}, 
-	{"time": "21:08", "label": "Moonrise", "distance": 0.0, "storyId": "moonrise", "distance-acc": 7.960749, "elevation": 1819.0}, 
-	{"time": "22:00", "label": "Night", "distance": 0.0, "storyId": "night", "distance-acc": 7.960749, "elevation": 1819.0}]
+	{
+		"time": "14:46", 
+		"label": "Glacier Aviernoz", 
+		"distance": 0.0, 
+		"storyId": "glacier", 
+		"distance-acc": 5.582951791206464, 
+		"elevation": 1506.0,
+		"image": "assets/images/glacier-1.jpg",
+		"story": "While the ice itself is probably somewhere deep in the cave and one cannot see it even if climbs higher, the freezing breath of winter is unmistakable. Imagine that in the middle of the hot summer hike you suddenly feel like standing next to an open freezer door. A reminder that winter is coming or that the door of a wardrobe leading to Narnia is just over there. "
+	}, 
+	{
+		"time": "15:08", 
+		"label": "Calcites and martian views", 
+		"distance": 0.0, 
+		"storyId": "calcites", 
+		"distance-acc": 6.535175354039371, 
+		"elevation": 1635.1,
+		"image": "assets/images/calcites.jpg",
+		"story": "I was very glad that the day was dry and sunny, going through this martian calcite landscape in the rain would be impossible, I suspect that rocks are super slippery."
+	}, 
+	{
+		"time": "15:22", 
+		"label": "First Mont Blanc!", 
+		"distance": 0.0, 
+		"storyId": "first-montblanc", 
+		"distance-acc": 7.157042788051134, 
+		"elevation": 1683.9,
+		"image": "assets/images/montblanc.jpg",
+		"story": "I knew that from the refuge it is possible to see Mont Blanc but I didn't know what to expect from it. Should it be something barely visible in the distance? So seeing those mighty snow-covered peaks felt like a gift and a miracle. Couldn't stop taking pictures (can hardly choose one now)"
+	}, 
+	{
+		"time": "15:51", 
+		"label": "Reached the Refuge", 
+		"distance": 0.0, 
+		"storyId": "refuge", 
+		"distance-acc": 7.960748614355441, 
+		"elevation": 1819.0,
+		"image": "assets/images/savoy-flag.jpg",
+		"story": "Reached the refuge! It is much earlier than my original plan, so I have time to explore trails around, eat an apple and rest."
+	}, 
+	{
+		"time": "16:53", 
+		"label": "Piece of snow", 
+		"distance": 0.0, 
+		"storyId": "sugrob", 
+		"distance-acc": 7.960749, 
+		"elevation": 1819.0,
+		"image": "assets/images/snow.jpg",
+		"story": "About 40 minuts away from the refuge there is a grote which I thought I could check out before dinner. However the trail to the grote was passing mostly through the calcite desert, so eventually I decided that I don't like jumping there with a risk of breaking my leg and went back. But I saw a piece of snow on the way! It didn't make any cold feeling like a glacier."
+	}, 
+	{
+		"time": "17:27", 
+		"label": "Aggressive chicken", 
+		"distance": 0.0, 
+		"storyId": "aggressive-chicken-sign", 
+		"distance-acc": 7.960749, 
+		"elevation": 1819.0,
+		"image": "assets/images/chicken.jpg",
+		"story": "Chicken are cool. Maybe replace with some refuge inside pictures and add to the story. Also should mention somewhere that all the choice I needed to make was whether to look left to the Mont Blanc or to the right to the valley and lac du Annecy."
+	}, 
+	{
+		"time": "19:03", 
+		"label": "Dinner time", 
+		"distance": 0.0, 
+		"storyId": "dinner", 
+		"distance-acc": 7.960749, 
+		"elevation": 1819.0,
+		"image": "assets/images/dinner.jpg",
+		"story": "This is the oldest refuge in France working since 1883. No water. Helicopter food. Visited by Tenzig. Everyone is eating together (a bit pricely, but super tasty). Sleeping with a window (thin walls)"
+	}, 
+	{
+		"time": "20:44", 
+		"label": "Golden hour", 
+		"distance": 0.0, 
+		"storyId": "golden-hour", 
+		"distance-acc": 7.960749, 
+		"elevation": 1819.0,
+		"image": "assets/images/montblanc-sunset.jpg",
+		"story": "Probably more refuge stories and memories. E.g. about people and communication."
+	}, 
+	{
+		"time": "20:57", 
+		"label": "Sunset", 
+		"distance": 0.0, 
+		"storyId": "sunset", 
+		"distance-acc": 7.960749, 
+		"elevation": 1819.0,
+		"image": "assets/images/sunset.jpg",
+		"story": "Watching sunset."
+	}, 
+	{
+		"time": "21:08", 
+		"label": "Moonrise", 
+		"distance": 0.0, 
+		"storyId": "moonrise", 
+		"distance-acc": 7.960749, 
+		"elevation": 1819.0,
+		"image": "assets/images/moonrise.jpg",
+		"story": "Whatching moonrise from the first shimmer of moon silver up until the time of the full disk rising over the mountains. The worst time for any stargazing but the evening was magnificent."
+	}, 
+	{
+		"time": "22:00", 
+		"label": "Night", 
+		"distance": 0.0, 
+		"storyId": "night", 
+		"distance-acc": 7.960749, 
+		"elevation": 1819.0,
+		"image": "assets/images/window.jpg",
+		"story": "Good night. More hiking awaits tomorrow."
+	}]
 }
 
 
