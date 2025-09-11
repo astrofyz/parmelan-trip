@@ -18,8 +18,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  background: #0c0c0c;
-  color: rgba(255, 255, 255, 0.9);
+  background: #f0f0f0;
+  color: rgba(0, 0, 0, 0.9);
   font-family: 'Franklin Gothic Medium', Arial, sans-serif;
   font-size: 15px;
   font-weight: 100;
@@ -38,13 +38,13 @@ body {
   width: 100%;
   top: 0;
   font-size: 11px;
-  background: #0c0c0c;
-  border-bottom: 1px solid #333;
+  background: #f0f0f0;
+  border-bottom: 1px solid #ccc;
 }
 
 .g-header a,
 .g-header a:visited {
-  color: #fff;
+  color: #000;
   text-decoration: none;
 }
 
@@ -71,7 +71,7 @@ body {
   background-position: center;
   top: 0;
   left: 0;
-  background-color: #0c0c0c;
+  background-color: #f0f0f0;
   z-index: -1;
 }
 
@@ -79,7 +79,7 @@ body {
   position: relative;
   width: calc(100% - 65px);
   max-width: 500px;
-  text-shadow: 0 0 3px #000, 0 0 6px #000;
+  text-shadow: 0 0 3px #fff, 0 0 6px #fff;
   line-height: 1.4;
   text-align: center;
   z-index: 3;
@@ -94,7 +94,7 @@ body {
 }
 
 .g-text-cont .g-text .g-text-inner {
-  background: #0c0c0c;
+  background: #f0f0f0;
   display: inline;
   padding: 2px 6px;
   -webkit-box-decoration-break: clone;
@@ -146,8 +146,8 @@ body {
   font-family: 'WeirdIsBeautiful', Arial, sans-serif;
   text-transform: uppercase;
   font-size: 18px;
-  text-shadow: 0 0 3px #000, 0 0 3px #000;
-  background: rgba(0, 0, 0, 0.7);
+  text-shadow: 0 0 3px #fff, 0 0 3px #fff;
+  background: transparent;
   border-radius: 5px;
   padding: 10px;
 }
@@ -190,7 +190,7 @@ body {
 }
 
 .g-minimap .g-map-svg svg .g-mini-dot {
-  fill: #FCEE21;
+  fill: #ff4444;
   stroke: rgba(0, 0, 0, 0.2);
   stroke-width: 2;
   filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.8));
@@ -199,7 +199,7 @@ body {
 .g-minimap .g-map-svg svg .g-mini-dot-bg {
   animation: pulse 1s infinite;
   fill: none;
-  stroke: #FCEE21;
+  stroke: #ff4444;
   stroke-width: 1;
   transform-origin: center;
   transform-box: fill-box;
@@ -217,8 +217,8 @@ body {
 }
 
 .g-minimap .g-map-svg svg text {
-  fill: #fff;
-  text-shadow: 0 0 3px #000, 0 0 3px #000, 0 0 3px #000;
+  fill: #000;
+  /* text-shadow: 0 0 3px #000, 0 0 3px #000, 0 0 3px #000; */
   font-size: 18px;
   font-family: 'WeirdIsBeautiful', Arial, sans-serif;
   transform-origin: top left;
@@ -227,17 +227,17 @@ body {
 
 .g-path-bg {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.4);
+  stroke: rgba(0, 0, 0, 0.4);
   stroke-width: 1;
 }
 
 .g-minimap .g-path-bg {
-  stroke: rgba(255, 255, 255, 0.7);
+  stroke: rgba(0, 0, 0, 0.7);
 }
 
 .g-path {
   fill: none;
-  stroke: #FCEE21;
+  stroke: #ff4444;
   stroke-width: 2.5;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -250,7 +250,7 @@ body {
   left: 10px;
   width: 300px;
   height: 150px;
-  background: rgba(0, 0, 0, 0.7);
+  background: transparent;
   border-radius: 5px;
   padding: 10px;
   z-index: 999;
@@ -267,24 +267,24 @@ body {
 }
 
 .g-chart .axis line {
-  stroke: rgba(255, 255, 0, 0.1);
+  stroke: rgba(0, 0, 0, 0.1);
 }
 
 .g-chart .axis text,
 .g-chart .axis-lab {
-  fill: rgba(255, 255, 255, 0.7);
+  fill: rgba(0, 0, 0, 0.7);
   font-size: 18px;
   font-family: 'WeirdIsBeautiful', Arial, sans-serif;
 }
 
 .g-chart .x.axis line {
-  stroke: rgba(255, 255, 255, 0.3);
+  stroke: rgba(0, 0, 0, 0.3);
 }
 
 .g-chart .g-chart-point {
   stroke: #000;
   stroke-width: 2;
-  fill: #FCEE21;
+  fill: #ff4444;
 }
 
 .g-timeline {
@@ -297,10 +297,10 @@ body {
   font-family: 'WeirdIsBeautiful', Arial, sans-serif;
   text-transform: uppercase;
   font-size: 18px;
-  text-shadow: 0 0 3px #000, 0 0 3px #000;
-  background: rgba(0, 0, 0, 0.7);
+  text-shadow: 0 0 3px #fff, 0 0 3px #fff;
+  background: transparent;
   border-radius: 5px;
-  padding: 10px 5px;
+  padding: 10px 5px 20px 5px;
 }
 
 .g-timeline .g-timeline-inner {
@@ -315,7 +315,7 @@ body {
   top: 0;
   bottom: 0;
   width: 2px;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.3);
   transform: translateX(-50%);
 }
 
@@ -324,7 +324,7 @@ body {
   left: 50%;
   top: 0;
   width: 2px;
-  background: #FCEE21;
+  background: #ff4444;
   transform: translateX(-50%);
   transition: height 0.5s ease;
 }
@@ -339,7 +339,7 @@ body {
   left: 50%;
   width: 8px;
   height: 8px;
-  background: #FCEE21;
+  background: #ff4444;
   border: 2px solid rgba(0, 0, 0, 0.2);
   border-radius: 50%;
   transform: translateX(-50%);
@@ -352,15 +352,15 @@ body {
 }
 
 .g-timeline .g-timeline-point.active {
-  background: #fff;
-  box-shadow: 0 0 10px rgba(252, 238, 33, 0.8);
+  background: #000;
+  box-shadow: 0 0 10px rgba(255, 68, 68, 0.8);
 }
 
 .g-timeline .g-timeline-time {
   position: absolute;
   left: 20px; /* Adjusted to stay within the wider timeline */
   font-size: 18px;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.8);
   white-space: nowrap;
   transform: translateY(-50%);
 }
@@ -370,7 +370,7 @@ body {
   left: 20px; /* Adjusted to stay within the wider timeline */
   top: 15px;
   font-size: 18px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.6);
   text-transform: uppercase;
   writing-mode: vertical-rl;
   text-orientation: mixed;
@@ -560,24 +560,41 @@ function generateSlides(timeline) {
                 
                 if (isLandscape) {
                     // Landscape: image on top, text below
-                    imageContainer.style.width = '80%';
+                    imageContainer.style.width = '100%';
                     imageContainer.style.height = '60vh';
-                    imageContainer.style.margin = '0 auto 20px auto';
+                    imageContainer.style.margin = '0';
                     
                     // Adjust text container for landscape layout
                     textCont.style.position = 'relative';
                     textCont.style.left = 'auto';
                     textCont.style.right = 'auto';
                     textCont.style.bottom = 'auto';
-                    textCont.style.margin = '0 auto';
-                    textCont.style.maxWidth = '80%';
+                    textCont.style.width = '100%';
+                    textCont.style.maxWidth = 'none';
                     textCont.style.textAlign = 'center';
+                    textCont.style.margin = '20px auto 0 auto';
                     
-                    // Reorder elements: image first, then text
-                    slideElement.insertBefore(imageContainer, textCont);
+                    // Create a vertical flex container for landscape layout
+                    const flexContainer = document.createElement('div');
+                    flexContainer.style.display = 'flex';
+                    flexContainer.style.flexDirection = 'column';
+                    flexContainer.style.alignItems = 'center';
+                    flexContainer.style.justifyContent = 'center';
+                    flexContainer.style.width = '100%';
+                    flexContainer.style.height = '100%';
+                    flexContainer.style.padding = '20px 130px 20px 240px'; // top right bottom left - avoid minimap and timeline
+                    
+                    // Move image and text into flex container
+                    flexContainer.appendChild(imageContainer);
+                    flexContainer.appendChild(textCont);
+                    
+                    // Replace the current slide content with flex container
+                    slideElement.innerHTML = '';
+                    slideElement.appendChild(background);
+                    slideElement.appendChild(flexContainer);
                 } else {
                     // Portrait: image and text side by side
-                    imageContainer.style.width = '50%';
+                    imageContainer.style.width = '55%';
                     imageContainer.style.height = '80vh';
                     imageContainer.style.margin = '0';
                     
@@ -586,10 +603,10 @@ function generateSlides(timeline) {
                     textCont.style.left = 'auto';
                     textCont.style.right = 'auto';
                     textCont.style.bottom = 'auto';
-                    textCont.style.width = '45%';
+                    textCont.style.width = '40%';
                     textCont.style.maxWidth = 'none';
                     textCont.style.textAlign = 'left';
-                    textCont.style.margin = '0 0 0 5%';
+                    textCont.style.margin = '0 5% 0 0';
                     
                     // Create a flex container for side-by-side layout
                     const flexContainer = document.createElement('div');
@@ -598,11 +615,11 @@ function generateSlides(timeline) {
                     flexContainer.style.justifyContent = 'center';
                     flexContainer.style.width = '100%';
                     flexContainer.style.height = '100%';
-                    flexContainer.style.padding = '0 20px';
+                    flexContainer.style.padding = '0 130px 0 240px'; // top right bottom left - avoid minimap and timeline
                     
-                    // Move image and text into flex container
-                    flexContainer.appendChild(imageContainer);
+                    // Move text and image into flex container (text first for left side)
                     flexContainer.appendChild(textCont);
+                    flexContainer.appendChild(imageContainer);
                     
                     // Replace the current slide content with flex container
                     slideElement.innerHTML = '';
@@ -751,7 +768,7 @@ function drawMinimap(totalRouteDistance) {
         .attr("class", "g-path")
         .attr("d", pathData)
         .attr("transform", "translate(2, 2)") // Add smaller margin
-        .style("filter", "url(#pencil-filter)"); // Apply pencil filter
+        // .style("filter", "url(#pencil-filter)"); // Apply pencil filter - disabled
     
     // Set up stroke-dasharray for animation
     const pathLength = routePath.node().getTotalLength();
@@ -801,7 +818,7 @@ function drawMinimap(totalRouteDistance) {
     
     svg.append("text")
         .attr("x", endPoint[0] + 2)
-        .attr("y", endPoint[1] - 2)
+        .attr("y", endPoint[1] + 15)
         .attr("text-anchor", "end")
         .attr("font-size", "15px")
         .attr("font-family", "'WeirdIsBeautiful', Arial, sans-serif")
@@ -916,16 +933,16 @@ function drawChart() {
         .x(d => x(d[1]))
         .y(d => y(d[0]));
 
-    // Create axis with fewer ticks to fit better
+    // Create axis with more ticks including min/max elevations
     const yAxis = d3.axisLeft(y)
         .tickSize(chartw_adj)
-        .ticks(3)
-        .tickFormat(d => Math.round(d) + "M");
+        .ticks(5)
+        .tickFormat(d => Math.round(d));
 
     const xAxis = d3.axisBottom(x)
         .tickSize(3)
-        .ticks(4)
-        .tickFormat(d => Math.round(d) + " KM");
+        .ticks(6)
+        .tickFormat(d => Math.round(d));
 
     chartGroup.append("g")
         .attr("class", "y axis")
@@ -942,14 +959,22 @@ function drawChart() {
         .attr("transform", "translate(0,-5)")
         .attr("text-anchor", "end")
         .attr("font-size", "18px")
-        .text("ELEV.");
+        .text("ELEV, M");
+
+    // Add x-axis label
+    chartGroup.append("text")
+        .attr("class", "axis-lab")
+        .attr("transform", `translate(${chartw_adj/2}, ${charth_adj + 20})`)
+        .attr("text-anchor", "middle")
+        .attr("font-size", "18px")
+        .text("KM");
 
     // Draw elevation line with animation capability
     const elevationPath = chartGroup.append("path")
         .datum(chartData)
         .attr("class", "g-path")
         .attr("d", line)
-        .style("filter", "url(#pencil-filter-elevation)"); // Apply pencil filter
+        // .style("filter", "url(#pencil-filter-elevation)"); // Apply pencil filter - disabled
     
     // Set up stroke-dasharray for animation
     const pathLength = elevationPath.node().getTotalLength();
@@ -1018,7 +1043,7 @@ function drawTimeline(timeline) {
     timeline.storyPoints.forEach((storyPoint, index) => {
         const timeMinutes = times[index];
         const progress = (timeMinutes - minTime) / timeRange;
-        const yPosition = progress * 100; // Percentage from top
+        const yPosition = progress * 90; // Percentage from top, leaving 10% space at bottom
         
         const point = timelineContainer.append("div")
             .attr("class", "g-timeline-point")
@@ -1056,7 +1081,7 @@ function animateTimeline(progress) {
     if (!window.timelineData) return;
     
     const { progressBar } = window.timelineData;
-    const height = progress * 100; // Convert to percentage
+    const height = progress * 90; // Convert to percentage, matching timeline points range
     
     console.log("=== TIMELINE ANIMATION DEBUG ===");
     console.log("Timeline progress:", (progress * 100).toFixed(2) + "%");
