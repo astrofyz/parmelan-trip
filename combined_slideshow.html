@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parmelan</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <!-- <link rel="stylesheet" href="css/styles.css"> -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Beth+Ellen&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap" rel="stylesheet">
@@ -14,6 +14,290 @@
 
   <style>
     /* Custom Font Declaration */
+    /* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background: #141a23; /* Dark grey-blue background for slides */
+}
+
+/* Landing page container */
+.landing-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: visible;
+}
+
+/* Background image */
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.background-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Route container */
+.route-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    pointer-events: none;
+    overflow: visible;
+    opacity: 1;
+    transition: opacity 0.0s ease-out;
+}
+
+/* Fade overlay for smooth transition from landing to slides */
+.fade-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #1a2332; /* Same dark grey-blue as body background */
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    pointer-events: none;
+}
+
+.route-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    /* The SVG will scale to fit the container while maintaining the fixed viewBox */
+}
+
+/* Route path styles */
+.route-path {
+    fill: none;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.8));
+    /* stroke-dasharray and stroke-dashoffset will be set dynamically by JavaScript */
+}
+
+.route-path-combined {
+    stroke: #ff4444;
+    stroke-width: 4;
+}
+
+@keyframes drawRoute {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* Content overlay */
+.content-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    pointer-events: none;
+}
+
+.hero-content {
+    text-align: center;
+    color: white;
+    max-width: 600px;
+    padding: 2rem;
+    pointer-events: auto;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Reenie Beanie';
+}
+
+.hero-subtitle {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-family: 'Reenie Beanie';
+}
+
+/* Stats section */
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #4CAF50;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.stat-label {
+    font-size: 1rem;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Buttons */
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: #4CAF50;
+    color: white;
+    border: 2px solid #4CAF50;
+}
+
+.btn-primary:hover {
+    background: #45a049;
+    border-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-secondary:hover {
+    background: white;
+    color: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+/* Loading indicator */
+.loading-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    text-align: center;
+    color: white;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2rem;
+    border-radius: 10px;
+    display: none;
+}
+
+.loading-indicator.show {
+    display: block;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .hero-content {
+        padding: 1rem;
+    }
+}
+
     @font-face {
       font-family: 'WeirdIsBeautiful';
       src: url('fonts/Corethan Bold.otf') format('opentype');
@@ -22,22 +306,7 @@
       font-display: swap; /* Improves loading performance */
     }
     
-    html,
-    body {
-      padding: 0;
-      margin: 0;
-      background: #f0f0f0;
-      color: rgba(0, 0, 0, 0.9);
-      font-family: 'Franklin Gothic Medium', Arial, sans-serif;
-      font-size: 15px;
-      font-weight: 100;
-      line-height: 1.5;
-      scroll-snap-type: y mandatory;
-      overflow-y: scroll;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-    }
+    /* Removed conflicting html,body styles that were overriding the landing page styles */
     
     .g-header {
       text-align: center;
@@ -154,10 +423,12 @@
       font-family: 'WeirdIsBeautiful', Arial, sans-serif;
       text-transform: uppercase;
       font-size: 18px;
-      text-shadow: 0 0 3px #fff, 0 0 3px #fff;
+      color: white;
       background: transparent;
       border-radius: 5px;
       padding: 10px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
     
     .g-minimap .g-minimap-inner {
@@ -231,8 +502,7 @@
     }
     
     .g-minimap .g-map-svg svg text {
-      fill: #000;
-      /* text-shadow: 0 0 3px #000, 0 0 3px #000, 0 0 3px #000; */
+      fill: white;
       font-size: 18px;
       font-family: 'WeirdIsBeautiful', Arial, sans-serif;
       transform-origin: top left;
@@ -246,7 +516,7 @@
     }
     
     .g-minimap .g-path-bg {
-      stroke: rgba(0, 0, 0, 0.7);
+      stroke: rgba(255, 255, 255, 0.3);
     }
     
     .g-path {
@@ -268,6 +538,8 @@
       border-radius: 5px;
       padding: 10px;
       z-index: 999;
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
     
     .g-chart svg {
@@ -281,22 +553,22 @@
     }
     
     .g-chart .axis line {
-      stroke: rgba(0, 0, 0, 0.1);
+      stroke: rgba(255, 255, 255, 0.3);
     }
     
     .g-chart .axis text,
     .g-chart .axis-lab {
-      fill: rgba(0, 0, 0, 0.7);
+      fill: white;
       font-size: 18px;
       font-family: 'WeirdIsBeautiful', Arial, sans-serif;
     }
     
     .g-chart .x.axis line {
-      stroke: rgba(0, 0, 0, 0.3);
+      stroke: rgba(255, 255, 255, 0.5);
     }
     
     .g-chart .g-chart-point {
-      stroke: #000;
+      stroke: white;
       stroke-width: 2;
       fill: #ff4444;
     }
@@ -311,10 +583,12 @@
       font-family: 'WeirdIsBeautiful', Arial, sans-serif;
       text-transform: uppercase;
       font-size: 18px;
-      text-shadow: 0 0 3px #fff, 0 0 3px #fff;
+      color: white;
       background: transparent;
       border-radius: 5px;
       padding: 10px 5px 20px 5px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
     
     .g-timeline .g-timeline-inner {
@@ -329,7 +603,7 @@
       top: 0;
       bottom: 0;
       width: 2px;
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(255, 255, 255, 0.3);
       transform: translateX(-50%);
     }
     
@@ -354,7 +628,7 @@
       width: 8px;
       height: 8px;
       background: #ff4444;
-      border: 2px solid rgba(0, 0, 0, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.3);
       border-radius: 50%;
       transform: translateX(-50%);
       cursor: pointer;
@@ -366,7 +640,7 @@
     }
     
     .g-timeline .g-timeline-point.active {
-      background: #000;
+      background: white;
       box-shadow: 0 0 10px rgba(255, 68, 68, 0.8);
     }
     
@@ -374,7 +648,7 @@
       position: absolute;
       left: 20px; /* Adjusted to stay within the wider timeline */
       font-size: 18px;
-      color: rgba(0, 0, 0, 0.8);
+      color: white;
       white-space: nowrap;
       transform: translateY(-50%);
     }
@@ -384,7 +658,7 @@
       left: 20px; /* Adjusted to stay within the wider timeline */
       top: 15px;
       font-size: 18px;
-      color: rgba(0, 0, 0, 0.6);
+      color: white;
       text-transform: uppercase;
       writing-mode: vertical-rl;
       text-orientation: mixed;
@@ -399,9 +673,12 @@
             <img src="assets/images/dummy_front_map_bg.png" alt="Map Background">
         </div>
         
+        <!-- Fade overlay for smooth transition -->
+        <div class="fade-overlay" id="fadeOverlay"></div>
+        
         <!-- Animated Route Overlay -->
         <div class="route-container">
-            <svg class="route-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+            <svg class="route-svg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">
                 <!-- Route paths will be added here by JavaScript -->
                 <defs>
                     <linearGradient id="routeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -427,8 +704,8 @@
         </div>
     </div>
 
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="js/landing.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@5"></script>
+    <script src="js/landing_combined.js"></script>
 
     <div class="g-minimap">
       <div class="g-minimap-inner">
@@ -459,12 +736,13 @@
   let curslide = 0;
   let maxslide = 2;
   let routeData, elevationData;
+  let currentDay = 1; // Track current day
   
   // Load data
   Promise.all([
       fetch('data/route-combined.json').then(response => response.json()),
-      fetch('data/elevation-day1.json').then(response => response.json()),
-      fetch('data/timeline-day1.json').then(response => response.json())
+      fetch('data/elevation-combined.json').then(response => response.json()),
+      fetch('data/timeline-combined.json').then(response => response.json())
   ]).then(([route, elevation, timeline]) => {
       routeData = route;
       elevationData = elevation;
@@ -475,17 +753,26 @@
       
       // Calculate total route distance from timeline data
       const totalRouteDistance = timeline.storyPoints[timeline.storyPoints.length - 1]['distance-acc'] * 1000; // Convert km to meters
+      console.log("=== DISTANCE COMPARISON DEBUG ===");
       console.log("Total route distance from timeline (km):", timeline.storyPoints[timeline.storyPoints.length - 1]['distance-acc']);
       console.log("Total route distance from timeline (meters):", totalRouteDistance);
       
+      // Calculate elevation data total distance
+      const elevationTotalDistance = elevationData[elevationData.length - 1].distance;
+      console.log("Total elevation distance (km):", elevationTotalDistance);
+      console.log("Total elevation distance (meters):", elevationTotalDistance * 1000);
+      
       drawMinimap(totalRouteDistance);
       drawChart();
-      drawTimeline(timeline);
+      drawTimeline(timeline); // This will draw timeline for day 1 initially
       
       console.log("=== INITIAL UPDATE DEBUG ===");
       console.log("About to call updateSlide()");
       console.log("curslide at this point:", curslide);
       console.log("Number of slides:", document.querySelectorAll('.g-slide').length);
+      
+      // Set initial visibility (landing page should be visible initially)
+      updateElementVisibility(true);
       
       updateSlide();
   });
@@ -961,7 +1248,12 @@
           .attr("transform", `translate(${margin.left}, ${margin.top})`);
   
       // Prepare elevation data
-      const chartData = elevationData.points.map(d => [d.elevation, d.distance]);
+      console.log("=== ELEVATION CHART DEBUG ===");
+      console.log("Elevation data type:", typeof elevationData);
+      console.log("Elevation data length:", elevationData ? elevationData.length : "undefined");
+      console.log("First few elevation points:", elevationData ? elevationData.slice(0, 3) : "undefined");
+      
+      const chartData = elevationData.map(d => [d.elevation, d.distance]);
       
       // Calculate proper domain based on actual data
       const elevationExtent = d3.extent(chartData, d => d[0]);
@@ -1067,11 +1359,23 @@
       const timelineContainer = d3.select(".g-timeline-points");
       const progressBar = d3.select(".g-timeline-progress");
       
+      console.log("=== TIMELINE CONTAINER DEBUG ===");
+      console.log("Timeline container found:", timelineContainer.node());
+      console.log("Progress bar found:", progressBar.node());
+      
       // Clear existing timeline
       timelineContainer.html("");
       
-      // Get time range
-      const times = timeline.storyPoints.map(point => {
+      // Filter timeline points for current day only
+      const currentDayPoints = timeline.storyPoints.filter(point => point.day === currentDay);
+      console.log("=== TIMELINE DRAWING DEBUG ===");
+      console.log("Current day:", currentDay);
+      console.log("Total timeline points:", timeline.storyPoints.length);
+      console.log("Current day points:", currentDayPoints.length);
+      console.log("First few current day points:", currentDayPoints.slice(0, 3));
+      
+      // Get time range for current day only
+      const times = currentDayPoints.map(point => {
           const [hours, minutes] = point.time.split(':').map(Number);
           return hours * 60 + minutes; // Convert to minutes since midnight
       });
@@ -1083,27 +1387,40 @@
       console.log("Timeline time range:", {
           minTime: minTime,
           maxTime: maxTime,
-          timeRange: timeRange
+          timeRange: timeRange,
+          times: times
       });
       
-      // Create timeline points
-      timeline.storyPoints.forEach((storyPoint, index) => {
-          const timeMinutes = times[index];
-          const progress = (timeMinutes - minTime) / timeRange;
+      if (timeRange === 0) {
+          console.log("WARNING: Time range is 0, this will cause division by zero!");
+      }
+      
+      // Create timeline points for current day only
+      console.log("Creating timeline points...");
+      currentDayPoints.forEach((storyPoint, dayIndex) => {
+          const timeMinutes = times[dayIndex];
+          const progress = timeRange > 0 ? (timeMinutes - minTime) / timeRange : 0;
           const yPosition = progress * 90; // Percentage from top, leaving 10% space at bottom
+          
+          // Find the original slide index for this story point
+          const originalSlideIndex = timeline.storyPoints.findIndex(point => 
+              point.time === storyPoint.time && point.day === storyPoint.day
+          );
+          
+          console.log(`Creating point ${dayIndex}: time=${storyPoint.time}, yPosition=${yPosition}%, slideIndex=${originalSlideIndex}`);
           
           const point = timelineContainer.append("div")
               .attr("class", "g-timeline-point")
               .style("top", `${yPosition}%`)
-              .attr("data-slide", index)
+              .attr("data-slide", originalSlideIndex)
               .style("cursor", "pointer") // Add pointer cursor
               .on("click", function() {
                   // Jump to the clicked slide
-                  const targetSlide = document.querySelector(`.g-slide[data-slide="${index}"]`);
+                  const targetSlide = document.querySelector(`.g-slide[data-slide="${originalSlideIndex}"]`);
                   if (targetSlide) {
-                      console.log(`Timeline clicked: jumping to slide ${index}`);
+                      console.log(`Timeline clicked: jumping to slide ${originalSlideIndex}`);
                       targetSlide.scrollIntoView({ behavior: 'smooth' });
-                      curslide = index;
+                      curslide = originalSlideIndex;
                       updateSlide();
                   }
               });
@@ -1114,6 +1431,18 @@
               .style("top", "50%")
               .text(storyPoint.time);
       });
+      
+      console.log("Timeline points created:", timelineContainer.selectAll(".g-timeline-point").size());
+      
+      // If no points were created, let's add a test point
+      if (timelineContainer.selectAll(".g-timeline-point").size() === 0) {
+          console.log("No timeline points created, adding test point...");
+          timelineContainer.append("div")
+              .attr("class", "g-timeline-point")
+              .style("top", "50%")
+              .attr("data-slide", 0)
+              .style("cursor", "pointer");
+      }
       
       // Store timeline data for animation
       window.timelineData = {
@@ -1145,6 +1474,30 @@
       d3.select(`.g-timeline-point[data-slide="${slideIndex}"]`).classed("active", true);
   }
   
+  function updateElementVisibility(isOnLandingPage) {
+      const minimap = document.querySelector('.g-minimap');
+      const chart = document.querySelector('.g-chart');
+      const timeline = document.querySelector('.g-timeline');
+      const routeContainer = document.querySelector('.route-container');
+      const fadeOverlay = document.querySelector('.fade-overlay');
+      
+      if (isOnLandingPage) {
+          // On landing page: hide slideshow elements, show route, hide fade overlay
+          if (minimap) minimap.style.opacity = '0';
+          if (chart) chart.style.opacity = '0';
+          if (timeline) timeline.style.opacity = '0';
+          if (routeContainer) routeContainer.style.opacity = '1';
+          if (fadeOverlay) fadeOverlay.style.opacity = '0';
+      } else {
+          // On slides: show slideshow elements, hide route, show fade overlay
+          if (minimap) minimap.style.opacity = '1';
+          if (chart) chart.style.opacity = '1';
+          if (timeline) timeline.style.opacity = '1';
+          if (routeContainer) routeContainer.style.opacity = '0';
+          if (fadeOverlay) fadeOverlay.style.opacity = '1';
+      }
+  }
+  
   function updateSlide() {
       // Update minimap info based on current slide
       const currentSlide = d3.select(`.g-slide[data-slide="${curslide}"]`);
@@ -1167,30 +1520,49 @@
       const kmacc = parseFloat(currentSlide.attr("data-kmacc"));
       console.log("Parsed kmacc:", kmacc);
       
-      d3.select(".g-day span").text(1);
+      // Check if we need to change day and redraw timeline
+      if (window.originalTimelineData && window.originalTimelineData.storyPoints[curslide]) {
+          const slideDay = window.originalTimelineData.storyPoints[curslide].day;
+          console.log("Current slide day:", slideDay, "Previous day:", currentDay);
+          
+          if (slideDay !== currentDay) {
+              console.log("Day changed from", currentDay, "to", slideDay);
+              currentDay = slideDay;
+              
+              // Redraw timeline for the new day
+              drawTimeline(window.originalTimelineData);
+          }
+      }
+      
+      d3.select(".g-day span").text(currentDay);
       d3.select(".g-dist span").text(kmacc.toFixed(1) + " km");
       
       // Animate the route based on current progress
       if (window.routeAnimationData) {
           // Convert slide distance from km to meters for comparison with route data
           const slideDistanceMeters = kmacc * 1000;
-          const progress = slideDistanceMeters / window.routeAnimationData.totalRouteDistance;
+          const routeProgress = slideDistanceMeters / window.routeAnimationData.totalRouteDistance;
           
           console.log("=== ROUTE ANIMATION DEBUG ===");
           console.log("Slide distance (km):", kmacc);
           console.log("Slide distance (meters):", slideDistanceMeters);
           console.log("Total route distance (meters):", window.routeAnimationData.totalRouteDistance);
-          console.log("Progress percentage:", (progress * 100).toFixed(2) + "%");
-          console.log("Capped progress:", Math.min(progress, 1));
+          console.log("Route progress percentage:", (routeProgress * 100).toFixed(2) + "%");
           
-          const finalProgress = Math.min(progress, 1); // Cap at 100%
-          animateRoute(finalProgress);
+          const finalRouteProgress = Math.min(routeProgress, 1); // Cap at 100%
+          animateRoute(finalRouteProgress);
           
-          // Use the same progress for elevation animation
+          // Calculate elevation progress separately using elevation data distance
           if (window.elevationAnimationData) {
+              const elevationTotalDistance = window.elevationAnimationData.totalDistance;
+              const elevationProgress = slideDistanceMeters / (elevationTotalDistance * 1000); // Convert km to meters
+              
               console.log("=== ELEVATION ANIMATION DEBUG ===");
-              console.log("Using route progress for elevation:", (finalProgress * 100).toFixed(2) + "%");
-              animateElevation(finalProgress);
+              console.log("Elevation total distance (km):", elevationTotalDistance);
+              console.log("Elevation progress percentage:", (elevationProgress * 100).toFixed(2) + "%");
+              
+              const finalElevationProgress = Math.min(elevationProgress, 1); // Cap at 100%
+              animateElevation(finalElevationProgress);
           }
           
           // Animate timeline based on slide progress (not distance progress)
@@ -1220,9 +1592,15 @@
       const slides = document.querySelectorAll('.g-slide');
       const scrollPosition = window.scrollY + window.innerHeight / 2;
       
-      console.log("=== SCROLL DEBUG ===");
-      console.log("Number of slides found:", slides.length);
-      console.log("Current curslide before scroll:", curslide);
+      // console.log("=== SCROLL DEBUG ===");
+      // console.log("Number of slides found:", slides.length);
+      // console.log("Current curslide before scroll:", curslide);
+      
+      // Check if we're on the landing page (no scroll at all)
+      const isOnLandingPage = window.scrollY === 0;
+      
+      // Show/hide elements based on scroll position
+      updateElementVisibility(isOnLandingPage);
       
       slides.forEach((slide, index) => {
           const slideTop = slide.offsetTop;
