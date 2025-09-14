@@ -82,6 +82,43 @@ body {
     pointer-events: none;
 }
 
+/* Transition text that appears after scroll but before slides */
+.transition-text {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    pointer-events: none;
+    /* Temporary: make it visible for debugging */
+    /* opacity: 1; */
+}
+
+.transition-content {
+    text-align: center;
+    color: white;
+    max-width: 600px;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.transition-content p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-family: 'Reenie Beanie';
+}
+
 .route-svg {
     width: 100%;
     height: 100%;
@@ -697,6 +734,13 @@ body {
             </div>
         </div>
         
+        <!-- Transition Text -->
+        <div class="transition-text" id="transitionText">
+            <div class="transition-content">
+                <p>A two-day hiking adventure through the French Alps, from the shores of Lake Annecy to the summit of Parmelan. Follow the journey through time, elevation, and stories captured along the way.</p>
+            </div>
+        </div>
+        
         <!-- Loading Indicator -->
         <div class="loading-indicator" id="loading">
             <div class="spinner"></div>
@@ -773,6 +817,12 @@ body {
       
       // Set initial visibility (landing page should be visible initially)
       updateElementVisibility(true);
+      
+      // Set initial transition text visibility
+      const transitionText = document.querySelector('.transition-text');
+      if (transitionText) {
+          transitionText.style.opacity = '0';
+      }
       
       updateSlide();
   });
@@ -1480,6 +1530,7 @@ body {
       const timeline = document.querySelector('.g-timeline');
       const routeContainer = document.querySelector('.route-container');
       const fadeOverlay = document.querySelector('.fade-overlay');
+      // Note: transitionText is handled separately in scroll event
       
       if (isOnLandingPage) {
           // On landing page: hide slideshow elements, show route, hide fade overlay
@@ -1591,6 +1642,7 @@ body {
   window.addEventListener('scroll', () => {
       const slides = document.querySelectorAll('.g-slide');
       const scrollPosition = window.scrollY + window.innerHeight / 2;
+      const transitionText = document.querySelector('.transition-text');
       
       // console.log("=== SCROLL DEBUG ===");
       // console.log("Number of slides found:", slides.length);
@@ -1598,6 +1650,32 @@ body {
       
       // Check if we're on the landing page (no scroll at all)
       const isOnLandingPage = window.scrollY === 0;
+      
+      // Check if we're in the transition zone (scrolled a bit but before first slide)
+      const firstSlide = slides.length > 0 ? slides[0] : null;
+      const firstSlideTop = firstSlide ? firstSlide.offsetTop : window.innerHeight;
+      
+      // Show transition text when scrolled 50px or more but before reaching first slide
+      const isInTransitionZone = window.scrollY >= 50 && window.scrollY < (firstSlideTop - 100);
+      
+      console.log("=== TRANSITION TEXT DEBUG ===");
+      console.log("Scroll Y:", window.scrollY);
+      console.log("First slide top:", firstSlideTop);
+      console.log("Is in transition zone:", isInTransitionZone);
+      console.log("Transition text element:", transitionText);
+      
+      // Show/hide transition text based on scroll position
+      if (transitionText) {
+          if (isInTransitionZone) {
+              console.log("Showing transition text");
+              transitionText.style.opacity = '1';
+          } else {
+              console.log("Hiding transition text");
+              transitionText.style.opacity = '0';
+          }
+      } else {
+          console.log("Transition text element not found!");
+      }
       
       // Show/hide elements based on scroll position
       updateElementVisibility(isOnLandingPage);
