@@ -176,11 +176,11 @@ class LandingPage {
         };
         
         // console.log('Optimal bounds calculation:', {
-            // center: { lat: centerLat, lon: centerLon },
-            // routeSpan: { lat: routeLatSpan, lon: routeLonSpan },
-            // windowSize: { width: windowWidth, height: windowHeight },
-            // targetSpan: { lat: targetLatSpan, lon: targetLonSpan },
-            // finalBounds: bounds
+        //     center: { lat: centerLat, lon: centerLon },
+        //     routeSpan: { lat: routeLatSpan, lon: routeLonSpan },
+        //     windowSize: { width: windowWidth, height: windowHeight },
+        //     targetSpan: { lat: targetLatSpan, lon: targetLonSpan },
+        //     finalBounds: bounds
         // });
         
         return bounds;
@@ -400,7 +400,7 @@ class LandingPage {
             // lats: coordinates.map(c => c[1]).slice(0, 5)
         // });
         // console.log('Using Web Mercator projection with Mapbox bounds:', mapboxBounds);
-        // console.log('ViewBox dimensions:', { width, height });
+        // console.log('ViewBox dimensions:', { width, height }, window.innerWidth, window.innerHeight);
         
         // Create SVG path element
         const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');

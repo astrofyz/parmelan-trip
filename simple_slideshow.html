@@ -172,6 +172,12 @@ body {
   padding-right: 10px;
 }
 
+.g-minimap .g-inner table {
+  margin: 0;
+  padding: 0;
+  border-collapse: collapse;
+}
+
 .g-minimap .g-map-svg {
   flex: 1;
   width: 100%;
@@ -490,10 +496,10 @@ function generateSlides(timeline) {
         
         const textInner = document.createElement('span');
         textInner.className = 'g-text-inner';
-        textInner.textContent = storyPoint.label;
+        // textInner.textContent = storyPoint.label;
         
-        text.appendChild(textInner);
-        textContInner.appendChild(text);
+        // text.appendChild(textInner);
+        // textContInner.appendChild(text);
         
         // Add time if available
         if (storyPoint.time) {
@@ -504,10 +510,10 @@ function generateSlides(timeline) {
             timeInner.className = 'g-text-inner';
             timeInner.style.fontSize = '0.8em';
             timeInner.style.opacity = '0.7';
-            timeInner.textContent = storyPoint.time;
+            // timeInner.textContent = storyPoint.time;
             
-            timeText.appendChild(timeInner);
-            textContInner.appendChild(timeText);
+            // timeText.appendChild(timeInner);
+            // textContInner.appendChild(timeText);
         }
         
         // Add story text if available
@@ -594,7 +600,7 @@ function generateSlides(timeline) {
                     slideElement.appendChild(flexContainer);
                 } else {
                     // Portrait: image and text side by side
-                    imageContainer.style.width = '55%';
+                    imageContainer.style.width = '75%';
                     imageContainer.style.height = '80vh';
                     imageContainer.style.margin = '0';
                     
@@ -956,15 +962,15 @@ function drawChart() {
 
     chartGroup.append("text")
         .attr("class", "axis-lab")
-        .attr("transform", "translate(0,-5)")
-        .attr("text-anchor", "end")
+        .attr("transform", "translate(-35,-5)")
+        .attr("text-anchor", "start")
         .attr("font-size", "18px")
         .text("ELEV, M");
 
     // Add x-axis label
     chartGroup.append("text")
         .attr("class", "axis-lab")
-        .attr("transform", `translate(${chartw_adj/2}, ${charth_adj + 20})`)
+        .attr("transform", `translate(${chartw_adj/2}, ${charth_adj + 35})`)
         .attr("text-anchor", "middle")
         .attr("font-size", "18px")
         .text("KM");
