@@ -84,39 +84,36 @@ body {
 
 /* Transition text that appears after scroll but before slides */
 .transition-text {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-top: 2rem;
     opacity: 0;
     transition: opacity 0.5s ease-out;
-    pointer-events: none;
-    /* Temporary: make it visible for debugging */
-    /* opacity: 1; */
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
 .transition-content {
     text-align: center;
     color: white;
     max-width: 600px;
-    padding: 2rem;
-    background: rgba(0, 0, 0, 0.9);
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.7);
     border-radius: 10px;
     backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .transition-content p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     line-height: 1.6;
     margin: 0;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     font-family: 'Reenie Beanie';
+}
+
+/* When transition text is visible */
+.transition-text.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .route-svg {
@@ -731,13 +728,13 @@ body {
             <div class="hero-content">
                 <h1 class="hero-title">Annecy - Parmelan</h1>
                 <p class="hero-subtitle">Aug 8 - 9, 2025</p>
-            </div>
-        </div>
-        
-        <!-- Transition Text -->
-        <div class="transition-text" id="transitionText">
-            <div class="transition-content">
-                <p>A two-day hiking adventure through the French Alps, from the shores of Lake Annecy to the summit of Parmelan. Follow the journey through time, elevation, and stories captured along the way.</p>
+                
+                <!-- Transition Text -->
+                <div class="transition-text" id="transitionText">
+                    <div class="transition-content">
+                        <p>A two-day hiking adventure through the French Alps, from the shores of Lake Annecy to the summit of Parmelan. Follow the journey through time, elevation, and stories captured along the way.</p>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -821,7 +818,7 @@ body {
       // Set initial transition text visibility
       const transitionText = document.querySelector('.transition-text');
       if (transitionText) {
-          transitionText.style.opacity = '0';
+          transitionText.classList.remove('visible');
       }
       
       updateSlide();
@@ -1651,27 +1648,22 @@ body {
       // Check if we're on the landing page (no scroll at all)
       const isOnLandingPage = window.scrollY === 0;
       
-      // Check if we're in the transition zone (scrolled a bit but before first slide)
-      const firstSlide = slides.length > 0 ? slides[0] : null;
-      const firstSlideTop = firstSlide ? firstSlide.offsetTop : window.innerHeight;
-      
-      // Show transition text when scrolled 50px or more but before reaching first slide
-      const isInTransitionZone = window.scrollY >= 50 && window.scrollY < (firstSlideTop - 100);
+      // Show transition text when scrolled (simple approach)
+      const shouldShowTransitionText = window.scrollY > 0;
       
       console.log("=== TRANSITION TEXT DEBUG ===");
       console.log("Scroll Y:", window.scrollY);
-      console.log("First slide top:", firstSlideTop);
-      console.log("Is in transition zone:", isInTransitionZone);
+      console.log("Should show transition text:", shouldShowTransitionText);
       console.log("Transition text element:", transitionText);
       
       // Show/hide transition text based on scroll position
       if (transitionText) {
-          if (isInTransitionZone) {
+          if (shouldShowTransitionText) {
               console.log("Showing transition text");
-              transitionText.style.opacity = '1';
+              transitionText.classList.add('visible');
           } else {
               console.log("Hiding transition text");
-              transitionText.style.opacity = '0';
+              transitionText.classList.remove('visible');
           }
       } else {
           console.log("Transition text element not found!");
