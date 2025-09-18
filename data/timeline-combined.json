@@ -3,127 +3,127 @@
  "label": "Start",
  "distance": 0.0, "storyId": "start",
  "distance-acc": 0.0, "elevation": 0.0, "day": 1, "image": "assets/images/clamart-1.jpg",
- "story": "\u041f\u0435\u0440\u0435\u0434 \u0440\u0430\u0441\u0441\u0432\u0435\u0442\u043e\u043c \u0432 \u041a\u043b\u0430\u043c\u0430\u0440\u0435 \u044f\u0441\u043d\u043e \u0438 \u0442\u0438\u0445\u043e. \u042f \u0432\u044b\u0434\u0432\u0438\u0433\u0430\u044e\u0441\u044c \u043d\u0430 \u0436\u0435\u043b\u0435\u0437\u043d\u043e\u0434\u043e\u0440\u043e\u0436\u043d\u0443\u044e \u0441\u0442\u0430\u043d\u0446\u0438\u044e, \u0447\u0442\u043e\u0431\u044b \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0435 \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u043e \u0447\u0430\u0441\u043e\u0432 \u043a\u0430\u0442\u0430\u0442\u044c\u0441\u044f \u043d\u0430 \u0440\u0430\u0437\u043d\u044b\u0445 \u0442\u0440\u0430\u043d\u0441\u043f\u043e\u0440\u0442\u043d\u044b\u0445 \u0441\u0440\u0435\u0434\u0441\u0442\u0432\u0430\u0445. \u041b\u044e\u0431\u043b\u044e public transportation! \u0421\u043d\u0430\u0447\u0430\u043b\u0430 \u043f\u043e\u0435\u0437\u0434 \u0434\u043e \u041c\u043e\u043d\u043f\u0430\u0440\u043d\u0430\u0441\u0430 \u0438 \u043c\u0435\u0442\u0440\u043e \u0434\u043e \u041b\u0438\u043e\u043d\u0441\u043a\u043e\u0433\u043e \u0432\u043e\u043a\u0437\u0430\u043b\u0430."
+ "story": "Направление я выбирала следующим образом: мне хотелось посмотреть на высокие горы, но я не готова была тратить слишком много времени на дорогу. На пересечении этих критериев оказался Анси. От выхода из дома до стартовой точки хайка примерно 6 с половиной часов и целая цепочка разнообразных видов общественного транспорта. Сначала комбинация из поезда и метро доставляет меня из Кламара на Лионский вокзал."
 },
   {"time": "10:15",
  "label": "Lac du Bourget",
  "distance": 5.2, "storyId": "lac-du-bourget",
  "distance-acc": 0.0, "elevation": 0.0, "day": 1, "image": "assets/images/lac_du_bourget-2.jpg",
- "story": "\u0427\u0443\u0442\u044c \u043c\u0435\u043d\u044c\u0448\u0435 \u0434\u0432\u0443\u0445 \u0447\u0430\u0441\u043e\u0432 \u0434\u043e \u041b\u0438\u043e\u043d\u0430 -- \u0431\u044b\u0441\u0442\u0440\u043e, \u043a\u043e\u043c\u0444\u043e\u0440\u0442\u043d\u043e, \u0434\u043e\u0441\u0442\u0430\u0442\u043e\u0447\u043d\u043e \u0441\u043a\u0443\u0447\u043d\u043e. \u0412 \u041b\u0438\u043e\u043d\u0435 \u043f\u0435\u0440\u0435\u0441\u0430\u0436\u0438\u0432\u0430\u044e\u0441\u044c \u043d\u0430 \u044d\u043b\u0435\u043a\u0442\u0440\u0438\u0447\u043a\u0443 \u0434\u043e \u0410\u043d\u0441\u0438, \u043a\u043e\u0442\u043e\u0440\u0430\u044f \u0438\u0434\u0451\u0442 \u0431\u0435\u0440\u0435\u0433\u043e\u043c \u043e\u0437\u0435\u0440\u0430 \u0411\u0443\u0440\u0436\u0435. \u0423\u0440\u0430, \u043d\u0430\u043a\u043e\u043d\u0435\u0446-\u0442\u043e \u043c\u043d\u043e\u0433\u043e\u043e\u0431\u0435\u0449\u0430\u044e\u0449\u0438\u0435 \u0432\u0438\u0434\u044b!"
+ "story": "Дальше тжв до Лиона -- быстро, комфортно, достаточно скучно . В Лионе пересаживаюсь на электричку до Анси, которая неторопливо виляет между гор и в какой-то момент одаривает захватывающим видом на озеро Бурже! Зачем я куда-то дальше еду, можно было и тут остаться."
 },
   {"time": "11:58",
  "label": "Views from train",
  "distance": 15.2, "storyId": "elektrichka",
  "distance-acc": 0.0, "elevation": 0.0, "day": 1, "image": "assets/images/elektrichka-4.jpg",
- "story": "\u0412 \u0410\u043d\u0441\u0438 \u0441\u0430\u0436\u0443\u0441\u044c \u043d\u0430 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0443\u044e \u044d\u043b\u0435\u043a\u0442\u0440\u0438\u0447\u043a\u0443, \u043e\u043d\u0430 \u0438\u0434\u0451\u0442 \u043a\u0443\u0434\u0430-\u0442\u043e \u0432 \u0429\u0432\u0435\u0439\u0446\u0430\u0440\u0438\u044e \u0438 \u043f\u0435\u0440\u0435\u043c\u0435\u0449\u0430\u0435\u0442\u0441\u044f \u0441 \u043f\u043e\u0442\u0440\u044f\u0441\u0430\u044e\u0449\u0435\u0439 \u043f\u0443\u043d\u043a\u0442\u0443\u0430\u043b\u044c\u043d\u043e\u0441\u0442\u044c\u044e. \u0427\u0435\u043c \u0434\u0430\u043b\u044c\u0448\u0435 \u0432 \u0428\u0432\u0435\u0439\u0446\u0430\u0440\u0438\u044e, \u0442\u0435\u043c \u0431\u043e\u043b\u044c\u0448\u0435 \u0433\u043e\u0440\u043d\u044b\u0445 \u043a\u0440\u0430\u0441\u043e\u0442 \u0432\u0438\u0434\u043d\u043e \u0438\u0437 \u043e\u043a\u043d\u0430. \u041d\u043e \u0432 \u0428\u0432\u0435\u0439\u0446\u0430\u0440\u0438\u044e \u043c\u043d\u0435 \u043d\u0435 \u043d\u0443\u0436\u043d\u043e, \u043c\u043e\u044f \u0446\u0435\u043b\u044c -- \u044d\u0442\u043e \u0432\u043e\u0442 \u0442\u0435 \u0433\u043e\u0440\u044b. \u0422\u0430\u043a \u0447\u0442\u043e \u044f \u0432\u044b\u0445\u043e\u0436\u0443 \u043d\u0430 \u043c\u0430\u043b\u0435\u043d\u044c\u043a\u043e\u0439 \u0441\u0442\u0430\u043d\u0446\u0438\u0438 \u0441 \u043e\u0447\u0435\u043d\u044c \u0434\u043b\u0438\u043d\u043d\u044b\u043c \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u0435\u043c Groisy-Thorens-la-Caille. \u0421\u0435\u0439\u0447\u0430\u0441 \u044f \u0435\u0449\u0451 \u043f\u0440\u043e\u043a\u0430\u0447\u0443\u0441\u044c \u043d\u0430 \u0430\u0432\u0442\u043e\u0431\u0443\u0441\u0435 \u0438 \u043d\u0430\u043a\u043e\u043d\u0435\u0446-\u0442\u043e \u043d\u0430\u0447\u043d\u0443 \u0438\u0434\u0442\u0438!"
+ "story": "Но в Анси меня ждёт следующая электричка, она идёт в Щвейцарию и перемещается с потрясающей пунктуальностью. Я выхожу на маленькой станции с очень длинным названием Groisy-Thorens-la-Caille. Моя цель -- это вот те горы. Сейчас ещё прокачусь на автобусе и наконец-то начну идти!"
 },
   {"time": "12:46",
  "label": "Real start",
  "distance": 0.0, "storyId": "hike-start",
  "distance-acc": 0.0, "elevation": 0.0, "day": 1, "image": "assets/images/aviernoz-5.jpg",
- "story": "Aviernoz! Mapy.com \u0438 \u0441\u0442\u0440\u0430\u0432\u0430 \u0433\u043e\u0442\u043e\u0432\u044b, \u044f \u0442\u043e\u0436\u0435."
+ "story": "Aviernoz! У меня есть полтора литра воды (запомните это) и жажда приключений. Открываю страву и можно стартовать!"
 },
   {"time": "13:03",
  "label": "Fields and gardens",
  "distance": 0.0, "storyId": "ogorody",
  "distance-acc": 0.7840768512807939, "elevation": 883.4, "day": 1, "image": "assets/images/ogorody-1.jpg",
- "story": "\u0421 \u043f\u0435\u0440\u0432\u044b\u0445 \u0436\u0435 \u0448\u0430\u0433\u043e\u0432 \u0432\u043b\u0435\u0437\u043b\u0430 \u0432 \u043a\u0440\u0430\u043f\u0438\u0432\u0443 -- \u0443\u0440\u0430, \u043f\u0440\u0438\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u044f! \u041f\u0440\u043e\u0431\u0438\u0440\u0430\u044e\u0441\u044c \u0432\u0434\u043e\u043b\u044c \u043e\u0433\u043e\u0440\u043e\u0434\u043e\u0432 \u043f\u043e\u0434 \u043c\u0435\u043b\u043e\u0434\u0438\u0447\u043d\u044b\u0439 \u043f\u0435\u0440\u0435\u043b\u0438\u0432 \u043a\u043e\u0440\u043e\u0432\u044c\u0438\u0445 \u043a\u043e\u043b\u043e\u043a\u043e\u043b\u044c\u0447\u0438\u043a\u043e\u0432. \u0421\u0442\u0430\u0440\u0430\u044e\u0441\u044c \u043d\u0435 \u0440\u0430\u0437\u0433\u043e\u043d\u044f\u0442\u044c\u0441\u044f \u0438 \u0438\u0434\u0442\u0438 \u0432 \u0442\u0435\u043c\u043f\u0435 \u0440\u0430\u0437\u0433\u043e\u0432\u043e\u0440\u0430 \u0441 \u041a\u0440\u0438\u0441\u0442\u0438\u043d\u043e\u0439 -- \u043a\u043e\u0433\u0434\u0430 \u043c\u044b \u0433\u0443\u043b\u044f\u043b\u0438 \u0432 \u041f\u043e\u043b\u044c\u0448\u0435 \u043e\u043a\u0430\u0437\u0430\u043b\u043e\u0441\u044c, \u0447\u0442\u043e \u0435\u0441\u043b\u0438 \u0438\u0434\u0442\u0438 \u0434\u043e\u0441\u0442\u0430\u0442\u043e\u0447\u043d\u043e \u043c\u0435\u0434\u043b\u0435\u043d\u043d\u043e, \u0442\u043e \u043c\u043e\u0436\u043d\u043e \u043d\u0435 \u043f\u0440\u043e\u0441\u0442\u043e \u043d\u0435 \u0443\u0441\u0442\u0430\u0442\u044c \u043f\u0440\u0438 \u043f\u043e\u0434\u044a\u0451\u043c\u0435, \u043d\u043e \u0435\u0449\u0451 \u0438 \u043f\u043e\u0431\u043e\u043b\u0442\u0430\u0442\u044c \u043f\u043e \u0434\u043e\u0440\u043e\u0433\u0435. \u0421\u0435\u0439\u0447\u0430\u0441 \u044f \u0438\u0434\u0443 \u043e\u0434\u043d\u0430, \u043d\u043e \u0442\u0435\u043c\u043f \u043f\u044b\u0442\u0430\u044e\u0441\u044c \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0442\u044c \u0442\u043e\u0442 \u0436\u0435."
+ "story": "С первых же шагов влезла в крапиву. Кстати, спасибо Даще за рекомендацию mapy.com, а мапам -- за маршрут. Пробираюсь вдоль огородов под мелодичный перелив коровьих колокольчиков. Стараюсь не разгоняться и идти в темпе разговора с Кристиной -- когда мы гуляли в Польше оказалось, что если идти достаточно медленно, то можно не просто не устать при подъёме, но ещё и поболтать по дороге. Сейчас я иду одна, но темп пытаюсь поддерживать тот же."
 },
   {"time": "14:04",
  "label": "Sandwich",
  "distance": 0.0, "storyId": "sandwich-views",
  "distance-acc": 3.9473297747957248, "elevation": 1309.6, "day": 1, "image": "assets/images/sandwich-1.jpg",
- "story": "\u0427\u0435\u043c \u0432\u044b\u0448\u0435, \u0442\u0435\u043c \u0431\u043e\u043b\u0435\u0435 \u0440\u0430\u0437\u043c\u0435\u0447\u0435\u043d\u043d\u043e\u0439 \u0438 \u0440\u0430\u0441\u0445\u043e\u0436\u0435\u043d\u043d\u043e\u0439 \u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u0441\u044f \u0442\u0440\u043e\u043f\u0430. \u041f\u043e \u0434\u043e\u0440\u043e\u0433\u0435 \u043c\u043d\u0435 \u043f\u043e\u0437\u0432\u043e\u043d\u0438\u043b\u0438 \u0438\u0437 \u043f\u0440\u0438\u044e\u0442\u0430, \u0433\u0434\u0435 \u044f \u0431\u0443\u0434\u0443 \u043d\u043e\u0447\u0435\u0432\u0430\u0442\u044c \u0438 \u0443\u0442\u043e\u0447\u043d\u0438\u043b\u0438, \u0432\u043e \u0441\u043a\u043e\u043b\u044c\u043a\u043e \u044f \u043f\u0440\u0438\u0434\u0443 \u0438 \u043d\u0443\u0436\u0435\u043d \u043b\u0438 \u043c\u043d\u0435 \u0443\u0436\u0438\u043d. \u041e\u043a\u0430\u0437\u044b\u0432\u0430\u0435\u0442\u0441\u044f, \u0441\u0435\u0442\u044c \u0442\u0443\u0442 \u043b\u043e\u0432\u0438\u0442 \u0434\u0430\u0436\u0435 \u043b\u0443\u0447\u0448\u0435, \u0447\u0435\u043c \u0443 \u043c\u0435\u043d\u044f \u0434\u043e\u043c\u0430, \u0442\u0430\u043a \u0447\u0442\u043e \u044f \u0437\u0440\u044f \u043f\u0435\u0440\u0435\u0441\u0442\u0440\u0430\u0445\u043e\u0432\u044b\u0432\u0430\u043b\u0430\u0441\u044c \u0438 \u043f\u043e\u0441\u044b\u043b\u0430\u043b\u0430 \u0441\u0432\u043e\u0439 \u043c\u0430\u0440\u0448\u0440\u0443\u0442 \u0432\u0441\u0435\u043c \u0434\u0440\u0443\u0437\u044c\u044f\u043c. \u041d\u0430 \u043f\u043e\u0432\u043e\u0440\u043e\u0442\u0435 \u0434\u043e\u0440\u043e\u0433\u0438 \u043e\u0442\u043a\u0440\u044b\u0432\u0430\u0435\u0442\u0441\u044f \u0432\u0438\u0434 \u043d\u0430 \u0434\u043e\u043b\u0438\u043d\u0443, \u043e\u0437\u0435\u0440\u043e \u0410\u043d\u0441\u0438 \u0438 \u0433\u043e\u0440\u043e\u0434, \u0435\u0433\u043e \u044f \u0431\u0443\u0434\u0443 \u0432\u0438\u0434\u0435\u0442\u044c \u0435\u0449\u0451 \u043c\u043d\u043e\u0433\u043e \u0440\u0430\u0437 \u0441 \u0440\u0430\u0437\u043d\u044b\u0445 \u0443\u0433\u043b\u043e\u0432. \u0425\u043e\u0440\u043e\u0448\u0435\u0435 \u043c\u0435\u0441\u0442\u043e, \u0447\u0442\u043e\u0431\u044b \u0441\u044a\u0435\u0441\u0442\u044c \u0431\u0443\u0442\u0435\u0440\u0431\u0440\u043e\u0434! Nice place to eat a sandwich (I brought them from Paris), drink some water, and enjoy a view of the lake where I came from and the mountain where I'm heading to. From now on the trail gets more populated and better marked. The route to Parmelan is popular, but I came on Friday, so I guess that's why it wasn't too crowded."
+ "story": "Чем выше, тем более размеченной и расхоженной становится тропа. По дороге мне позвонили из приюта, где я буду ночевать, и уточнили, во сколько я приду и нужен ли мне ужин. На повороте дороги открывается вид на долину, озеро Анси и город, этот пейзаж я буду видеть ещё много раз с разных углов. Хорошее место, чтобы съесть бутерброд! "
 },
   {"time": "14:32",
  "label": "Cow band",
  "distance": 0.0, "storyId": "cow-band",
  "distance-acc": 5.076909799245685, "elevation": 1455.9, "day": 1, "image": "assets/images/cool_cow.jpg",
- "story": "\u041d\u0435 \u043e\u0447\u0435\u043d\u044c \u043e\u0431\u0438\u0442\u0430\u0435\u043c\u043e\u0435 \u0448\u0430\u043b\u0435 \u0438 \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u0430\u043b\u044c\u043d\u044b\u0439 \u0430\u043d\u0441\u0430\u043c\u0431\u043b\u044c \u0440\u043e\u0433\u0430\u0442\u044b\u0445 \u0438\u0441\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u0435\u0439. \u0412\u043f\u0440\u043e\u0447\u0435\u043c \u043f\u0440\u0438 \u0431\u043b\u0438\u0436\u0430\u0439\u0448\u0435\u043c \u0440\u0430\u0441\u0441\u043b\u0443\u0448\u0438\u0432\u0430\u043d\u0438\u0438 \u043a \u0430\u043d\u0433\u0435\u043b\u044c\u0441\u043a\u043e\u0439 \u043c\u0435\u043b\u043e\u0434\u0438\u0438 \u043a\u043e\u043b\u043e\u043a\u043e\u043b\u044c\u0447\u0438\u043a\u0430 \u043f\u0440\u0438\u043c\u0435\u0448\u0438\u0432\u0430\u0435\u0442\u0441\u044f \u0435\u0449\u0451 \u0438 \u043f\u043e\u0441\u0442\u043e\u044f\u043d\u043d\u043e\u0435 \u0436\u0443\u0436\u0436\u0430\u043d\u0438\u0435 \u0434\u0435\u0441\u044f\u0442\u043a\u043e\u0432 \u043c\u0443\u0445, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043c\u0435\u043b\u044c\u0442\u0435\u0448\u0430\u0442 \u0432\u043e\u043a\u0440\u0443\u0433. \u0422\u044f\u0436\u0435\u043b\u043e \u0431\u044b\u0442\u044c \u043a\u043e\u0440\u043e\u0432\u043e\u0439( Cool cows. They have bells sounding angelically, but when you get close, you can also hear the endless buzz of many flies that swirl around. Poor cows!:("
+ "story": "Главной мелодией этих двух дней становятся переливы колокольчиков. Впрочем при ближайшем расслушивании к ангельской мелодии примешивается ещё и постоянное жужжание десятков мух, которые мельтешат вокруг коров. Тяжело быть коровой! Впрочем, они не выглядят сильно страдающими"
 },
   {"time": "14:46",
  "label": "Glacier Aviernoz",
  "distance": 0.0, "storyId": "glacier",
  "distance-acc": 5.582951791206464, "elevation": 1506.0, "day": 1, "image": "assets/images/glacier-1.jpg",
- "story": "While the ice itself is probably somewhere deep in the cave and one cannot see it even if climbs higher, the freezing breath of winter is unmistakable. Imagine that in the middle of the hot summer hike you suddenly feel like standing next to an open freezer door. A reminder that winter is coming or that the door of a wardrobe leading to Narnia is just over there. "
+ "story": "Табличка и карты утверждают, что здесь есть ледник. Несмотря на то, что никакого льда не видно, присутствие его безошибочно угадывается по резкому изменению температуры. Вот я тащилась вверх на 30-градусной жаре, а вот вдруг на метрах двух тропы я чувствую себя так, будто стою у открытой двери промышленного холодильника."
 },
   {"time": "15:08",
  "label": "Calcites and martian views",
  "distance": 0.0, "storyId": "calcites",
  "distance-acc": 6.535175354039371, "elevation": 1635.1, "day": 1, "image": "assets/images/calcites.jpg",
- "story": "I was very glad that the day was dry and sunny, going through this martian calcite landscape in the rain would be impossible, I suspect that rocks are super slippery."
+ "story": "Чем выше, тем меньше зелёной травы и тем больше кальцитных марсианских пейзажей. Тут я уже очень довольна, что погода тёплая и солнечная, потому что идти по этой поверхности в дождь было бы неприятно."
 },
   {"time": "15:22",
  "label": "First Mont Blanc!",
  "distance": 0.0, "storyId": "first-montblanc",
  "distance-acc": 7.157042788051134, "elevation": 1683.9, "day": 1, "image": "assets/images/montblanc.jpg",
- "story": "I knew that from the refuge it is possible to see Mont Blanc but I didn't know what to expect from it. Should it be something barely visible in the distance? So seeing those mighty snow-covered peaks felt like a gift and a miracle. Couldn't stop taking pictures (can hardly choose one now)"
+ "story": "В описании хатки, к которой я иду, обещали, что в ясную погоду оттуда видно Монблан. Так что я как бы была готова, но на самом деле абсолютно не готова увидеть вдруг на горизонте нАсТоЯщИе горы со снежными шапками, будто нарисованные тончайшей кистью."
 },
   {"time": "15:51",
  "label": "Reached the Refuge",
  "distance": 0.0, "storyId": "refuge",
  "distance-acc": 7.960748614355441, "elevation": 1819.0, "day": 1, "image": "assets/images/savoy-flag.jpg",
- "story": "Reached the refuge! It is much earlier than my original plan, so I have time to explore trails around, eat an apple and rest."
+ "story": "Это флаг Савойи и знак, что я практически дошла до приюта. Как-то слишком быстро и легко получилось. У меня есть ещё куча времени, чтобы осмотреться, поваляться на траве, и прогуляться по окрестностям."
 },
   {"time": "16:53",
  "label": "Piece of snow",
  "distance": 0.0, "storyId": "sugrob",
  "distance-acc": 7.960749, "elevation": 1819.0, "day": 1, "image": "assets/images/snow.jpg",
- "story": "About 40 minuts away from the refuge there is a grote which I thought I could check out before dinner. However the trail to the grote was passing mostly through the calcite desert, so eventually I decided that I don't like jumping there with a risk of breaking my leg and went back. But I saw a piece of snow on the way! It didn't make any cold feeling like a glacier."
+ "story": "Например, можно сходить к гроту, который расположен где-то в сорока минутах от приюта. Впрочем, я с полпути повернула обратно, потому что там вся дорога состояла из кальцитной ноголомательной пустыни. Зато видела кусок снега, который упал и забыл растаять. Потом я вкрнулась и просто чиллила и моей единственной задачей было выбирать, куда я хочу посмотреть -- в сторону Монблана или в сторону долины! (Можно добавить фотку с параглайдерами)"
 },
   {"time": "17:27",
  "label": "Aggressive chicken",
  "distance": 0.0, "storyId": "aggressive-chicken-sign",
  "distance-acc": 7.960749, "elevation": 1819.0, "day": 1, "image": "assets/images/chicken.jpg",
- "story": "Chicken are cool. Maybe replace with some refuge inside pictures and add to the story. Also should mention somewhere that all the choice I needed to make was whether to look left to the Mont Blanc or to the right to the valley and lac du Annecy."
+ "story": "Видела табличку с призывом держать собак на поводке, потому что курицы агрессивные. Расскажу про приют -- курицы там есть, а воды нет!!! А всю воду и еду, которая там есть, доставляют вертолётом, поэтому ужин и завтрак получаются довольно дорогими."
 },
   {"time": "19:03",
  "label": "Dinner time",
  "distance": 0.0, "storyId": "dinner",
  "distance-acc": 7.960749, "elevation": 1819.0, "day": 1, "image": "assets/images/dinner.jpg",
- "story": "This is the oldest refuge in France working since 1883. No water. Helicopter food. Visited by Tenzig. Everyone is eating together (a bit pricely, but super tasty). Sleeping with a window (thin walls)"
+ "story": "Ужинают все вместе в большом зале. Сначала хозяин (хост?) рассказывает историю этого места -- это старейшая хатка во Франции и работает она с 1883 года. А ещё туда заходил Тенциг -- сначала он покорил Эверест, а потом Пармелан, такая шутка, ха-ха. Ужин был отменный -- с супом, чем-то похожим на тартифлетт, хлебом и сыром (куда ж без них), и десертом (куда ж без него). У нас за столом было как-то тихо, а мои способности к общению вообще ограничены, но, кажется, в одиночку пришла только я, остальные люди приходят компаниями. Одни ребята за нашим столом не оставались ночевать -- сходили в гору чисто поужинать (идея для свидания!), другой компанией была семья с двумя маленькими дочками, для которых это была первая в жизни ночёвка в горном приюте!"
 },
   {"time": "20:44",
  "label": "Golden hour",
  "distance": 0.0, "storyId": "golden-hour",
  "distance-acc": 7.960749, "elevation": 1819.0, "day": 1, "image": "assets/images/montblanc-sunset.jpg",
- "story": "Probably more refuge stories and memories. E.g. about people and communication."
+ "story": "Монблан меняет цвета на закате. Кстати, многие остаются ночевать в палатках, в самом домике спало не так много людей, так что мне даже досталась отдельная маленькая комната с двумя кроватями."
 },
   {"time": "20:57",
  "label": "Sunset",
  "distance": 0.0, "storyId": "sunset",
  "distance-acc": 7.960749, "elevation": 1819.0, "day": 1, "image": "assets/images/sunset.jpg",
- "story": "Watching sunset."
+ "story": "Ах закат закат"
 },
   {"time": "21:08",
  "label": "Moonrise",
  "distance": 0.0, "storyId": "moonrise",
  "distance-acc": 7.960749, "elevation": 1819.0, "day": 1, "image": "assets/images/moonrise.jpg",
- "story": "Whatching moonrise from the first shimmer of moon silver up until the time of the full disk rising over the mountains. The worst time for any stargazing but the evening was magnificent."
+ "story": "Конечно, моей первоначальной хотелкой было посмотреть на звёзды в горах. Но я сначала забукала билеты на поезд, а потом проверила фазу Луны и оказалось, что я запланировала поездку как раз на полнолуние. Так что никакого старгейзинга не случилось, но восход Луны из-за горных пиков был великолепен!"
 },
   {"time": "22:00",
  "label": "Night",
  "distance": 0.0, "storyId": "night",
  "distance-acc": 7.960749, "elevation": 1819.0, "day": 1, "image": "assets/images/window.jpg",
- "story": "Good night. More hiking awaits tomorrow."
+ "story": "В моей микрокомнате есть такая роскошь как окно! Выходящее на город и тлеющую полоску заката. Звёзд я так и не дождалась, так что доброй ночи, завтра снова идти."
 },
   {"time": "06:27",
  "label": "Morning",
  "distance": 0.0, "storyId": "morning",
  "distance-acc": 8.129208002934554, "elevation": 1818.8, "day": 2, "image": "assets/images/pre-sunrise.jpg",
- "story": "Pre-sunrise. Getting up early to stretch, wash myself if possible and watch sunrise."
+ "story": "Ура, выспалась! Ну или просто проснулась до будильника. Надо по мере возможности привести себя в порядок (напоминаю, что на горе нет воды) и смотреть рассвет."
 },
   {"time": "06:33",
  "label": "sunrise",
  "distance": 5.2, "storyId": "sunrise",
  "distance-acc": 8.129208002934554, "elevation": 1818.8, "day": 2, "image": "assets/images/sunrise.jpg",
- "story": "Sunrise!"
+ "story": "А вот и он!"
 },
   {"time": "08:15",
  "label": "breakfast",
  "distance": 8.7, "storyId": "breakfast",
  "distance-acc": 8.129208002934554, "elevation": 1818.8, "day": 2, "image": "assets/images/breakfast.jpg",
- "story": "Breakfast is more simple than dinner, cereals, bread and butter, orange juice, coffee (I took everything because it was expensive lol) and is meant to be enjoyed outside. Turns out that seeing mont blanc in the morning is more difficult. After breakfast it's time to wave goodbye to the refuge."
+ "story": "Завтрак устроен проще, чем ужин. На выбор всякие хлопья, мюсли, хлеб с маслом (хлеб очень вкусный). Ещё можно забесплатно налить себе попить всякого -- сок, молоко, кофе, чай. Напоминаю, что на горе нет воды, вот за ужином все напитки надо было отдельно покупать, а за завтраком значит можно напиться вволю. Ещё завтрак отличается от ужина тем, что все уже не сидят в одной комнате, а выползают с подносами на улицу и смотрят на Монблан в дымке. Несмотря на простоту, это был очень wholesome завтрак, я даже про фотку вспомнила только когда почти уже доела."
 },
   {"time": "09:34",
  "label": "Cliffs",
