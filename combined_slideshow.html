@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">   
   <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
 
   <style>
     /* Custom Font Declaration */
@@ -27,7 +28,7 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
-    background: #141a23; /* Dark grey-blue background for slides */
+    background: #0a0f15; /* Darker grey-blue background for slides */
 }
 
 /* Landing page container */
@@ -75,7 +76,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: #1a2332; /* Same dark grey-blue as body background */
+    background: #0f1419; /* Darker grey-blue to match body background */
     z-index: 1;
     opacity: 0;
     transition: opacity 0.5s ease-out;
@@ -96,10 +97,6 @@ body {
     color: white;
     max-width: 600px;
     padding: 1.5rem;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .transition-content p {
@@ -107,7 +104,9 @@ body {
     line-height: 1.6;
     margin: 0;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    font-family: 'Reenie Beanie';
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 400;
+    font-style: regular;
 }
 
 /* When transition text is visible */
@@ -126,7 +125,7 @@ body {
 /* Route path styles */
 .route-path {
     fill: none;
-    stroke-width: 3;
+    stroke-width: 1.;
     stroke-linecap: round;
     stroke-linejoin: round;
     filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.8));
@@ -134,8 +133,8 @@ body {
 }
 
 .route-path-combined {
-    stroke: #ff4444;
-    stroke-width: 4;
+    stroke: #DC143C;
+    stroke-width: 2.7;
 }
 
 @keyframes drawRoute {
@@ -172,7 +171,9 @@ body {
     font-weight: 700;
     margin-bottom: 1rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    font-family: 'Reenie Beanie';
+    font-family: 'WeirdIsBeautiful', Arial, sans-serif;
+    color: #DC143C; /* Crimson color */
+    transition: color 0.5s ease-out;
 }
 
 .hero-subtitle {
@@ -180,7 +181,7 @@ body {
     margin-bottom: 2rem;
     opacity: 0.9;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    font-family: 'Reenie Beanie';
+    font-family: 'WeirdIsBeautiful', Arial, sans-serif;
 }
 
 /* Stats section */
@@ -389,7 +390,6 @@ body {
     .g-text-cont {
       position: relative;
       width: calc(100% - 65px);
-      max-width: 500px;
       text-shadow: 0 0 3px #fff, 0 0 6px #fff;
       line-height: 1.4;
       text-align: center;
@@ -406,10 +406,14 @@ body {
     
     .g-text-cont .g-text .g-text-inner {
       background: #f0f0f0;
-      display: inline;
+      display: block;
       padding: 2px 6px;
       -webkit-box-decoration-break: clone;
       box-decoration-break: clone;
+      font-family: 'Fira Sans', sans-serif;
+      font-weight: 400;
+      font-style: regular;
+      width: 100%;
     }
     
     .g-image-container {
@@ -509,7 +513,7 @@ body {
     }
     
     .g-minimap .g-map-svg svg .g-mini-dot {
-      fill: #ff4444;
+      fill: #DC143C;
       stroke: rgba(0, 0, 0, 0.2);
       stroke-width: 2;
       filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.8));
@@ -518,7 +522,7 @@ body {
     .g-minimap .g-map-svg svg .g-mini-dot-bg {
       animation: pulse 1s infinite;
       fill: none;
-      stroke: #ff4444;
+      stroke: #DC143C;
       stroke-width: 1;
       transform-origin: center;
       transform-box: fill-box;
@@ -555,7 +559,7 @@ body {
     
     .g-path {
       fill: none;
-      stroke: #ff4444;
+      stroke: #DC143C;
       stroke-width: 2.5;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -604,7 +608,7 @@ body {
     .g-chart .g-chart-point {
       stroke: white;
       stroke-width: 2;
-      fill: #ff4444;
+      fill: #DC143C;
     }
     
     .g-timeline {
@@ -646,7 +650,7 @@ body {
       left: 50%;
       top: 0;
       width: 2px;
-      background: #ff4444;
+      background: #DC143C;
       transform: translateX(-50%);
       transition: height 0.5s ease;
     }
@@ -661,7 +665,7 @@ body {
       left: 50%;
       width: 8px;
       height: 8px;
-      background: #ff4444;
+      background: #DC143C;
       border: 2px solid rgba(255, 255, 255, 0.3);
       border-radius: 50%;
       transform: translateX(-50%);
@@ -716,8 +720,8 @@ body {
                 <!-- Route paths will be added here by JavaScript -->
                 <defs>
                     <linearGradient id="routeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style="stop-color:#4CAF50;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#2196F3;stop-opacity:1" />
+                        <stop offset="0%" style="stop-color:#DC143C;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#DC143C;stop-opacity:1" />
                     </linearGradient>
                 </defs>
             </svg>
@@ -858,7 +862,8 @@ body {
           textCont.style.left = '230px'; // Account for minimap (left: 10px + width: 200px + padding: 10px + margin: 10px)
           textCont.style.right = '110px'; // Account for timeline (right: 10px + width: 80px + padding: 5px + margin: 15px)
           textCont.style.bottom = '20px';
-          textCont.style.maxWidth = 'none';
+          textCont.style.maxWidth = '800px';
+          textCont.style.minWidth = '400px';
           textCont.style.textAlign = 'left';
           textCont.style.zIndex = '3';
           
@@ -939,11 +944,23 @@ body {
                       return;
                   }
                   
+                  // Calculate maximum available space (avoiding minimap and timeline)
+                  const minimapWidth = 240; // 10px + 200px + 10px + 20px margin
+                  const timelineWidth = 130; // 10px + 80px + 5px + 35px margin
+                  const maxImageWidth = window.innerWidth - minimapWidth - timelineWidth;
+                  const maxImageHeight = window.innerHeight - 40; // 20px margin top and bottom
+                  
                   if (isLandscape) {
                       // Landscape: image on top, text below
-                      imageContainer.style.width = '100%';
-                      imageContainer.style.height = '60vh';
-                      imageContainer.style.margin = '0';
+                      // Use maximum available width, maintain aspect ratio
+                      const aspectRatio = image.naturalWidth / image.naturalHeight;
+                      const maxWidthForHeight = maxImageHeight * aspectRatio;
+                      const finalWidth = Math.min(maxImageWidth, maxWidthForHeight);
+                      const finalHeight = finalWidth / aspectRatio;
+                      
+                      imageContainer.style.width = finalWidth + 'px';
+                      imageContainer.style.height = finalHeight + 'px';
+                      imageContainer.style.margin = '0 auto';
                       
                       // Adjust text container for landscape layout
                       textCont.style.position = 'relative';
@@ -951,7 +968,7 @@ body {
                       textCont.style.right = 'auto';
                       textCont.style.bottom = 'auto';
                       textCont.style.width = '100%';
-                      textCont.style.maxWidth = 'none';
+                      textCont.style.maxWidth = '800px';
                       textCont.style.textAlign = 'center';
                       textCont.style.margin = '20px auto 0 auto';
                       
@@ -975,28 +992,38 @@ body {
                       slideElement.appendChild(flexContainer);
                   } else {
                       // Portrait: image and text side by side
-                      imageContainer.style.width = '75%';
-                      imageContainer.style.height = '80vh';
-                      imageContainer.style.margin = '0';
+                      // Use maximum available height, maintain aspect ratio
+                      const aspectRatio = image.naturalWidth / image.naturalHeight;
+                      const maxHeightForWidth = (maxImageWidth * 0.6) / aspectRatio; // 60% of available width for image
+                      const finalHeight = Math.min(maxImageHeight, maxHeightForWidth);
+                      const finalWidth = finalHeight * aspectRatio;
                       
-                      // Adjust text container for portrait layout
+                      imageContainer.style.width = finalWidth + 'px';
+                      imageContainer.style.height = finalHeight + 'px';
+                      imageContainer.style.margin = '0';
+                      imageContainer.style.flexShrink = '0';
+                      
+                      // Adjust text container for portrait layout - starts from left edge
                       textCont.style.position = 'relative';
                       textCont.style.left = 'auto';
                       textCont.style.right = 'auto';
                       textCont.style.bottom = 'auto';
-                      textCont.style.width = '40%';
+                      textCont.style.width = '100%';
                       textCont.style.maxWidth = 'none';
+                      textCont.style.minWidth = '300px';
                       textCont.style.textAlign = 'left';
-                      textCont.style.margin = '0 5% 0 0';
+                      textCont.style.margin = '0';
+                      textCont.style.flex = '1';
                       
                       // Create a flex container for side-by-side layout
                       const flexContainer = document.createElement('div');
                       flexContainer.style.display = 'flex';
                       flexContainer.style.alignItems = 'center';
-                      flexContainer.style.justifyContent = 'center';
+                      flexContainer.style.justifyContent = 'flex-start';
                       flexContainer.style.width = '100%';
                       flexContainer.style.height = '100%';
                       flexContainer.style.padding = '0 130px 0 240px'; // top right bottom left - avoid minimap and timeline
+                      flexContainer.style.gap = '40px';
                       
                       // Move text and image into flex container (text first for left side)
                       flexContainer.appendChild(textCont);
@@ -1019,7 +1046,8 @@ body {
                   textCont.style.left = '230px';
                   textCont.style.right = '110px';
                   textCont.style.bottom = '20px';
-                  textCont.style.maxWidth = 'none';
+                  textCont.style.maxWidth = '800px';
+                  textCont.style.minWidth = '400px';
                   textCont.style.textAlign = 'left';
               };
               
@@ -1650,6 +1678,25 @@ body {
       
       // Show transition text when scrolled (simple approach)
       const shouldShowTransitionText = window.scrollY > 0;
+      
+      // Handle hero title color transition from crimson to white
+      const heroTitle = document.querySelector('.hero-title');
+      if (heroTitle) {
+          const maxScrollForTransition = 50; // Transition over first 200px of scroll
+          const scrollProgress = Math.min(window.scrollY / maxScrollForTransition, 1);
+          
+          // Interpolate between crimson (#DC143C) and white (#FFFFFF)
+          const crimson = { r: 220, g: 20, b: 60 };
+          const white = { r: 255, g: 255, b: 255 };
+          
+          const currentColor = {
+              r: Math.round(crimson.r + (white.r - crimson.r) * scrollProgress),
+              g: Math.round(crimson.g + (white.g - crimson.g) * scrollProgress),
+              b: Math.round(crimson.b + (white.b - crimson.b) * scrollProgress)
+          };
+          
+          heroTitle.style.color = `rgb(${currentColor.r}, ${currentColor.g}, ${currentColor.b})`;
+      }
       
       console.log("=== TRANSITION TEXT DEBUG ===");
       console.log("Scroll Y:", window.scrollY);
