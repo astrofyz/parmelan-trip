@@ -798,23 +798,23 @@ body {
       
       // Calculate total route distance from timeline data
       const totalRouteDistance = timeline.storyPoints[timeline.storyPoints.length - 1]['distance-acc'] * 1000; // Convert km to meters
-      console.log("=== DISTANCE COMPARISON DEBUG ===");
-      console.log("Total route distance from timeline (km):", timeline.storyPoints[timeline.storyPoints.length - 1]['distance-acc']);
-      console.log("Total route distance from timeline (meters):", totalRouteDistance);
+    //   console.log("=== DISTANCE COMPARISON DEBUG ===");
+    //   console.log("Total route distance from timeline (km):", timeline.storyPoints[timeline.storyPoints.length - 1]['distance-acc']);
+    //   console.log("Total route distance from timeline (meters):", totalRouteDistance);
       
       // Calculate elevation data total distance
       const elevationTotalDistance = elevationData[elevationData.length - 1].distance;
-      console.log("Total elevation distance (km):", elevationTotalDistance);
-      console.log("Total elevation distance (meters):", elevationTotalDistance * 1000);
+    //   console.log("Total elevation distance (km):", elevationTotalDistance);
+    //   console.log("Total elevation distance (meters):", elevationTotalDistance * 1000);
       
       drawMinimap(totalRouteDistance);
       drawChart();
       drawTimeline(timeline); // This will draw timeline for day 1 initially
       
-      console.log("=== INITIAL UPDATE DEBUG ===");
-      console.log("About to call updateSlide()");
-      console.log("curslide at this point:", curslide);
-      console.log("Number of slides:", document.querySelectorAll('.g-slide').length);
+    //   console.log("=== INITIAL UPDATE DEBUG ===");
+    //   console.log("About to call updateSlide()");
+    //   console.log("curslide at this point:", curslide);
+    //   console.log("Number of slides:", document.querySelectorAll('.g-slide').length);
       
       // Set initial visibility (landing page should be visible initially)
       updateElementVisibility(true);
@@ -835,8 +835,8 @@ body {
       const existingSlides = document.querySelectorAll('.g-slide');
       existingSlides.forEach(slide => slide.remove());
       
-      console.log("=== SLIDE GENERATION DEBUG ===");
-      console.log("Timeline story points:", timeline.storyPoints.slice(0, 3));
+    //   console.log("=== SLIDE GENERATION DEBUG ===");
+    //   console.log("Timeline story points:", timeline.storyPoints.slice(0, 3));
       
       // Generate new slides from timeline data
       timeline.storyPoints.forEach((storyPoint, index) => {
@@ -846,7 +846,7 @@ body {
           slide.setAttribute('data-slide', index);
           slide.setAttribute('data-kmacc', storyPoint['distance-acc']); // Use original timeline data
           
-          console.log(`Slide ${index}: distance-acc = ${storyPoint['distance-acc']} ${slide.getAttribute('data-kmacc')}`);
+        //   console.log(`Slide ${index}: distance-acc = ${storyPoint['distance-acc']} ${slide.getAttribute('data-kmacc')}`);
           
           // Create slide background
           const background = document.createElement('div');
@@ -950,16 +950,27 @@ body {
                   const maxImageWidth = window.innerWidth - minimapWidth - timelineWidth;
                   const maxImageHeight = window.innerHeight - 40; // 20px margin top and bottom
                   
+                  // Calculate consistent maximum size for all images
+                  // Use the smaller of the two constraints to ensure all images fit
+                  const maxImageSize = Math.min(maxImageWidth, maxImageHeight);
+                  
                   if (isLandscape) {
                       // Landscape: image on top, text below
-                      // Use maximum available width, maintain aspect ratio
+                      // Use consistent maximum size, maintain aspect ratio
                       const aspectRatio = image.naturalWidth / image.naturalHeight;
-                      const maxWidthForHeight = maxImageHeight * aspectRatio;
-                      const finalWidth = Math.min(maxImageWidth, maxWidthForHeight);
+                      const finalWidth = Math.min(maxImageSize, maxImageWidth);
                       const finalHeight = finalWidth / aspectRatio;
                       
-                      imageContainer.style.width = finalWidth + 'px';
-                      imageContainer.style.height = finalHeight + 'px';
+                      // If height exceeds max, scale down
+                      if (finalHeight > maxImageHeight) {
+                          const scaledHeight = maxImageHeight;
+                          const scaledWidth = scaledHeight * aspectRatio;
+                          imageContainer.style.width = scaledWidth + 'px';
+                          imageContainer.style.height = scaledHeight + 'px';
+                      } else {
+                          imageContainer.style.width = finalWidth + 'px';
+                          imageContainer.style.height = finalHeight + 'px';
+                      }
                       imageContainer.style.margin = '0 auto';
                       
                       // Adjust text container for landscape layout
@@ -992,38 +1003,47 @@ body {
                       slideElement.appendChild(flexContainer);
                   } else {
                       // Portrait: image and text side by side
-                      // Use maximum available height, maintain aspect ratio
+                      // Use same maximum size as landscape images
                       const aspectRatio = image.naturalWidth / image.naturalHeight;
-                      const maxHeightForWidth = (maxImageWidth * 0.6) / aspectRatio; // 60% of available width for image
-                      const finalHeight = Math.min(maxImageHeight, maxHeightForWidth);
+                      const finalHeight = Math.min(maxImageSize, maxImageHeight);
                       const finalWidth = finalHeight * aspectRatio;
                       
-                      imageContainer.style.width = finalWidth + 'px';
-                      imageContainer.style.height = finalHeight + 'px';
+                      // Use the same sizing logic as landscape - keep maximum size
+                      if (finalHeight > maxImageHeight) {
+                          const scaledHeight = maxImageHeight;
+                          const scaledWidth = scaledHeight * aspectRatio;
+                          imageContainer.style.width = scaledWidth + 'px';
+                          imageContainer.style.height = scaledHeight + 'px';
+                      } else {
+                          imageContainer.style.width = finalWidth + 'px';
+                          imageContainer.style.height = finalHeight + 'px';
+                      }
+                      
+                      // Simple positioning - let flexbox handle the layout
                       imageContainer.style.margin = '0';
                       imageContainer.style.flexShrink = '0';
                       
-                      // Adjust text container for portrait layout - starts from left edge
+                      // Adjust text container for portrait layout - compact to give more space to image
                       textCont.style.position = 'relative';
                       textCont.style.left = 'auto';
                       textCont.style.right = 'auto';
                       textCont.style.bottom = 'auto';
-                      textCont.style.width = '100%';
-                      textCont.style.maxWidth = 'none';
-                      textCont.style.minWidth = '300px';
+                      textCont.style.width = 'auto';
+                      textCont.style.maxWidth = '300px';
+                      textCont.style.minWidth = '200px';
                       textCont.style.textAlign = 'left';
                       textCont.style.margin = '0';
-                      textCont.style.flex = '1';
+                      textCont.style.flex = '0 0 auto';
                       
                       // Create a flex container for side-by-side layout
                       const flexContainer = document.createElement('div');
                       flexContainer.style.display = 'flex';
                       flexContainer.style.alignItems = 'center';
-                      flexContainer.style.justifyContent = 'flex-start';
+                      flexContainer.style.justifyContent = 'space-between';
                       flexContainer.style.width = '100%';
                       flexContainer.style.height = '100%';
-                      flexContainer.style.padding = '0 130px 0 240px'; // top right bottom left - avoid minimap and timeline
-                      flexContainer.style.gap = '40px';
+                      flexContainer.style.padding = '0 100px 0 100px'; // top right bottom left - avoid minimap and timeline
+                      flexContainer.style.gap = '20px';
                       
                       // Move text and image into flex container (text first for left side)
                       flexContainer.appendChild(textCont);
@@ -1065,7 +1085,7 @@ body {
       
       // Update maxslide
       maxslide = timeline.storyPoints.length - 1;
-      console.log(`Generated ${timeline.storyPoints.length} slides from timeline data`);
+    //   console.log(`Generated ${timeline.storyPoints.length} slides from timeline data`);
   }
   
   function drawMinimap(totalRouteDistance) {
@@ -1181,7 +1201,7 @@ body {
       
       // Set up stroke-dasharray for animation
       const pathLength = routePath.node().getTotalLength();
-      console.log("Path length:", pathLength);
+    //   console.log("Path length:", pathLength);
       routePath
           .attr("stroke-dasharray", pathLength)
           .attr("stroke-dashoffset", pathLength); // Start with route hidden
@@ -1189,9 +1209,9 @@ body {
       // Calculate total route distance from route data
       const totalRouteDistanceFromData = routeData.points.reduce((sum, point) => sum + (point.distance || 0), 0);
       
-      console.log("=== ROUTE DISTANCE DEBUG ===");
-      console.log("Total route distance from route data (meters):", totalRouteDistanceFromData);
-      console.log("Total route distance from timeline (meters):", totalRouteDistance);
+    //   console.log("=== ROUTE DISTANCE DEBUG ===");
+    //   console.log("Total route distance from route data (meters):", totalRouteDistanceFromData);
+    //   console.log("Total route distance from timeline (meters):", totalRouteDistance);
       
       // Store the route path and distances for animation
       window.routeAnimationData = {
@@ -1242,11 +1262,11 @@ body {
       // Calculate how much of the route to show
       const offset = pathLength * (1 - progress);
       
-      console.log("=== ROUTE ANIMATION EXECUTION ===");
-      console.log("Input progress:", progress);
-      console.log("Path length (pixels):", pathLength);
-      console.log("Calculated offset:", offset);
-      console.log("Current stroke-dashoffset before animation:", routePath.attr("stroke-dashoffset"));
+    //   console.log("=== ROUTE ANIMATION EXECUTION ===");
+    //   console.log("Input progress:", progress);
+    //   console.log("Path length (pixels):", pathLength);
+    //   console.log("Calculated offset:", offset);
+    //   console.log("Current stroke-dashoffset before animation:", routePath.attr("stroke-dashoffset"));
       
       routePath.transition()
           .duration(1000)
@@ -1323,10 +1343,10 @@ body {
           .attr("transform", `translate(${margin.left}, ${margin.top})`);
   
       // Prepare elevation data
-      console.log("=== ELEVATION CHART DEBUG ===");
-      console.log("Elevation data type:", typeof elevationData);
-      console.log("Elevation data length:", elevationData ? elevationData.length : "undefined");
-      console.log("First few elevation points:", elevationData ? elevationData.slice(0, 3) : "undefined");
+    //   console.log("=== ELEVATION CHART DEBUG ===");
+    //   console.log("Elevation data type:", typeof elevationData);
+    //   console.log("Elevation data length:", elevationData ? elevationData.length : "undefined");
+    //   console.log("First few elevation points:", elevationData ? elevationData.slice(0, 3) : "undefined");
       
       const chartData = elevationData.map(d => [d.elevation, d.distance]);
       
@@ -1403,8 +1423,8 @@ body {
           totalDistance: distanceExtent[1] // Use elevation data's total distance
       };
       
-      console.log("=== ELEVATION DISTANCE DEBUG ===");
-      console.log("Total elevation distance (meters):", distanceExtent[1]);
+    //   console.log("=== ELEVATION DISTANCE DEBUG ===");
+    //   console.log("Total elevation distance (meters):", distanceExtent[1]);
   }
   
   function animateElevation(progress) {
@@ -1434,20 +1454,20 @@ body {
       const timelineContainer = d3.select(".g-timeline-points");
       const progressBar = d3.select(".g-timeline-progress");
       
-      console.log("=== TIMELINE CONTAINER DEBUG ===");
-      console.log("Timeline container found:", timelineContainer.node());
-      console.log("Progress bar found:", progressBar.node());
+    //   console.log("=== TIMELINE CONTAINER DEBUG ===");
+    //   console.log("Timeline container found:", timelineContainer.node());
+    //   console.log("Progress bar found:", progressBar.node());
       
       // Clear existing timeline
       timelineContainer.html("");
       
       // Filter timeline points for current day only
       const currentDayPoints = timeline.storyPoints.filter(point => point.day === currentDay);
-      console.log("=== TIMELINE DRAWING DEBUG ===");
-      console.log("Current day:", currentDay);
-      console.log("Total timeline points:", timeline.storyPoints.length);
-      console.log("Current day points:", currentDayPoints.length);
-      console.log("First few current day points:", currentDayPoints.slice(0, 3));
+    //   console.log("=== TIMELINE DRAWING DEBUG ===");
+    //   console.log("Current day:", currentDay);
+    //   console.log("Total timeline points:", timeline.storyPoints.length);
+    //   console.log("Current day points:", currentDayPoints.length);
+    //   console.log("First few current day points:", currentDayPoints.slice(0, 3));
       
       // Get time range for current day only
       const times = currentDayPoints.map(point => {
@@ -1534,9 +1554,9 @@ body {
       const { progressBar } = window.timelineData;
       const height = progress * 90; // Convert to percentage, matching timeline points range
       
-      console.log("=== TIMELINE ANIMATION DEBUG ===");
-      console.log("Timeline progress:", (progress * 100).toFixed(2) + "%");
-      console.log("Timeline height:", height + "%");
+    //   console.log("=== TIMELINE ANIMATION DEBUG ===");
+    //   console.log("Timeline progress:", (progress * 100).toFixed(2) + "%");
+    //   console.log("Timeline height:", height + "%");
       
       progressBar.style("height", `${height}%`);
   }
@@ -1578,10 +1598,10 @@ body {
       // Update minimap info based on current slide
       const currentSlide = d3.select(`.g-slide[data-slide="${curslide}"]`);
       
-      console.log("=== SLIDE UPDATE DEBUG ===");
-      console.log("Current slide:", curslide);
-      console.log("Current slide element:", currentSlide.node());
-      console.log("All slides:", document.querySelectorAll('.g-slide'));
+    //   console.log("=== SLIDE UPDATE DEBUG ===");
+    //   console.log("Current slide:", curslide);
+    //   console.log("Current slide element:", currentSlide.node());
+    //   console.log("All slides:", document.querySelectorAll('.g-slide'));
       
       // Check if slide exists
       if (!currentSlide.node()) {
@@ -1619,11 +1639,11 @@ body {
           const slideDistanceMeters = kmacc * 1000;
           const routeProgress = slideDistanceMeters / window.routeAnimationData.totalRouteDistance;
           
-          console.log("=== ROUTE ANIMATION DEBUG ===");
-          console.log("Slide distance (km):", kmacc);
-          console.log("Slide distance (meters):", slideDistanceMeters);
-          console.log("Total route distance (meters):", window.routeAnimationData.totalRouteDistance);
-          console.log("Route progress percentage:", (routeProgress * 100).toFixed(2) + "%");
+        //   console.log("=== ROUTE ANIMATION DEBUG ===");
+        //   console.log("Slide distance (km):", kmacc);
+        //   console.log("Slide distance (meters):", slideDistanceMeters);
+        //   console.log("Total route distance (meters):", window.routeAnimationData.totalRouteDistance);
+        //   console.log("Route progress percentage:", (routeProgress * 100).toFixed(2) + "%");
           
           const finalRouteProgress = Math.min(routeProgress, 1); // Cap at 100%
           animateRoute(finalRouteProgress);
@@ -1633,9 +1653,9 @@ body {
               const elevationTotalDistance = window.elevationAnimationData.totalDistance;
               const elevationProgress = slideDistanceMeters / (elevationTotalDistance * 1000); // Convert km to meters
               
-              console.log("=== ELEVATION ANIMATION DEBUG ===");
-              console.log("Elevation total distance (km):", elevationTotalDistance);
-              console.log("Elevation progress percentage:", (elevationProgress * 100).toFixed(2) + "%");
+            //   console.log("=== ELEVATION ANIMATION DEBUG ===");
+            //   console.log("Elevation total distance (km):", elevationTotalDistance);
+            //   console.log("Elevation progress percentage:", (elevationProgress * 100).toFixed(2) + "%");
               
               const finalElevationProgress = Math.min(elevationProgress, 1); // Cap at 100%
               animateElevation(finalElevationProgress);
@@ -1650,10 +1670,10 @@ body {
               
               const timelineProgress = (currentTimeMinutes - window.timelineData.minTime) / window.timelineData.timeRange;
               
-              console.log("=== TIMELINE ANIMATION DEBUG ===");
-              console.log("Current slide time:", currentSlideTime);
-              console.log("Current time minutes:", currentTimeMinutes);
-              console.log("Timeline progress:", (timelineProgress * 100).toFixed(2) + "%");
+            //   console.log("=== TIMELINE ANIMATION DEBUG ===");
+            //   console.log("Current slide time:", currentSlideTime);
+            //   console.log("Current time minutes:", currentTimeMinutes);
+            //   console.log("Timeline progress:", (timelineProgress * 100).toFixed(2) + "%");
               
               animateTimeline(timelineProgress);
               updateTimelinePoint(curslide);
@@ -1698,10 +1718,10 @@ body {
           heroTitle.style.color = `rgb(${currentColor.r}, ${currentColor.g}, ${currentColor.b})`;
       }
       
-      console.log("=== TRANSITION TEXT DEBUG ===");
-      console.log("Scroll Y:", window.scrollY);
-      console.log("Should show transition text:", shouldShowTransitionText);
-      console.log("Transition text element:", transitionText);
+    //   console.log("=== TRANSITION TEXT DEBUG ===");
+    //   console.log("Scroll Y:", window.scrollY);
+    //   console.log("Should show transition text:", shouldShowTransitionText);
+    //   console.log("Transition text element:", transitionText);
       
       // Show/hide transition text based on scroll position
       if (transitionText) {
