@@ -940,28 +940,38 @@ body {
                   
                   // Ensure we have valid dimensions
                   if (image.naturalWidth === 0 || image.naturalHeight === 0) {
-                      console.log('Image dimensions not available, using default layout');
+                      // console.log('Image dimensions not available, using default layout');
                       return;
                   }
                   
-                  // Calculate maximum available space (avoiding minimap and timeline)
+                  // ========================================
+                  // IMAGE POSITIONING LOGIC EXPLANATION
+                  // ========================================
+                  
+                  // STEP 1: Calculate maximum available space
+                  // We need to avoid overlapping with UI elements (minimap and timeline)
                   const minimapWidth = 240; // 10px + 200px + 10px + 20px margin
                   const timelineWidth = 130; // 10px + 80px + 5px + 35px margin
                   const maxImageWidth = window.innerWidth - minimapWidth - timelineWidth;
                   const maxImageHeight = window.innerHeight - 40; // 20px margin top and bottom
                   
-                  // Calculate consistent maximum size for all images
+                  // STEP 2: Calculate consistent maximum size for all images
                   // Use the smaller of the two constraints to ensure all images fit
+                  // This ensures landscape and portrait images have the same maximum size
                   const maxImageSize = Math.min(maxImageWidth, maxImageHeight);
                   
                   if (isLandscape) {
-                      // Landscape: image on top, text below
+                      // ========================================
+                      // LANDSCAPE LAYOUT: Image on top, text below
+                      // ========================================
+                      
+                      // STEP 3A: Calculate landscape image dimensions
                       // Use consistent maximum size, maintain aspect ratio
                       const aspectRatio = image.naturalWidth / image.naturalHeight;
                       const finalWidth = Math.min(maxImageSize, maxImageWidth);
                       const finalHeight = finalWidth / aspectRatio;
                       
-                      // If height exceeds max, scale down
+                      // STEP 4A: Apply scaling if needed to fit within height constraints
                       if (finalHeight > maxImageHeight) {
                           const scaledHeight = maxImageHeight;
                           const scaledWidth = scaledHeight * aspectRatio;
@@ -971,9 +981,9 @@ body {
                           imageContainer.style.width = finalWidth + 'px';
                           imageContainer.style.height = finalHeight + 'px';
                       }
-                      imageContainer.style.margin = '0 auto';
+                      imageContainer.style.margin = '0 auto'; // Center the image horizontally
                       
-                      // Adjust text container for landscape layout
+                      // STEP 5A: Configure text container for landscape layout
                       textCont.style.position = 'relative';
                       textCont.style.left = 'auto';
                       textCont.style.right = 'auto';
@@ -983,15 +993,16 @@ body {
                       textCont.style.textAlign = 'center';
                       textCont.style.margin = '20px auto 0 auto';
                       
-                      // Create a vertical flex container for landscape layout
+                      // STEP 6A: Create vertical flex container for landscape layout
+                      // This stacks image on top and text below
                       const flexContainer = document.createElement('div');
                       flexContainer.style.display = 'flex';
-                      flexContainer.style.flexDirection = 'column';
-                      flexContainer.style.alignItems = 'center';
-                      flexContainer.style.justifyContent = 'center';
+                      flexContainer.style.flexDirection = 'column'; // Vertical stacking
+                      flexContainer.style.alignItems = 'center'; // Center horizontally
+                      flexContainer.style.justifyContent = 'center'; // Center vertically
                       flexContainer.style.width = '100%';
                       flexContainer.style.height = '100%';
-                      flexContainer.style.padding = '20px 130px 20px 240px'; // top right bottom left - avoid minimap and timeline
+                      flexContainer.style.padding = '20px 130px 20px 240px'; // Avoid minimap and timeline
                       
                       // Move image and text into flex container
                       flexContainer.appendChild(imageContainer);
@@ -1002,13 +1013,17 @@ body {
                       slideElement.appendChild(background);
                       slideElement.appendChild(flexContainer);
                   } else {
-                      // Portrait: image and text side by side
-                      // Use same maximum size as landscape images
+                      // ========================================
+                      // PORTRAIT LAYOUT: Image and text side by side
+                      // ========================================
+                      
+                      // STEP 3B: Calculate portrait image dimensions
+                      // Use same maximum size as landscape images for consistency
                       const aspectRatio = image.naturalWidth / image.naturalHeight;
                       const finalHeight = Math.min(maxImageSize, maxImageHeight);
                       const finalWidth = finalHeight * aspectRatio;
                       
-                      // Use the same sizing logic as landscape - keep maximum size
+                      // STEP 4B: Apply scaling if needed to fit within height constraints
                       if (finalHeight > maxImageHeight) {
                           const scaledHeight = maxImageHeight;
                           const scaledWidth = scaledHeight * aspectRatio;
@@ -1019,31 +1034,33 @@ body {
                           imageContainer.style.height = finalHeight + 'px';
                       }
                       
-                      // Simple positioning - let flexbox handle the layout
+                      // STEP 5B: Configure image container for flexbox layout
                       imageContainer.style.margin = '0';
-                      imageContainer.style.flexShrink = '0';
+                      imageContainer.style.flexShrink = '0'; // Prevent image from shrinking
                       
-                      // Adjust text container for portrait layout - compact to give more space to image
+                      // STEP 6B: Configure text container for portrait layout
+                      // Make it compact to give more space to the image
                       textCont.style.position = 'relative';
                       textCont.style.left = 'auto';
                       textCont.style.right = 'auto';
                       textCont.style.bottom = 'auto';
                       textCont.style.width = 'auto';
-                      textCont.style.maxWidth = '300px';
-                      textCont.style.minWidth = '200px';
+                      textCont.style.maxWidth = '300px'; // Compact width
+                      textCont.style.minWidth = '200px'; // Minimum readable width
                       textCont.style.textAlign = 'left';
                       textCont.style.margin = '0';
-                      textCont.style.flex = '0 0 auto';
+                      textCont.style.flex = '0 0 auto'; // Don't grow or shrink
                       
-                      // Create a flex container for side-by-side layout
+                      // STEP 7B: Create horizontal flex container for side-by-side layout
+                      // This places text on the left and image on the right
                       const flexContainer = document.createElement('div');
                       flexContainer.style.display = 'flex';
-                      flexContainer.style.alignItems = 'center';
-                      flexContainer.style.justifyContent = 'space-between';
+                      flexContainer.style.alignItems = 'center'; // Center vertically
+                      flexContainer.style.justifyContent = 'space-between'; // Text left, image right
                       flexContainer.style.width = '100%';
                       flexContainer.style.height = '100%';
-                      flexContainer.style.padding = '0 100px 0 100px'; // top right bottom left - avoid minimap and timeline
-                      flexContainer.style.gap = '20px';
+                      flexContainer.style.padding = '0 100px 0 100px'; // Equal margins on both sides
+                      flexContainer.style.gap = '20px'; // Space between text and image
                       
                       // Move text and image into flex container (text first for left side)
                       flexContainer.appendChild(textCont);
@@ -1058,7 +1075,7 @@ body {
               
               // Handle case where image fails to load
               image.onerror = function() {
-                  console.log(`Failed to load image: ${storyPoint.image}`);
+                  // console.log(`Failed to load image: ${storyPoint.image}`);
                   imageContainer.style.display = 'none';
                   
                   // Reset text container to default position when no image
@@ -1090,8 +1107,8 @@ body {
   
   function drawMinimap(totalRouteDistance) {
       const sel = d3.select(".g-map-svg");
-      const containerWidth = 180;
-      const containerHeight = 80;
+      const containerWidth = 240;
+      const containerHeight = 120;
   
       const svg = sel.append("svg")
           .attr("width", containerWidth)
@@ -1273,13 +1290,13 @@ body {
           .ease(d3.easeLinear)
           .attr("stroke-dashoffset", offset)
           .on("end", function() {
-              console.log("Route animation completed. Final stroke-dashoffset:", routePath.attr("stroke-dashoffset"));
+              // console.log("Route animation completed. Final stroke-dashoffset:", routePath.attr("stroke-dashoffset"));
           });
   }
   
   function drawChart() {
       const cont = d3.select(".g-chart").html("");
-      const containerWidth = 280;
+      const containerWidth = 240;
       const containerHeight = 130;
       const margin = {top: 15, right: 15, bottom: 25, left: 35};
       const chartw_adj = containerWidth - margin.left - margin.right;
@@ -1435,18 +1452,18 @@ body {
       // Calculate how much of the elevation to show
       const offset = pathLength * (1 - progress);
       
-      console.log("=== ELEVATION ANIMATION EXECUTION ===");
-      console.log("Input progress:", progress);
-      console.log("Path length (pixels):", pathLength);
-      console.log("Calculated offset:", offset);
-      console.log("Current stroke-dashoffset before animation:", elevationPath.attr("stroke-dashoffset"));
+      // console.log("=== ELEVATION ANIMATION EXECUTION ===");
+      // console.log("Input progress:", progress);
+      // console.log("Path length (pixels):", pathLength);
+      // console.log("Calculated offset:", offset);
+      // console.log("Current stroke-dashoffset before animation:", elevationPath.attr("stroke-dashoffset"));
       
       elevationPath.transition()
           .duration(1000)
           .ease(d3.easeLinear)
           .attr("stroke-dashoffset", offset)
           .on("end", function() {
-              console.log("Elevation animation completed. Final stroke-dashoffset:", elevationPath.attr("stroke-dashoffset"));
+              // console.log("Elevation animation completed. Final stroke-dashoffset:", elevationPath.attr("stroke-dashoffset"));
           });
   }
   
@@ -1479,19 +1496,19 @@ body {
       const maxTime = Math.max(...times);
       const timeRange = maxTime - minTime;
       
-      console.log("Timeline time range:", {
-          minTime: minTime,
-          maxTime: maxTime,
-          timeRange: timeRange,
-          times: times
-      });
+      // console.log("Timeline time range:", {
+      //     minTime: minTime,
+      //     maxTime: maxTime,
+      //     timeRange: timeRange,
+      //     times: times
+      // });
       
       if (timeRange === 0) {
-          console.log("WARNING: Time range is 0, this will cause division by zero!");
+          // console.log("WARNING: Time range is 0, this will cause division by zero!");
       }
       
       // Create timeline points for current day only
-      console.log("Creating timeline points...");
+      // console.log("Creating timeline points...");
       currentDayPoints.forEach((storyPoint, dayIndex) => {
           const timeMinutes = times[dayIndex];
           const progress = timeRange > 0 ? (timeMinutes - minTime) / timeRange : 0;
@@ -1502,7 +1519,7 @@ body {
               point.time === storyPoint.time && point.day === storyPoint.day
           );
           
-          console.log(`Creating point ${dayIndex}: time=${storyPoint.time}, yPosition=${yPosition}%, slideIndex=${originalSlideIndex}`);
+          // console.log(`Creating point ${dayIndex}: time=${storyPoint.time}, yPosition=${yPosition}%, slideIndex=${originalSlideIndex}`);
           
           const point = timelineContainer.append("div")
               .attr("class", "g-timeline-point")
@@ -1513,7 +1530,7 @@ body {
                   // Jump to the clicked slide
                   const targetSlide = document.querySelector(`.g-slide[data-slide="${originalSlideIndex}"]`);
                   if (targetSlide) {
-                      console.log(`Timeline clicked: jumping to slide ${originalSlideIndex}`);
+                      // console.log(`Timeline clicked: jumping to slide ${originalSlideIndex}`);
                       targetSlide.scrollIntoView({ behavior: 'smooth' });
                       curslide = originalSlideIndex;
                       updateSlide();
@@ -1527,11 +1544,11 @@ body {
               .text(storyPoint.time);
       });
       
-      console.log("Timeline points created:", timelineContainer.selectAll(".g-timeline-point").size());
+      // console.log("Timeline points created:", timelineContainer.selectAll(".g-timeline-point").size());
       
       // If no points were created, let's add a test point
       if (timelineContainer.selectAll(".g-timeline-point").size() === 0) {
-          console.log("No timeline points created, adding test point...");
+          // console.log("No timeline points created, adding test point...");
           timelineContainer.append("div")
               .attr("class", "g-timeline-point")
               .style("top", "50%")
@@ -1605,24 +1622,24 @@ body {
       
       // Check if slide exists
       if (!currentSlide.node()) {
-          console.log("ERROR: Current slide element not found!");
+          // console.log("ERROR: Current slide element not found!");
           return;
       }
       
-      console.log("Slide data-kmacc attribute:", currentSlide.attr("data-kmacc"));
-      console.log("Slide data-kmacc attribute type:", typeof currentSlide.attr("data-kmacc"));
-      console.log("Slide data-kmacc attribute length:", currentSlide.attr("data-kmacc")?.length);
+      // console.log("Slide data-kmacc attribute:", currentSlide.attr("data-kmacc"));
+      // console.log("Slide data-kmacc attribute type:", typeof currentSlide.attr("data-kmacc"));
+      // console.log("Slide data-kmacc attribute length:", currentSlide.attr("data-kmacc")?.length);
       
       const kmacc = parseFloat(currentSlide.attr("data-kmacc"));
-      console.log("Parsed kmacc:", kmacc);
+      // console.log("Parsed kmacc:", kmacc);
       
       // Check if we need to change day and redraw timeline
       if (window.originalTimelineData && window.originalTimelineData.storyPoints[curslide]) {
           const slideDay = window.originalTimelineData.storyPoints[curslide].day;
-          console.log("Current slide day:", slideDay, "Previous day:", currentDay);
+          // console.log("Current slide day:", slideDay, "Previous day:", currentDay);
           
           if (slideDay !== currentDay) {
-              console.log("Day changed from", currentDay, "to", slideDay);
+              // console.log("Day changed from", currentDay, "to", slideDay);
               currentDay = slideDay;
               
               // Redraw timeline for the new day
@@ -1679,7 +1696,7 @@ body {
               updateTimelinePoint(curslide);
           }
       } else {
-          console.log("Route animation data not available");
+          // console.log("Route animation data not available");
       }
   }
   
@@ -1726,14 +1743,14 @@ body {
       // Show/hide transition text based on scroll position
       if (transitionText) {
           if (shouldShowTransitionText) {
-              console.log("Showing transition text");
+              // console.log("Showing transition text");
               transitionText.classList.add('visible');
           } else {
-              console.log("Hiding transition text");
+              // console.log("Hiding transition text");
               transitionText.classList.remove('visible');
           }
       } else {
-          console.log("Transition text element not found!");
+          // console.log("Transition text element not found!");
       }
       
       // Show/hide elements based on scroll position
@@ -1745,7 +1762,7 @@ body {
           
           if (scrollPosition >= slideTop && scrollPosition < slideBottom) {
               if (curslide !== index) {
-                  console.log("Changing curslide from", curslide, "to", index);
+                  // console.log("Changing curslide from", curslide, "to", index);
                   curslide = index;
                   updateSlide();
               }
