@@ -26,7 +26,7 @@
   {"time": "13:03",
  "label": "Fields and gardens",
  "distance": 0.0, "storyId": "ogorody",
- "distance-acc": 0.7840768512807939, "elevation": 883.4, "day": 1, "image": "assets/images/ogorody-1.jpg",
+ "distance-acc": 0.7840768512807939, "elevation": 883.4, "day": 1, "image": "assets/images/ogorody_combined.png",
  "story": "С первых же шагов влезла в крапиву. Кстати, спасибо Даще за рекомендацию mapy.com, а мапам -- за маршрут. Пробираюсь вдоль огородов под мелодичный перелив коровьих колокольчиков. Стараюсь не разгоняться и идти в темпе разговора с Кристиной -- когда мы гуляли в Польше оказалось, что если идти достаточно медленно, то можно не просто не устать при подъёме, но ещё и поболтать по дороге. Сейчас я иду одна, но темп пытаюсь поддерживать тот же."
 },
   {"time": "14:04",
@@ -38,13 +38,13 @@
   {"time": "14:32",
  "label": "Cow band",
  "distance": 0.0, "storyId": "cow-band",
- "distance-acc": 5.076909799245685, "elevation": 1455.9, "day": 1, "image": "assets/images/cool_cow.jpg",
+ "distance-acc": 5.076909799245685, "elevation": 1455.9, "day": 1, "image": "assets/images/cool_cow_combined.png",
  "story": "Главной мелодией этих двух дней становятся переливы колокольчиков. Впрочем при ближайшем расслушивании к ангельской мелодии примешивается ещё и постоянное жужжание десятков мух, которые мельтешат вокруг коров. Тяжело быть коровой! Впрочем, они не выглядят сильно страдающими"
 },
   {"time": "14:46",
  "label": "Glacier Aviernoz",
  "distance": 0.0, "storyId": "glacier",
- "distance-acc": 5.582951791206464, "elevation": 1506.0, "day": 1, "image": "assets/images/glacier-1.jpg",
+ "distance-acc": 5.582951791206464, "elevation": 1506.0, "day": 1, "image": "assets/images/glacier_combined.png",
  "story": "Табличка и карты утверждают, что здесь есть ледник. Несмотря на то, что никакого льда не видно, присутствие его безошибочно угадывается по резкому изменению температуры. Вот я тащилась вверх на 30-градусной жаре, а вот вдруг на метрах двух тропы я чувствую себя так, будто стою у открытой двери промышленного холодильника."
 },
   {"time": "15:08",
@@ -56,31 +56,31 @@
   {"time": "15:22",
  "label": "First Mont Blanc!",
  "distance": 0.0, "storyId": "first-montblanc",
- "distance-acc": 7.157042788051134, "elevation": 1683.9, "day": 1, "image": "assets/images/montblanc.jpg",
+ "distance-acc": 7.157042788051134, "elevation": 1683.9, "day": 1, "image": "assets/images/montblanc_landscape.jpg",
  "story": "В описании хатки, к которой я иду, обещали, что в ясную погоду оттуда видно Монблан. Так что я как бы была готова, но на самом деле абсолютно не готова увидеть вдруг на горизонте нАсТоЯщИе горы со снежными шапками, будто нарисованные тончайшей кистью."
 },
   {"time": "15:51",
  "label": "Reached the Refuge",
  "distance": 0.0, "storyId": "refuge",
- "distance-acc": 7.960748614355441, "elevation": 1819.0, "day": 1, "image": "assets/images/savoy-flag.jpg",
+ "distance-acc": 7.960748614355441, "elevation": 1819.0, "day": 1, "image": "assets/images/refuge_combined.png",
  "story": "Это флаг Савойи и знак, что я практически дошла до приюта. Как-то слишком быстро и легко получилось. У меня есть ещё куча времени, чтобы осмотреться и прогуляться по окрестностям."
 },
   {"time": "16:53",
  "label": "Piece of snow",
  "distance": 0.0, "storyId": "sugrob",
- "distance-acc": 7.960749, "elevation": 1819.0, "day": 1, "image": "assets/images/snow.jpg",
+ "distance-acc": 7.960749, "elevation": 1819.0, "day": 1, "image": "assets/images/snow_combined.png",
  "story": "Например, можно сходить к гроту, который расположен где-то в сорока минутах от приюта. Впрочем, я с полпути повернула обратно, потому что там вся дорога состояла из кальцитной ноголомательной пустыни. Зато видела кусок снега, который упал и забыл растаять."
 },
 {"time": "17:40",
  "label": "Piece of snow",
  "distance": 0.0, "storyId": "paragliders",
- "distance-acc": 7.960749, "elevation": 1819.0, "day": 1, "image": "assets/images/paraglider.jpg",
+ "distance-acc": 7.960749, "elevation": 1819.0, "day": 1, "image": "assets/images/romantic_combined.png",
  "story": "Моей единственной задачей на оставшееся до ужина время было выбирать, куда смотреть: на Монблан или на долину с озером и парапланеристами. Ещё можно поглядывать на людей -- кто-то приходит сюда с огромными рюкзаками и явным намерением остаться на ночь, кто-то прибежал налегке и уже готов убегать вниз, многие приходят большими компаниями или семьями, часто ещё и с собаками. Маршрут достаточно популярный!"
 },
   {"time": "18:20",
  "label": "Aggressive chicken",
  "distance": 0.0, "storyId": "aggressive-chicken-sign",
- "distance-acc": 7.960749, "elevation": 1819.0, "day": 1, "image": "assets/images/chicken.jpg",
+ "distance-acc": 7.960749, "elevation": 1819.0, "day": 1, "image": "assets/images/chicken_combined.png",
  "story": "Собак, кстати, призывают держать на поводке, потому что курицы агрессивные. Расскажу про приют -- курицы там есть, а воды нет!!! Все припасы доставляют вертолётом, поэтому ужин и завтрак получаются довольно дорогими."
 },
   {"time": "19:03",
@@ -98,7 +98,7 @@
   {"time": "20:57",
  "label": "Sunset",
  "distance": 0.0, "storyId": "sunset",
- "distance-acc": 7.960749, "elevation": 1819.0, "day": 1, "image": "assets/images/sunset.jpg",
+ "distance-acc": 7.960749, "elevation": 1819.0, "day": 1, "image": "assets/images/sunset_combined.png",
  "story": "Ах закат закат"
 },
   {"time": "21:08",
@@ -110,7 +110,7 @@
   {"time": "22:00",
  "label": "Night",
  "distance": 0.0, "storyId": "night",
- "distance-acc": 7.960749, "elevation": 1819.0, "day": 1, "image": "assets/images/window.jpg",
+ "distance-acc": 7.960749, "elevation": 1819.0, "day": 1, "image": "assets/images/window_combined.png",
  "story": "В моей микрокомнате есть такая роскошь как окно! Выходящее на город и тлеющую полоску заката. Звёзд я так и не дождалась, так что доброй ночи."
 },
   {"time": "06:27",
@@ -128,7 +128,7 @@
   {"time": "08:15",
  "label": "breakfast",
  "distance": 8.7, "storyId": "breakfast",
- "distance-acc": 8.129208002934554, "elevation": 1818.8, "day": 2, "image": "assets/images/breakfast.jpg",
+ "distance-acc": 8.129208002934554, "elevation": 1818.8, "day": 2, "image": "assets/images/breakfast_combined.png",
  "story": "Завтрак устроен проще, чем ужин. На выбор всякие хлопья, мюсли, хлеб с маслом (хлеб очень вкусный). Ещё можно забесплатно налить себе попить всякого -- сок, молоко, кофе, чай. Напоминаю, что на горе нет воды; вот за ужином все напитки надо было отдельно покупать, а за завтраком значит можно напиться вволю. Ещё завтрак отличается от ужина тем, что все уже не сидят в одной комнате, а выползают с подносами на улицу и смотрят на Монблан в дымке. Было так хорошо, что я даже про фотку вспомнила только когда уже доела."
 },
 {"time": "08:38",
@@ -140,13 +140,13 @@
   {"time": "09:34",
  "label": "Cliffs",
  "distance": 15.2, "storyId": "cliffs",
- "distance-acc": 10.661629213710466, "elevation": 1494.3, "day": 2, "image": "assets/images/cliffs.jpg",
+ "distance-acc": 10.661629213710466, "elevation": 1494.3, "day": 2, "image": "assets/images/cliffs_combined.png",
  "story": "Раз вчера я легко и быстро залезла на гору, то сегодня можно удлинить маршрут и посмотреть с горы прямо на озеро. Такой был план."
 },
   {"time": "10:03",
  "label": "Balmont (sud)",
  "distance": 15.2, "storyId": "Balmont",
- "distance-acc": 12.330671168619464, "elevation": 1352.5, "day": 2, "image": "assets/images/balmont_sud.jpg",
+ "distance-acc": 12.330671168619464, "elevation": 1352.5, "day": 2, "image": "assets/images/balmont_combined.png",
  "story": "Спуск получается немонотонный, а слегка волнистый. Можно полюбоваться пейзажем и выпить воды... А нет, с этим лучше не торопиться"
 },
   {"time": "10:18",
@@ -176,7 +176,7 @@
   {"time": "12:41",
  "label": "First Blackberries",
  "distance": 0.0, "storyId": "first-blackberries",
- "distance-acc": 19.087211466298093, "elevation": 732.7, "day": 2, "image": "assets/images/first-blackberries.jpg",
+ "distance-acc": 19.087211466298093, "elevation": 732.7, "day": 2, "image": "assets/images/traktor_combined.png",
  "story": "Ииии я опять сворачиваю на нехоженную тропу. Здесь есть бурелом, неожиданно крутой спуск, слегка осыпающийся и проскальзывающий под ногами, и -- слава лесным фэйри -- ежевика! Хорошо, что я не послушалась людей, смеющихся, что туристические палки -- это для пенсионеров, и теперь они помогают мне не навернуться, когда я лезу в за ягодой"
 },
   {"time": "13:30",
@@ -188,13 +188,13 @@
   {"time": "14:26",
  "label": "mountain",
  "distance": 0.0, "storyId": "mountain",
- "image": "assets/images/small_mont_PXL_20250809_120527878.jpg",
+ "image": "assets/images/road_mont.png",
  "distance-acc": 22.306873293365232, "elevation": 680.2, "day": 2, "story": "Что-то я устала, скажем честно. Хочется поныть, а, и воды хочется, но если я сейчас допью всю свою воду, то точно не дотяну до верха."
 },
   {"time": "15:07",
  "label": "more Blackberries",
  "distance": 0.0, "storyId": "decision-to-leave",
- "image": "assets/images/more_blackberries.jpg",
+ "image": "assets/images/more_blackberries_combined.png",
  "distance-acc": 24.040620071818502, "elevation": 710.0, "day": 2, "story": "Хорошо что есть ежевика, придающая сил и решимости топать дальше. Или... решимости плюнуть на план, подъём, и какой-то красивый вид на озеро и свернуть в сторону посёлка. Кажется, я наелась ежевикой:)"
 },
   {"time": "15:26",
@@ -206,13 +206,13 @@
   {"time": "15:39",
  "label": "Apples",
  "distance": 0.0, "storyId": "apples",
- "distance-acc": 25.45766299629065, "elevation": 615.2, "day": 2, "image": "assets/images/apples.jpg",
+ "distance-acc": 25.45766299629065, "elevation": 615.2, "day": 2, "image": "assets/images/babluka_apples.png",
  "story": "Вот яблоком ещё можно подкрепиться... Прежде чем повернуть на остановку, я немножко пошаталась с потерянным видом по городку в поисках колонки, отмеченной на карте, но вместо колонки нашла жизнерадостную женщину, которая немедленно решила мне помочь) Женщина назвалась Анитой, угостила сливами, удивилась, что у меня нет компании, пожалела, что я из Анси уезжаю уже сегодня вечером, и предложила пересечься вечером в городе:)"
 },
   {"time": "20:42",
  "label": "drink",
  "distance": 0.0, "storyId": "drink",
- "distance-acc": 25.45766299629065, "elevation": 615.2, "day": 2, "image": "assets/images/sleeping-duck.jpg",
+ "distance-acc": 25.45766299629065, "elevation": 615.2, "day": 2, "image": "assets/images/lac-annecy_2.jpg",
  "story": "Остаток дня я моталась по Анси -- озеро, пить из всех фонтанчиков, слоняться по старому городу, съела бутерброд, и даже выпила вечером с Анитой."
 }
 ]}
