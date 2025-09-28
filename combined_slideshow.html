@@ -455,12 +455,12 @@ body {
       position: fixed;
       top: 35px;
       left: 10px;
-      width: 200px;
-      height: 150px;
+      width: 10vw; /* 10% of viewport width */
+      height: 12vh; /* Responsive height */
       z-index: 999;
       font-family: 'WeirdIsBeautiful', Arial, sans-serif;
       text-transform: uppercase;
-      font-size: 18px;
+      font-size: 1.2vw; /* Responsive font size */
       color: white;
       background: transparent;
       border-radius: 5px;
@@ -570,8 +570,8 @@ body {
       position: fixed;
       bottom: 10px;
       left: 10px;
-      width: 300px;
-      height: 150px;
+      width: 10vw; /* 10% of viewport width */
+      height: 16vh; /* Increased from 12vh to 16vh for better elevation display */
       background: transparent;
       border-radius: 5px;
       padding: 10px;
@@ -615,12 +615,12 @@ body {
       position: fixed;
       top: 35px;
       right: 10px;
-      width: 80px; /* Increased width to accommodate time labels */
+      width: 6vw; /* Increased from 3% to 4% of viewport width */
       height: calc(100vh - 45px);
       z-index: 999;
       font-family: 'WeirdIsBeautiful', Arial, sans-serif;
       text-transform: uppercase;
-      font-size: 18px;
+      font-size: 1.2vw; /* Responsive font size */
       color: white;
       background: transparent;
       border-radius: 5px;
@@ -945,132 +945,70 @@ body {
                   }
                   
                   // ========================================
-                  // IMAGE POSITIONING LOGIC EXPLANATION
+                  // RESPONSIVE LANDSCAPE IMAGE POSITIONING
                   // ========================================
                   
-                  // STEP 1: Calculate maximum available space
-                  // We need to avoid overlapping with UI elements (minimap and timeline)
-                  const minimapWidth = 240; // 10px + 200px + 10px + 20px margin
-                  const timelineWidth = 130; // 10px + 80px + 5px + 35px margin
+                  // STEP 1: Calculate responsive UI element sizes (percentage-based)
+                  const timelineWidth = window.innerWidth * 0.04; // 4% of window width (increased from 3%)
+                  const minimapWidth = window.innerWidth * 0.10; // 10% of window width
+                  const chartWidth = window.innerWidth * 0.10; // 10% of window width
+                  
+                  // STEP 2: Calculate available space for image
                   const maxImageWidth = window.innerWidth - minimapWidth - timelineWidth;
                   const maxImageHeight = window.innerHeight - 40; // 20px margin top and bottom
                   
-                  // STEP 2: Calculate consistent maximum size for all images
-                  // Use the smaller of the two constraints to ensure all images fit
-                  // This ensures landscape and portrait images have the same maximum size
-                  const maxImageSize = Math.min(maxImageWidth, maxImageHeight);
+                  // STEP 3: Calculate landscape image dimensions
+                  const aspectRatio = image.naturalWidth / image.naturalHeight;
+                  const finalWidth = maxImageWidth;
+                  const finalHeight = finalWidth / aspectRatio;
                   
-                  if (isLandscape) {
-                      // ========================================
-                      // LANDSCAPE LAYOUT: Image on top, text below
-                      // ========================================
-                      
-                      // STEP 3A: Calculate landscape image dimensions
-                      // Use consistent maximum size, maintain aspect ratio
-                      const aspectRatio = image.naturalWidth / image.naturalHeight;
-                      const finalWidth = Math.min(maxImageSize, maxImageWidth);
-                      const finalHeight = finalWidth / aspectRatio;
-                      
-                      // STEP 4A: Apply scaling if needed to fit within height constraints
-                      if (finalHeight > maxImageHeight) {
-                          const scaledHeight = maxImageHeight;
-                          const scaledWidth = scaledHeight * aspectRatio;
-                          imageContainer.style.width = scaledWidth + 'px';
-                          imageContainer.style.height = scaledHeight + 'px';
-                      } else {
-                          imageContainer.style.width = finalWidth + 'px';
-                          imageContainer.style.height = finalHeight + 'px';
-                      }
-                      imageContainer.style.margin = '0 auto'; // Center the image horizontally
-                      
-                      // STEP 5A: Configure text container for landscape layout
-                      textCont.style.position = 'relative';
-                      textCont.style.left = 'auto';
-                      textCont.style.right = 'auto';
-                      textCont.style.bottom = 'auto';
-                      textCont.style.width = '100%';
-                      textCont.style.maxWidth = '800px';
-                      textCont.style.textAlign = 'center';
-                      textCont.style.margin = '20px auto 0 auto';
-                      
-                      // STEP 6A: Create vertical flex container for landscape layout
-                      // This stacks image on top and text below
-                      const flexContainer = document.createElement('div');
-                      flexContainer.style.display = 'flex';
-                      flexContainer.style.flexDirection = 'column'; // Vertical stacking
-                      flexContainer.style.alignItems = 'center'; // Center horizontally
-                      flexContainer.style.justifyContent = 'center'; // Center vertically
-                      flexContainer.style.width = '100%';
-                      flexContainer.style.height = '100%';
-                      flexContainer.style.padding = '20px 130px 20px 240px'; // Avoid minimap and timeline
-                      
-                      // Move image and text into flex container
-                      flexContainer.appendChild(imageContainer);
-                      flexContainer.appendChild(textCont);
-                      
-                      // Replace the current slide content with flex container
-                      slideElement.innerHTML = '';
-                      slideElement.appendChild(background);
-                      slideElement.appendChild(flexContainer);
+                  // STEP 4: Apply scaling if needed to fit within height constraints
+                  if (finalHeight > maxImageHeight) {
+                      const scaledHeight = maxImageHeight;
+                      const scaledWidth = scaledHeight * aspectRatio;
+                      imageContainer.style.width = scaledWidth + 'px';
+                      imageContainer.style.height = scaledHeight + 'px';
                   } else {
-                      // ========================================
-                      // PORTRAIT LAYOUT: Image and text side by side
-                      // ========================================
-                      
-                      // STEP 3B: Calculate portrait image dimensions
-                      // Use same maximum size as landscape images for consistency
-                      const aspectRatio = image.naturalWidth / image.naturalHeight;
-                      const finalHeight = Math.min(maxImageSize, maxImageHeight);
-                      const finalWidth = finalHeight * aspectRatio;
-                      
-                      // STEP 4B: Apply scaling if needed to fit within height constraints
-                      if (finalHeight > maxImageHeight) {
-                          const scaledHeight = maxImageHeight;
-                          const scaledWidth = scaledHeight * aspectRatio;
-                          imageContainer.style.width = scaledWidth + 'px';
-                          imageContainer.style.height = scaledHeight + 'px';
-                      } else {
-                          imageContainer.style.width = finalWidth + 'px';
-                          imageContainer.style.height = finalHeight + 'px';
-                      }
-                      
-                      // STEP 5B: Configure image container for flexbox layout
-                      imageContainer.style.margin = '0';
-                      imageContainer.style.flexShrink = '0'; // Prevent image from shrinking
-                      
-                      // STEP 6B: Configure text container for portrait layout
-                      // Make it compact to give more space to the image
-                      textCont.style.position = 'relative';
-                      textCont.style.left = 'auto';
-                      textCont.style.right = 'auto';
-                      textCont.style.bottom = 'auto';
-                      textCont.style.width = 'auto';
-                      textCont.style.maxWidth = '300px'; // Compact width
-                      textCont.style.minWidth = '200px'; // Minimum readable width
-                      textCont.style.textAlign = 'left';
-                      textCont.style.margin = '0';
-                      textCont.style.flex = '0 0 auto'; // Don't grow or shrink
-                      
-                      // STEP 7B: Create horizontal flex container for side-by-side layout
-                      // This places text on the left and image on the right
-                      const flexContainer = document.createElement('div');
-                      flexContainer.style.display = 'flex';
-                      flexContainer.style.alignItems = 'center'; // Center vertically
-                      flexContainer.style.justifyContent = 'space-between'; // Text left, image right
-                      flexContainer.style.width = '100%';
-                      flexContainer.style.height = '100%';
-                      flexContainer.style.padding = '0 100px 0 100px'; // Equal margins on both sides
-                      flexContainer.style.gap = '20px'; // Space between text and image
-                      
-                      // Move text and image into flex container (text first for left side)
-                      flexContainer.appendChild(textCont);
-                      flexContainer.appendChild(imageContainer);
-                      
-                      // Replace the current slide content with flex container
-                      slideElement.innerHTML = '';
-                      slideElement.appendChild(background);
-                      slideElement.appendChild(flexContainer);
+                      imageContainer.style.width = finalWidth + 'px';
+                      imageContainer.style.height = finalHeight + 'px';
                   }
+                  imageContainer.style.margin = 'auto';
+                  
+                  // STEP 5: Configure image container for relative positioning
+                  imageContainer.style.position = 'relative';
+                  
+                  // STEP 6: Configure text container to overlap with image
+                  // Text width is 95% of image width
+                  const imageWidth = parseInt(imageContainer.style.width);
+                  const textWidth = imageWidth * 0.95;
+                  
+                  textCont.style.position = 'absolute';
+                  textCont.style.left = '50%';
+                  textCont.style.bottom = '10px'; // Small margin from bottom of image
+                  textCont.style.transform = 'translateX(-50%)'; // Center horizontally only
+                  textCont.style.width = textWidth + 'px';
+                  textCont.style.maxWidth = 'none';
+                  textCont.style.textAlign = 'center';
+                  textCont.style.margin = '0';
+                  textCont.style.zIndex = '10'; // Ensure text appears above image
+                  
+                  // STEP 7: Create container for image and overlapping text
+                  const flexContainer = document.createElement('div');
+                  flexContainer.style.display = 'flex';
+                  flexContainer.style.alignItems = 'center';
+                  flexContainer.style.justifyContent = 'center';
+                  flexContainer.style.width = '100%';
+                  flexContainer.style.height = '100%';
+                  flexContainer.style.padding = `20px ${timelineWidth}px 20px ${minimapWidth}px`;
+                  
+                  // Move text into image container first, then image into flex container
+                  imageContainer.appendChild(textCont);
+                  flexContainer.appendChild(imageContainer);
+                  
+                  // Replace the current slide content with flex container
+                  slideElement.innerHTML = '';
+                  slideElement.appendChild(background);
+                  slideElement.appendChild(flexContainer);
               };
               
               // Handle case where image fails to load
@@ -1107,8 +1045,8 @@ body {
   
   function drawMinimap(totalRouteDistance) {
       const sel = d3.select(".g-map-svg");
-      const containerWidth = 240;
-      const containerHeight = 120;
+      const containerWidth = window.innerWidth * 0.10; // 10% of window width
+      const containerHeight = window.innerHeight * 0.12; // 12% of window height
   
       const svg = sel.append("svg")
           .attr("width", containerWidth)
@@ -1296,9 +1234,9 @@ body {
   
   function drawChart() {
       const cont = d3.select(".g-chart").html("");
-      const containerWidth = 240;
-      const containerHeight = 130;
-      const margin = {top: 15, right: 15, bottom: 25, left: 35};
+      const containerWidth = window.innerWidth * 0.10; // 10% of window width
+      const containerHeight = window.innerHeight * 0.16; // 16% of window height (increased from 12%)
+      const margin = {top: 15, right: 15, bottom: 45, left: 15};
       const chartw_adj = containerWidth - margin.left - margin.right;
       const charth_adj = containerHeight - margin.top - margin.bottom;
   
@@ -1388,7 +1326,7 @@ body {
       const yAxis = d3.axisLeft(y)
           .tickSize(chartw_adj)
           .ticks(5)
-          .tickFormat(d => Math.round(d));
+          .tickFormat(d => (d / 1000).toFixed(1)); // Convert meters to kilometers with 1 decimal place
   
       const xAxis = d3.axisBottom(x)
           .tickSize(3)
@@ -1407,10 +1345,10 @@ body {
   
       chartGroup.append("text")
           .attr("class", "axis-lab")
-          .attr("transform", "translate(-35,-5)")
+          .attr("transform", "translate(-25,-5)")
           .attr("text-anchor", "start")
           .attr("font-size", "18px")
-          .text("ELEV, M");
+          .text("ELEV, KM");
   
       // Add x-axis label
       chartGroup.append("text")
@@ -1418,7 +1356,7 @@ body {
           .attr("transform", `translate(${chartw_adj/2}, ${charth_adj + 35})`)
           .attr("text-anchor", "middle")
           .attr("font-size", "18px")
-          .text("KM");
+          .text("DIST, KM");
   
       // Draw elevation line with animation capability
       const elevationPath = chartGroup.append("path")
