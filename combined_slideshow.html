@@ -901,8 +901,9 @@ body {
               const storyText = document.createElement('p');
               storyText.className = 'g-text';
               storyText.style.marginTop = '20px';
-              storyText.style.maxWidth = '600px';
+              storyText.style.maxWidth = 'none'; // Remove width constraint
               storyText.style.lineHeight = '1.6';
+              storyText.style.width = '100%'; // Take full width of parent
               
               const storyInner = document.createElement('span');
               storyInner.className = 'g-text-inner';
@@ -978,9 +979,11 @@ body {
                   imageContainer.style.position = 'relative';
                   
                   // STEP 6: Configure text container to overlap with image
-                  // Text width is 95% of image width
+                  // Text width equals image width
                   const imageWidth = parseInt(imageContainer.style.width);
-                  const textWidth = imageWidth * 0.95;
+                  const textWidth = imageWidth; // Set to full image width
+                  console.log("Text width:", textWidth);
+                  console.log("Image width:", imageContainer.style.width);
                   
                   textCont.style.position = 'absolute';
                   textCont.style.left = '50%';
