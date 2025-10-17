@@ -455,18 +455,24 @@ body {
       position: fixed;
       top: 35px;
       left: 10px;
-      width: 10vw; /* 10% of viewport width */
+      width: 30vw; /* 30% of viewport width on mobile */
       height: 12vh; /* Responsive height */
       z-index: 999;
       font-family: 'WeirdIsBeautiful', Arial, sans-serif;
       text-transform: uppercase;
-      font-size: 1.2vw; /* Responsive font size */
+      font-size: 15px; /* Fixed font size like START/END labels */
       color: white;
       background: transparent;
       border-radius: 5px;
       padding: 10px;
       opacity: 0;
       transition: opacity 0.5s ease;
+    }
+    
+    @media screen and (min-width: 600px) {
+      .g-minimap {
+        width: 15vw; /* 15% of viewport width on desktop */
+      }
     }
     
     .g-minimap .g-minimap-inner {
@@ -541,7 +547,7 @@ body {
     
     .g-minimap .g-map-svg svg text {
       fill: white;
-      font-size: 18px;
+      font-size: 15px; /* Match the START/END labels font size */
       font-family: 'WeirdIsBeautiful', Arial, sans-serif;
       transform-origin: top left;
       text-anchor: middle;
@@ -570,7 +576,7 @@ body {
       position: fixed;
       bottom: 10px;
       left: 10px;
-      width: 10vw; /* 10% of viewport width */
+      width: calc(100vw - 6vw - 20px); /* Full width minus timeline space on mobile */
       height: 16vh; /* Increased from 12vh to 16vh for better elevation display */
       background: transparent;
       border-radius: 5px;
@@ -578,6 +584,12 @@ body {
       z-index: 999;
       opacity: 0;
       transition: opacity 0.5s ease;
+    }
+    
+    @media screen and (min-width: 600px) {
+      .g-chart {
+        width: 15vw; /* 15% of viewport width on desktop */
+      }
     }
     
     .g-chart svg {
@@ -597,7 +609,7 @@ body {
     .g-chart .axis text,
     .g-chart .axis-lab {
       fill: white;
-      font-size: 18px;
+      font-size: 15px; /* Match minimap font size */
       font-family: 'WeirdIsBeautiful', Arial, sans-serif;
     }
     
@@ -627,6 +639,14 @@ body {
       padding: 10px 5px 20px 5px;
       opacity: 0;
       transition: opacity 0.5s ease;
+    }
+    
+    @media screen and (max-width: 600px) {
+      .g-timeline {
+        right: 20px; /* Move further from edge on mobile */
+        width: 8vw; /* Slightly wider on mobile */
+        padding: 10px 10px 20px 10px; /* More padding on mobile */
+      }
     }
     
     .g-timeline .g-timeline-inner {
@@ -684,7 +704,7 @@ body {
     
     .g-timeline .g-timeline-time {
       position: absolute;
-      left: 20px; /* Adjusted to stay within the wider timeline */
+      left: 15px; /* Moved a few pixels to the left */
       font-size: 18px;
       color: white;
       white-space: nowrap;
@@ -693,7 +713,7 @@ body {
     
     .g-timeline .g-timeline-label {
       position: absolute;
-      left: 20px; /* Adjusted to stay within the wider timeline */
+      left: 15px; /* Moved to match timeline time labels */
       top: 15px;
       font-size: 18px;
       color: white;
@@ -857,10 +877,14 @@ body {
           const textCont = document.createElement('div');
           textCont.className = 'g-text-cont';
           
-          // Position text to avoid minimap and timeline
+          // Position text to avoid minimap and timeline (responsive)
+          const isMobile = window.innerWidth < 600;
+          const minimapWidth = isMobile ? window.innerWidth * 0.30 : window.innerWidth * 0.15;
+          const timelineWidth = isMobile ? window.innerWidth * 0.08 : window.innerWidth * 0.04;
+          
           textCont.style.position = 'absolute';
-          textCont.style.left = '230px'; // Account for minimap (left: 10px + width: 200px + padding: 10px + margin: 10px)
-          textCont.style.right = '110px'; // Account for timeline (right: 10px + width: 80px + padding: 5px + margin: 15px)
+          textCont.style.left = (minimapWidth + 20) + 'px'; // Account for responsive minimap
+          textCont.style.right = (timelineWidth + 20) + 'px'; // Account for timeline
           textCont.style.bottom = '20px';
           textCont.style.maxWidth = '800px';
           textCont.style.minWidth = '400px';
@@ -950,12 +974,13 @@ body {
                   // ========================================
                   
                   // STEP 1: Calculate responsive UI element sizes (percentage-based)
-                  const timelineWidth = window.innerWidth * 0.04; // 4% of window width (increased from 3%)
-                  const minimapWidth = window.innerWidth * 0.10; // 10% of window width
-                  const chartWidth = window.innerWidth * 0.10; // 10% of window width
+                  const isMobile = window.innerWidth < 600;
+                  const timelineWidth = isMobile ? window.innerWidth * 0.08 : window.innerWidth * 0.04; // 8% on mobile, 4% on desktop
+                  const minimapWidth = isMobile ? window.innerWidth * 0.30 : window.innerWidth * 0.15; // 30% on mobile, 15% on desktop
+                  const chartWidth = isMobile ? window.innerWidth - timelineWidth - 20 : window.innerWidth * 0.15; // Full width minus timeline on mobile, 15% on desktop
                   
                   // STEP 2: Calculate available space for image
-                  const maxImageWidth = window.innerWidth - minimapWidth - timelineWidth;
+                  const maxImageWidth = isMobile ? window.innerWidth - timelineWidth - 40 : window.innerWidth - minimapWidth - timelineWidth; // Full width minus timeline on mobile
                   const maxImageHeight = window.innerHeight - 40; // 20px margin top and bottom
                   
                   // STEP 3: Calculate landscape image dimensions
@@ -978,22 +1003,35 @@ body {
                   // STEP 5: Configure image container for relative positioning
                   imageContainer.style.position = 'relative';
                   
-                  // STEP 6: Configure text container to overlap with image
-                  // Text width equals image width
+                  // STEP 6: Configure text container positioning (responsive)
                   const imageWidth = parseInt(imageContainer.style.width);
                   const textWidth = imageWidth; // Set to full image width
                   // console.log("Text width:", textWidth);
                   // console.log("Image width:", imageContainer.style.width);
                   
-                  textCont.style.position = 'absolute';
-                  textCont.style.left = '50%';
-                  textCont.style.bottom = '10px'; // Small margin from bottom of image
-                  textCont.style.transform = 'translateX(-50%)'; // Center horizontally only
-                  textCont.style.width = textWidth + 'px';
-                  textCont.style.maxWidth = 'none';
-                  textCont.style.textAlign = 'center';
-                  textCont.style.margin = '0';
-                  textCont.style.zIndex = '10'; // Ensure text appears above image
+                  if (isMobile) {
+                      // On mobile: position text below the image with more margin
+                      textCont.style.position = 'absolute';
+                      textCont.style.left = '50%';
+                      textCont.style.top = (finalHeight + 40) + 'px'; // Position further below image with more margin
+                      textCont.style.transform = 'translateX(-50%)'; // Center horizontally only
+                      textCont.style.width = textWidth + 'px';
+                      textCont.style.maxWidth = 'none';
+                      textCont.style.textAlign = 'center';
+                      textCont.style.margin = '0';
+                      textCont.style.zIndex = '10';
+                  } else {
+                      // On desktop: overlap with image as before
+                      textCont.style.position = 'absolute';
+                      textCont.style.left = '50%';
+                      textCont.style.bottom = '10px'; // Small margin from bottom of image
+                      textCont.style.transform = 'translateX(-50%)'; // Center horizontally only
+                      textCont.style.width = textWidth + 'px';
+                      textCont.style.maxWidth = 'none';
+                      textCont.style.textAlign = 'center';
+                      textCont.style.margin = '0';
+                      textCont.style.zIndex = '10'; // Ensure text appears above image
+                  }
                   
                   // STEP 7: Create container for image and overlapping text
                   const flexContainer = document.createElement('div');
@@ -1002,7 +1040,7 @@ body {
                   flexContainer.style.justifyContent = 'center';
                   flexContainer.style.width = '100%';
                   flexContainer.style.height = '100%';
-                  flexContainer.style.padding = `20px ${timelineWidth}px 20px ${minimapWidth}px`;
+                  flexContainer.style.padding = isMobile ? `20px ${timelineWidth}px 20px 20px` : `20px ${timelineWidth}px 20px ${minimapWidth}px`;
                   
                   // Move text into image container first, then image into flex container
                   imageContainer.appendChild(textCont);
@@ -1019,10 +1057,14 @@ body {
                   // console.log(`Failed to load image: ${storyPoint.image}`);
                   imageContainer.style.display = 'none';
                   
-                  // Reset text container to default position when no image
+                  // Reset text container to default position when no image (responsive)
+                  const isMobile = window.innerWidth < 600;
+                  const minimapWidth = isMobile ? window.innerWidth * 0.30 : window.innerWidth * 0.15;
+                  const timelineWidth = isMobile ? window.innerWidth * 0.08 : window.innerWidth * 0.04;
+                  
                   textCont.style.position = 'absolute';
-                  textCont.style.left = '230px';
-                  textCont.style.right = '110px';
+                  textCont.style.left = (minimapWidth + 20) + 'px';
+                  textCont.style.right = (timelineWidth + 20) + 'px';
                   textCont.style.bottom = '20px';
                   textCont.style.maxWidth = '800px';
                   textCont.style.minWidth = '400px';
@@ -1048,9 +1090,11 @@ body {
   
   function drawMinimap(totalRouteDistance) {
       const sel = d3.select(".g-map-svg");
-      const containerWidth = window.innerWidth * 0.10; // 10% of window width
+      sel.html(""); // Clear existing content first
+      const isMobile = window.innerWidth < 600;
+      const containerWidth = isMobile ? window.innerWidth * 0.30 : window.innerWidth * 0.15; // 30% on mobile, 15% on desktop
       const containerHeight = window.innerHeight * 0.12; // 12% of window height
-  
+
       const svg = sel.append("svg")
           .attr("width", containerWidth)
           .attr("height", containerHeight);
@@ -1236,8 +1280,10 @@ body {
   }
   
   function drawChart() {
-      const cont = d3.select(".g-chart").html("");
-      const containerWidth = window.innerWidth * 0.10; // 10% of window width
+      const cont = d3.select(".g-chart");
+      cont.html(""); // Clear existing content first
+      const isMobile = window.innerWidth < 600;
+      const containerWidth = isMobile ? window.innerWidth - (window.innerWidth * 0.04) - 20 : window.innerWidth * 0.15; // Full width minus timeline on mobile, 15% on desktop
       const containerHeight = window.innerHeight * 0.16; // 16% of window height (increased from 12%)
       const margin = {top: 15, right: 15, bottom: 45, left: 15};
       const chartw_adj = containerWidth - margin.left - margin.right;
@@ -1350,15 +1396,15 @@ body {
           .attr("class", "axis-lab")
           .attr("transform", "translate(-25,-5)")
           .attr("text-anchor", "start")
-          .attr("font-size", "18px")
+          .attr("font-size", "15px")
           .text("ELEV, KM");
-  
+      
       // Add x-axis label
       chartGroup.append("text")
           .attr("class", "axis-lab")
           .attr("transform", `translate(${chartw_adj/2}, ${charth_adj + 35})`)
           .attr("text-anchor", "middle")
-          .attr("font-size", "18px")
+          .attr("font-size", "15px")
           .text("DIST, KM");
   
       // Draw elevation line with animation capability
@@ -1709,6 +1755,25 @@ body {
               }
           }
       });
+  });
+  
+  // Handle window resize to update responsive layout
+  window.addEventListener('resize', () => {
+      // Redraw minimap and chart with new dimensions
+      if (window.routeAnimationData) {
+          drawMinimap(window.routeAnimationData.totalRouteDistance);
+      }
+      if (elevationData) {
+          drawChart();
+      }
+      if (window.originalTimelineData) {
+          drawTimeline(window.originalTimelineData);
+      }
+      
+      // Regenerate slides with new responsive dimensions
+      if (window.originalTimelineData) {
+          generateSlides(window.originalTimelineData);
+      }
   });
   
   // Add scroll snapping behavior
