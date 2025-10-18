@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">   
   <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 
   <style>
     /* Custom Font Declaration */
@@ -721,6 +722,18 @@ body {
       writing-mode: vertical-rl;
       text-orientation: mixed;
     }
+    
+    /* Credit text at bottom of page */
+    .credit-text {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-family: 'Amatic SC', cursive;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      z-index: 1000;
+      pointer-events: none;
+    }
     </style>
 
 </head> 
@@ -796,6 +809,9 @@ body {
           <div class="g-timeline-label">TIME</div>
       </div>
   </div>
+  
+  <!-- Credit text -->
+  <div class="credit-text">@astrofyz</div>
   
   <script>
   let curslide = 0;
