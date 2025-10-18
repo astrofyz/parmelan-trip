@@ -734,6 +734,48 @@ body {
       z-index: 1000;
       pointer-events: none;
     }
+    
+    /* Language toggle button */
+    .language-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      gap: 5px;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+    
+    .language-toggle.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .lang-btn {
+      padding: 8px 12px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Fira Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+    
+    .lang-btn:hover {
+      background: rgba(0, 0, 0, 0.8);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+    
+    .lang-btn.active {
+      background: #DC143C;
+      border-color: #DC143C;
+      color: white;
+    }
     </style>
 
 </head> 
@@ -769,7 +811,8 @@ body {
                 <!-- Transition Text -->
                 <div class="transition-text" id="transitionText">
                     <div class="transition-content">
-                        <p>В августе я впервые в жизни сходила в горы одна! Это мой походный фотоотчёт, который я собирала в кучу существенно дольше, чем планировала сам поход</p>
+                        <p data-lang="ru">В августе я впервые в жизни сходила в горы одна! Это мой походный фотоотчёт, который я собирала в кучу существенно дольше, чем планировала сам поход</p>
+                        <p data-lang="en" style="display: none;">In August, I had a first solo hike to the mountains! This is my photo report, on which I spent much more time than on hike itself</p>
                     </div>
                 </div>
             </div>
@@ -813,17 +856,30 @@ body {
   <!-- Credit text -->
   <div class="credit-text">@astrofyz</div>
   
+  <!-- Language toggle -->
+  <div class="language-toggle" id="languageToggle">
+      <button class="lang-btn active" data-lang="ru">RU</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+  </div>
+  
   <script>
   let curslide = 0;
   let maxslide = 2;
   let routeData, elevationData;
   let currentDay = 1; // Track current day
+  let currentLanguage = 'ru'; // Default language
+  
+  // Function to load timeline data based on current language
+  function loadTimelineData() {
+      const timelineFile = currentLanguage === 'ru' ? 'data/timeline-combined_ru.json' : 'data/timeline-combined_en.json';
+      return fetch(timelineFile).then(response => response.json());
+  }
   
   // Load data
   Promise.all([
       fetch('data/route-combined.json').then(response => response.json()),
       fetch('data/elevation-combined.json').then(response => response.json()),
-      fetch('data/timeline-combined.json').then(response => response.json())
+      loadTimelineData()
   ]).then(([route, elevation, timeline]) => {
       routeData = route;
       elevationData = elevation;
@@ -862,7 +918,47 @@ body {
       }
       
       updateSlide();
+      
+      // Initialize language toggle
+      initializeLanguageToggle();
   });
+  
+  // Language toggle functionality
+  function initializeLanguageToggle() {
+      const langButtons = document.querySelectorAll('.lang-btn');
+      const transitionTexts = document.querySelectorAll('.transition-content p[data-lang]');
+      const languageToggle = document.getElementById('languageToggle');
+      
+      langButtons.forEach(button => {
+          button.addEventListener('click', function() {
+              const selectedLang = this.getAttribute('data-lang');
+              
+              // Update active button
+              langButtons.forEach(btn => btn.classList.remove('active'));
+              this.classList.add('active');
+              
+              // Update current language
+              currentLanguage = selectedLang;
+              
+              // Update transition text visibility
+              transitionTexts.forEach(text => {
+                  if (text.getAttribute('data-lang') === selectedLang) {
+                      text.style.display = 'block';
+                  } else {
+                      text.style.display = 'none';
+                  }
+              });
+              
+              // Reload timeline data and regenerate slides
+              loadTimelineData().then(timeline => {
+                  window.originalTimelineData = timeline;
+                  generateSlides(timeline);
+                  drawTimeline(timeline);
+                  updateSlide();
+              });
+          });
+      });
+  }
   
   function generateSlides(timeline) {
       const slideContainer = document.querySelector('body');
@@ -1595,22 +1691,25 @@ body {
       const timeline = document.querySelector('.g-timeline');
       const routeContainer = document.querySelector('.route-container');
       const fadeOverlay = document.querySelector('.fade-overlay');
+      const languageToggle = document.getElementById('languageToggle');
       // Note: transitionText is handled separately in scroll event
       
       if (isOnLandingPage) {
-          // On landing page: hide slideshow elements, show route, hide fade overlay
+          // On landing page: hide slideshow elements, show route, hide fade overlay, show language toggle
           if (minimap) minimap.style.opacity = '0';
           if (chart) chart.style.opacity = '0';
           if (timeline) timeline.style.opacity = '0';
           if (routeContainer) routeContainer.style.opacity = '1';
           if (fadeOverlay) fadeOverlay.style.opacity = '0';
+          if (languageToggle) languageToggle.classList.remove('hidden');
       } else {
-          // On slides: show slideshow elements, hide route, show fade overlay
+          // On slides: show slideshow elements, hide route, show fade overlay, hide language toggle
           if (minimap) minimap.style.opacity = '1';
           if (chart) chart.style.opacity = '1';
           if (timeline) timeline.style.opacity = '1';
           if (routeContainer) routeContainer.style.opacity = '0';
           if (fadeOverlay) fadeOverlay.style.opacity = '1';
+          if (languageToggle) languageToggle.classList.add('hidden');
       }
   }
   
