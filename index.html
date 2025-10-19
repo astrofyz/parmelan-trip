@@ -470,7 +470,7 @@ body {
       transition: opacity 0.5s ease;
     }
     
-    @media screen and (min-width: 600px) {
+    @media screen and (min-aspect-ratio: 1/1) {
       .g-minimap {
         width: 15vw; /* 15% of viewport width on desktop */
       }
@@ -587,7 +587,7 @@ body {
       transition: opacity 0.5s ease;
     }
     
-    @media screen and (min-width: 600px) {
+    @media screen and (min-aspect-ratio: 1/1) {
       .g-chart {
         width: 15vw; /* 15% of viewport width on desktop */
       }
@@ -642,7 +642,7 @@ body {
       transition: opacity 0.5s ease;
     }
     
-    @media screen and (max-width: 600px) {
+    @media screen and (max-aspect-ratio: 1/1) {
       .g-timeline {
         right: 20px; /* Move further from edge on mobile */
         width: 8vw; /* Slightly wider on mobile */
@@ -990,7 +990,7 @@ body {
           textCont.className = 'g-text-cont';
           
           // Position text to avoid minimap and timeline (responsive)
-          const isMobile = window.innerWidth < 600;
+          const isMobile = window.innerWidth / window.innerHeight < 1; // Mobile when width < height
           const minimapWidth = isMobile ? window.innerWidth * 0.30 : window.innerWidth * 0.15;
           const timelineWidth = isMobile ? window.innerWidth * 0.08 : window.innerWidth * 0.04;
           
@@ -1090,7 +1090,7 @@ body {
                   // ========================================
                   
                   // STEP 1: Calculate responsive UI element sizes (percentage-based)
-                  const isMobile = window.innerWidth < 600;
+                  const isMobile = window.innerWidth / window.innerHeight < 1; // Mobile when width < height
                   const timelineWidth = isMobile ? window.innerWidth * 0.08 : window.innerWidth * 0.04; // 8% on mobile, 4% on desktop
                   const minimapWidth = isMobile ? window.innerWidth * 0.30 : window.innerWidth * 0.15; // 30% on mobile, 15% on desktop
                   const chartWidth = isMobile ? window.innerWidth - timelineWidth - 20 : window.innerWidth * 0.15; // Full width minus timeline on mobile, 15% on desktop
@@ -1176,7 +1176,7 @@ body {
                   imageContainer.style.display = 'none';
                   
                   // Reset text container to default position when no image (responsive)
-                  const isMobile = window.innerWidth < 600;
+                  const isMobile = window.innerWidth / window.innerHeight < 1; // Mobile when width < height
                   const minimapWidth = isMobile ? window.innerWidth * 0.30 : window.innerWidth * 0.15;
                   const timelineWidth = isMobile ? window.innerWidth * 0.08 : window.innerWidth * 0.04;
                   
@@ -1213,7 +1213,7 @@ body {
   function drawMinimap(totalRouteDistance) {
       const sel = d3.select(".g-map-svg");
       sel.html(""); // Clear existing content first
-      const isMobile = window.innerWidth < 600;
+      const isMobile = window.innerWidth / window.innerHeight < 1; // Mobile when width < height
       const containerWidth = isMobile ? window.innerWidth * 0.30 : window.innerWidth * 0.15; // 30% on mobile, 15% on desktop
       const containerHeight = window.innerHeight * 0.12; // 12% of window height
 
@@ -1404,7 +1404,7 @@ body {
   function drawChart() {
       const cont = d3.select(".g-chart");
       cont.html(""); // Clear existing content first
-      const isMobile = window.innerWidth < 600;
+      const isMobile = window.innerWidth / window.innerHeight < 1; // Mobile when width < height
       const containerWidth = isMobile ? window.innerWidth - (window.innerWidth * 0.04) - 20 : window.innerWidth * 0.15; // Full width minus timeline on mobile, 15% on desktop
       const containerHeight = window.innerHeight * 0.16; // 16% of window height (increased from 12%)
       const margin = {top: 15, right: 15, bottom: 45, left: 15};
