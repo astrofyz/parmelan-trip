@@ -994,14 +994,18 @@ body {
           const minimapWidth = isMobile ? window.innerWidth * 0.30 : window.innerWidth * 0.15;
           const timelineWidth = isMobile ? window.innerWidth * 0.08 : window.innerWidth * 0.04;
           
-          textCont.style.position = 'absolute';
-          textCont.style.left = (minimapWidth + 20) + 'px'; // Account for responsive minimap
-          textCont.style.right = (timelineWidth + 20) + 'px'; // Account for timeline
-          textCont.style.bottom = '20px';
-          textCont.style.maxWidth = '800px';
-          textCont.style.minWidth = '400px';
-          textCont.style.textAlign = 'left';
-          textCont.style.zIndex = '3';
+          // Only set initial positioning for desktop or when no image
+          if (!isMobile) {
+              textCont.style.position = 'absolute';
+              textCont.style.left = (minimapWidth + 20) + 'px'; // Account for responsive minimap
+              textCont.style.right = (timelineWidth + 20) + 'px'; // Account for timeline
+              textCont.style.bottom = '20px';
+              textCont.style.maxWidth = '800px';
+              textCont.style.minWidth = '400px';
+              textCont.style.textAlign = 'left';
+              textCont.style.zIndex = '3';
+          }
+          // For mobile, positioning will be handled in image.onload
           
           const textContInner = document.createElement('div');
           textContInner.className = 'g-text-cont-inner';
@@ -1123,9 +1127,11 @@ body {
                   
                   if (isMobile) {
                       // On mobile: position text below the image with more margin
+                      // Use actual image container height instead of calculated finalHeight
+                      const actualImageHeight = parseInt(imageContainer.style.height);
                       textCont.style.position = 'absolute';
                       textCont.style.left = '50%';
-                      textCont.style.top = (finalHeight + 40) + 'px'; // Position further below image with more margin
+                      textCont.style.top = (actualImageHeight + 40) + 'px'; // Position below actual image height
                       textCont.style.transform = 'translateX(-50%)'; // Center horizontally only
                       textCont.style.width = textWidth + 'px';
                       textCont.style.maxWidth = 'none';
@@ -1174,13 +1180,17 @@ body {
                   const minimapWidth = isMobile ? window.innerWidth * 0.30 : window.innerWidth * 0.15;
                   const timelineWidth = isMobile ? window.innerWidth * 0.08 : window.innerWidth * 0.04;
                   
-                  textCont.style.position = 'absolute';
-                  textCont.style.left = (minimapWidth + 20) + 'px';
-                  textCont.style.right = (timelineWidth + 20) + 'px';
-                  textCont.style.bottom = '20px';
-                  textCont.style.maxWidth = '800px';
-                  textCont.style.minWidth = '400px';
-                  textCont.style.textAlign = 'left';
+                  // Only apply fallback positioning for desktop
+                  if (!isMobile) {
+                      textCont.style.position = 'absolute';
+                      textCont.style.left = (minimapWidth + 20) + 'px';
+                      textCont.style.right = (timelineWidth + 20) + 'px';
+                      textCont.style.bottom = '20px';
+                      textCont.style.maxWidth = '800px';
+                      textCont.style.minWidth = '400px';
+                      textCont.style.textAlign = 'left';
+                  }
+                  // For mobile, text positioning is handled in image.onload
               };
               
               imageContainer.appendChild(image);
