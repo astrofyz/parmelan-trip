@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parmelan</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <!-- <link rel="stylesheet" href="css/styles.css"> -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Beth+Ellen&display=swap" rel="stylesheet">
@@ -50,10 +51,23 @@ body {
     z-index: 1;
 }
 
+.background-image picture,
 .background-image img {
+    display: block;
     width: 100%;
     height: 100%;
+}
+
+.background-image img {
     object-fit: cover;
+}
+
+.background-image img.live-map {
+    object-fit: fill;
+}
+
+.landing-container.is-fallback .route-container {
+    display: none;
 }
 
 /* Route container */
@@ -780,10 +794,13 @@ body {
 
 </head> 
 <body>
-    <div class="landing-container">
+    <div class="landing-container is-fallback">
         <!-- Background Image -->
         <div class="background-image">
-            <img src="assets/images/dummy_front_map_bg.png" alt="Map Background">
+            <picture>
+                <source media="(orientation: portrait)" srcset="assets/images/landing-map-fallback-portrait.jpg">
+                <img src="assets/images/landing-map-fallback-landscape.jpg" alt="Map Background">
+            </picture>
         </div>
         
         <!-- Fade overlay for smooth transition -->
@@ -791,7 +808,7 @@ body {
         
         <!-- Animated Route Overlay -->
         <div class="route-container">
-            <svg class="route-svg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">
+            <svg class="route-svg" viewBox="0 0 1000 1000" preserveAspectRatio="none">
                 <!-- Route paths will be added here by JavaScript -->
                 <defs>
                     <linearGradient id="routeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -875,9 +892,28 @@ body {
       return fetch(timelineFile).then(response => response.json());
   }
   
-  // Load data
+  function downsample(data, maxPoints) {
+      if (!data || data.length <= maxPoints) return data;
+      const lastIndex = data.length - 1;
+      const step = lastIndex / (maxPoints - 1);
+      const sampled = [];
+      let prev = -1;
+      for (let i = 0; i < maxPoints - 1; i++) {
+          const idx = Math.round(i * step);
+          if (idx !== prev) {
+              sampled.push(data[idx]);
+              prev = idx;
+          }
+      }
+      if (prev !== lastIndex) sampled.push(data[lastIndex]);
+      return sampled;
+  }
+  
+  // Reuse the fetch started by landing_combined.js instead of downloading 3.6MB twice
+  const routePromise = window.routeDataPromise || fetch('data/route-combined.json').then(response => response.json());
+  
   Promise.all([
-      fetch('data/route-combined.json').then(response => response.json()),
+      routePromise,
       fetch('data/elevation-combined.json').then(response => response.json()),
       loadTimelineData()
   ]).then(([route, elevation, timeline]) => {
@@ -1271,8 +1307,8 @@ body {
           .attr("k3", "0.1")
           .attr("k4", "0");
       
-      // Convert route points to GeoJSON format for D3
-      const coordinates = routeData.points.map(point => [point.lon, point.lat]);
+      // Convert route points to GeoJSON format for D3 (downsample for the tiny minimap)
+      const coordinates = downsample(routeData.points, 400).map(point => [point.lon, point.lat]);
       
       const geoJsonFeature = {
           type: "Feature",
@@ -1474,7 +1510,7 @@ body {
     //   console.log("Elevation data length:", elevationData ? elevationData.length : "undefined");
     //   console.log("First few elevation points:", elevationData ? elevationData.slice(0, 3) : "undefined");
       
-      const chartData = elevationData.map(d => [d.elevation, d.distance]);
+      const chartData = downsample(elevationData, 400).map(d => [d.elevation, d.distance]);
       
       // Calculate proper domain based on actual data
       const elevationExtent = d3.extent(chartData, d => d[0]);
@@ -1883,22 +1919,21 @@ body {
   });
   
   // Handle window resize to update responsive layout
+  let slideshowResizeTimeout;
   window.addEventListener('resize', () => {
-      // Redraw minimap and chart with new dimensions
-      if (window.routeAnimationData) {
-          drawMinimap(window.routeAnimationData.totalRouteDistance);
-      }
-      if (elevationData) {
-          drawChart();
-      }
-      if (window.originalTimelineData) {
-          drawTimeline(window.originalTimelineData);
-      }
-      
-      // Regenerate slides with new responsive dimensions
-      if (window.originalTimelineData) {
-          generateSlides(window.originalTimelineData);
-      }
+      clearTimeout(slideshowResizeTimeout);
+      slideshowResizeTimeout = setTimeout(() => {
+          if (window.routeAnimationData) {
+              drawMinimap(window.routeAnimationData.totalRouteDistance);
+          }
+          if (elevationData) {
+              drawChart();
+          }
+          if (window.originalTimelineData) {
+              drawTimeline(window.originalTimelineData);
+              generateSlides(window.originalTimelineData);
+          }
+      }, 250);
   });
   
   // Add scroll snapping behavior

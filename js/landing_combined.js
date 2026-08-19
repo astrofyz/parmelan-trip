@@ -1,3 +1,11 @@
+// Start fetching the large route file immediately so it overlaps with Mapbox + D3
+window.routeDataPromise = window.routeDataPromise || fetch('data/route-combined.json').then(response => {
+    if (!response.ok) {
+        throw new Error(`Failed to load route data: ${response.status}`);
+    }
+    return response.json();
+});
+
 // Landing page JavaScript
 class LandingPage {
     constructor() {
@@ -8,34 +16,106 @@ class LandingPage {
         this.totalElevationElement = document.getElementById('total-elevation');
         this.currentBounds = null;
         this.currentPoints = null;
+        this.currentMapUrl = null;
+        this.usedFallback = false;
+        this.liveMapTimeoutMs = 5000;
+        this.fallbackImages = {
+            landscape: 'assets/images/landing-map-fallback-landscape.jpg',
+            portrait: 'assets/images/landing-map-fallback-portrait.jpg'
+        };
         
-        // Map configuration - fixed center
+        // Map configuration - fixed center (matches the combined route)
         this.mapCenter = { lat: 45.941112, lon: 6.2080575 };
+        this.defaultRouteBounds = {
+            minLat: 45.904317,
+            maxLat: 45.977907,
+            minLon: 6.169607,
+            maxLon: 6.246508
+        };
         
         // Bind resize handler
         this.handleResize = this.handleResize.bind(this);
         window.addEventListener('resize', this.handleResize);
         
+        if (this.shouldUseStaticFallback()) {
+            this.showStaticFallback();
+            this.hideLoading();
+            return;
+        }
+        
+        // Preload Mapbox off-screen so the local fallback stays visible until it is ready
+        this.backgroundLoadPromise = this.preloadMapboxBackground(
+            this.calculateOptimalBounds(this.defaultRouteBounds)
+        );
+        
         this.init();
+    }
+    
+    shouldUseStaticFallback() {
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        if (!connection) return false;
+        if (connection.saveData) return true;
+        if (['slow-2g', '2g'].includes(connection.effectiveType)) return true;
+        if (typeof connection.downlink === 'number' && connection.downlink > 0 && connection.downlink < 0.8) {
+            return true;
+        }
+        return false;
+    }
+    
+    fallbackImageSrc() {
+        return window.innerWidth >= window.innerHeight
+            ? this.fallbackImages.landscape
+            : this.fallbackImages.portrait;
+    }
+    
+    showStaticFallback() {
+        this.usedFallback = true;
+        const container = document.querySelector('.landing-container');
+        if (container) container.classList.add('is-fallback');
+        
+        const img = document.querySelector('.background-image img');
+        if (img && img.classList.contains('live-map')) {
+            img.classList.remove('live-map');
+            img.src = this.fallbackImageSrc();
+        }
+    }
+    
+    raceTimeout(promise, ms) {
+        return new Promise((resolve) => {
+            const timer = setTimeout(() => resolve({ timedOut: true }), ms);
+            promise.then(
+                (value) => {
+                    clearTimeout(timer);
+                    resolve({ timedOut: false, value });
+                },
+                (error) => {
+                    clearTimeout(timer);
+                    resolve({ timedOut: true, error });
+                }
+            );
+        });
     }
     
     async init() {
         try {
-            this.showLoading();
-            await this.loadRouteData();
-            // this.debugRouteData(); // Add debug logging
-            this.createRoutePaths();
-            // this.updateStats();
+            const liveReady = Promise.all([
+                this.loadRouteData(),
+                this.backgroundLoadPromise
+            ]);
+            const result = await this.raceTimeout(liveReady, this.liveMapTimeoutMs);
             
-            // Wait for background to load before animating
-            console.log('Waiting for background to load before animation...');
-            await this.waitForBackgroundLoad();
-            console.log('Background loaded, starting animation');
+            if (result.timedOut || result.error) {
+                this.showStaticFallback();
+                this.hideLoading();
+                return;
+            }
             
+            await this.createRoutePaths();
             this.hideLoading();
             this.animateRoutes();
         } catch (error) {
             console.error('Error initializing landing page:', error);
+            this.showStaticFallback();
             this.hideLoading();
         }
     }
@@ -49,25 +129,36 @@ class LandingPage {
     }
     
     async loadRouteData() {
-        try {
-            // Load combined route data
-            const combinedData = await fetch('data/route-combined.json').then(response => response.json());
-            
-            this.routeData = {
-                combined: combinedData
-            };
-        } catch (error) {
-            console.warn('Could not load combined route data, using fallback:', error);
-            // Fallback data if needed
-        }
+        const combinedData = await window.routeDataPromise;
+        this.routeData = {
+            combined: combinedData
+        };
     }
     
-    createRoutePaths() {
+    downsamplePoints(points, maxPoints = 600) {
+        if (!points || points.length <= maxPoints) return points;
+        const lastIndex = points.length - 1;
+        const step = lastIndex / (maxPoints - 1);
+        const sampled = [];
+        let prev = -1;
+        for (let i = 0; i < maxPoints - 1; i++) {
+            const idx = Math.round(i * step);
+            if (idx !== prev) {
+                sampled.push(points[idx]);
+                prev = idx;
+            }
+        }
+        if (prev !== lastIndex) sampled.push(points[lastIndex]);
+        return sampled;
+    }
+    
+    async createRoutePaths() {
         // Use combined route data
         // console.log('Route data structure:', this.routeData);
         
         if (!this.routeData.combined || !this.routeData.combined.points) {
             console.error('No combined route data found!');
+            this.showStaticFallback();
             return;
         }
         
@@ -110,11 +201,11 @@ class LandingPage {
         // Calculate optimal bounds based on route and window
         const optimalBounds = this.calculateOptimalBounds(routeBounds);
         
-        // Load Mapbox background with optimal bounds
-        this.loadMapboxBackground(optimalBounds);
+        // Swap the local fallback for the live Mapbox image now that both are ready
+        this.applyLiveBackground(this.currentMapUrl || this.getMapboxUrl(optimalBounds));
         
-        // Create single combined path using optimal bounds
-        this.createCombinedPath(allPoints, optimalBounds);
+        // Draw a simplified path — 18k GPS points make getTotalLength() very slow
+        this.createCombinedPath(this.downsamplePoints(allPoints), optimalBounds);
     }
     
     calculateBounds(points) {
@@ -241,92 +332,83 @@ class LandingPage {
     }
     
     calculateViewBox() {
-        // Use window dimensions directly to match Mapbox image
         const width = Math.round(window.innerWidth);
         const height = Math.round(window.innerHeight);
-        
-        // console.log(`ViewBox: 0 0 ${width} ${height} (matches window and Mapbox image)`);
-        
         return `0 0 ${width} ${height}`;
     }
     
-    getMapboxUrl(bounds) {
-        // Mapbox static image API
-        const accessToken = 'pk.eyJ1IjoiYXN0cm9meXoiLCJhIjoiY2xtMWF4MTBxMzByMTNxcGkwc2cycDlhMSJ9.0o3QKpA4eMmFsX2pfk-Idw';
+    // Mapbox Static Images API rejects anything over 1280px on either side.
+    // Keep the window aspect ratio so the image still lines up with the SVG overlay.
+    getMapImageSize() {
+        const maxSize = 1280;
+        const windowWidth = Math.max(1, Math.round(window.innerWidth));
+        const windowHeight = Math.max(1, Math.round(window.innerHeight));
+        const aspect = windowWidth / windowHeight;
         
-        // Get current window dimensions
-        const windowWidth = window.innerWidth;
-        const windowHeight = window.innerHeight;
+        let width = windowWidth;
+        let height = windowHeight;
         
-        // Use window dimensions directly for image size
-        const width = Math.round(windowWidth);
-        const height = Math.round(windowHeight);
+        if (width > maxSize || height > maxSize) {
+            if (aspect >= 1) {
+                width = maxSize;
+                height = Math.max(1, Math.round(maxSize / aspect));
+            } else {
+                height = maxSize;
+                width = Math.max(1, Math.round(maxSize * aspect));
+            }
+        }
         
-        // Use bounding box format: [minLon,minLat,maxLon,maxLat]
-        const bbox = `${bounds.minLon},${bounds.minLat},${bounds.maxLon},${bounds.maxLat}`;
-        const mapUrl = `https://api.mapbox.com/styles/v1/astrofyz/cmeaghtkp00c401sdc39r9mq8/static/[${bbox}]/${width}x${height}@2x?access_token=${accessToken}`;
-        
-        // console.log('Mapbox URL:', mapUrl);
-        // console.log('Bounds:', bounds);
-        // console.log('Image dimensions:', { width, height });
-        // console.log('Window dimensions:', { width: windowWidth, height: windowHeight });
-        
-        return mapUrl;
+        return {
+            width: Math.min(width, maxSize),
+            height: Math.min(height, maxSize)
+        };
     }
     
-
+    getMapboxUrl(bounds) {
+        const accessToken = 'pk.eyJ1IjoiYXN0cm9meXoiLCJhIjoiY2xtMWF4MTBxMzByMTNxcGkwc2cycDlhMSJ9.0o3QKpA4eMmFsX2pfk-Idw';
+        const { width, height } = this.getMapImageSize();
+        const bbox = `${bounds.minLon},${bounds.minLat},${bounds.maxLon},${bounds.maxLat}`;
+        return `https://api.mapbox.com/styles/v1/astrofyz/cmeaghtkp00c401sdc39r9mq8/static/[${bbox}]/${width}x${height}@2x?access_token=${accessToken}`;
+    }
+    
+    preloadMapboxBackground(bounds) {
+        const mapUrl = this.getMapboxUrl(bounds);
+        this.currentMapUrl = mapUrl;
+        
+        return new Promise((resolve, reject) => {
+            const preload = new Image();
+            this._preloadImage = preload;
+            preload.onload = () => resolve(mapUrl);
+            preload.onerror = () => reject(new Error('Failed to load Mapbox background'));
+            preload.src = mapUrl;
+        });
+    }
+    
+    applyLiveBackground(mapUrl) {
+        const img = document.querySelector('.background-image img');
+        if (!img) return;
+        
+        const source = document.querySelector('.background-image source');
+        if (source) source.remove();
+        
+        img.classList.add('live-map');
+        img.src = mapUrl;
+        this.currentMapUrl = mapUrl;
+        
+        const container = document.querySelector('.landing-container');
+        if (container) container.classList.remove('is-fallback');
+    }
     
     loadMapboxBackground(bounds) {
         const mapUrl = this.getMapboxUrl(bounds);
-        console.log('Loading Mapbox background:', mapUrl);
-        
-        // Find the background image element
-        const backgroundImage = document.querySelector('.background-image img');
-        if (backgroundImage) {
-            backgroundImage.src = mapUrl;
-            backgroundImage.onerror = () => {
-                console.error('Failed to load Mapbox background');
-                // Fallback to dummy image
-                backgroundImage.src = 'assets/images/dummy_front_map_bg.png';
-            };
+        if (this.currentMapUrl === mapUrl && document.querySelector('.background-image img.live-map')) {
+            return Promise.resolve();
         }
-    }
-    
-    waitForBackgroundLoad() {
-        return new Promise((resolve) => {
-            const backgroundImage = document.querySelector('.background-image img');
-            if (!backgroundImage) {
-                console.log('No background image found, proceeding');
-                resolve();
-                return;
-            }
-            
-            // Check if already loaded
-            if (backgroundImage.complete && backgroundImage.naturalWidth > 0) {
-                console.log('Background already loaded');
-                resolve();
-                return;
-            }
-            
-            // Check if src is set (loading started)
-            if (!backgroundImage.src || backgroundImage.src === '') {
-                console.log('Background image src not set yet, waiting...');
-                // Wait a bit and check again
-                setTimeout(() => {
-                    this.waitForBackgroundLoad().then(resolve);
-                }, 100);
-                return;
-            }
-            
-            console.log('Waiting for background image to load...');
-            backgroundImage.onload = () => {
-                console.log('Background loaded successfully, ready to animate');
-                resolve();
-            };
-            backgroundImage.onerror = () => {
-                console.log('Background failed to load, proceeding anyway');
-                resolve();
-            };
+        
+        return this.preloadMapboxBackground(bounds).then((url) => {
+            this.applyLiveBackground(url);
+        }).catch(() => {
+            this.showStaticFallback();
         });
     }
     
@@ -387,7 +469,7 @@ class LandingPage {
         // Create D3 projection that matches the Mapbox image exactly
         // Use Web Mercator projection (same as Mapbox) with proper scaling
         const projection = d3.geoMercator()
-            .fitSize([window.innerWidth, window.innerHeight], boundingBox);
+            .fitSize([width, height], boundingBox);
         // Create D3 path generator
         const pathGenerator = d3.geoPath().projection(projection);
         
@@ -453,35 +535,28 @@ class LandingPage {
     }
     
     handleResize() {
-        // Debounce resize events
         clearTimeout(this.resizeTimeout);
-        this.resizeTimeout = setTimeout(() => {
-            console.log('Window resized, updating route display');
-            
-            if (this.currentPoints && this.currentBounds) {
-                // Recalculate optimal bounds for new window size
-                const newOptimalBounds = this.calculateOptimalBounds(this.currentBounds);
-                
-                // Reload background with new bounds
-                this.loadMapboxBackground(newOptimalBounds);
-                
-                // Update viewBox to match new window size
-                const newViewBox = this.calculateViewBox();
-                this.svg.setAttribute('viewBox', newViewBox);
-                
-                // Clear existing paths
-                const existingPaths = this.svg.querySelectorAll('.route-path');
-                existingPaths.forEach(path => path.remove());
-                
-                // Recreate path with new bounds
-                this.createCombinedPath(this.currentPoints, newOptimalBounds);
-                
-                // Re-animate the route after recreation
-                setTimeout(() => {
-                    this.animateRoutes();
-                }, 100); // Small delay to ensure path is created
+        this.resizeTimeout = setTimeout(async () => {
+            if (this.usedFallback) {
+                const img = document.querySelector('.background-image img');
+                const source = document.querySelector('.background-image source');
+                if (img && !source) {
+                    img.src = this.fallbackImageSrc();
+                }
+                return;
             }
-        }, 250); // 250ms debounce
+            
+            if (!this.currentPoints || !this.currentBounds) return;
+            
+            const newOptimalBounds = this.calculateOptimalBounds(this.currentBounds);
+            await this.loadMapboxBackground(newOptimalBounds);
+            
+            this.svg.setAttribute('viewBox', this.calculateViewBox());
+            
+            this.svg.querySelectorAll('.route-path').forEach(path => path.remove());
+            this.createCombinedPath(this.downsamplePoints(this.currentPoints), newOptimalBounds);
+            this.animateRoutes();
+        }, 250);
     }
     
     destroy() {
