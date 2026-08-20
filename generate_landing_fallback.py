@@ -35,7 +35,8 @@ def optimal_bounds(route_bounds):
 
 
 def mercator_x(lon):
-    return lon
+    # Same units as mercator_y (unit-sphere Web Mercator, as used by D3/Mapbox)
+    return math.radians(lon)
 
 
 def mercator_y(lat):
